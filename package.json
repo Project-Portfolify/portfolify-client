@@ -12,6 +12,7 @@
     "watch:css": "tailwindcss -i ./src/input.css -o ./dist/output.css --watch"
   },
   "dependencies": {
+    "@glidejs/glide": "^3.7.1",
     "@tailwindcss/vite": "^4.0.9",
     "axios": "^1.8.1",
     "class-variance-authority": "^0.7.1",
