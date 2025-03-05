@@ -8,6 +8,7 @@ import SignUp from "./pages/SignUp";
 import Login from "./pages/Login";
 import { Routes, Route } from "react-router-dom";
 import PortfolioPage from "./pages/PortfolioPage";
+import CreatePortfolio from "./pages/CreatePortfolio";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
         <Route path="/signup" element={<SignUp />} />
         <Route path="/login" element={<Login />} />
         <Route path="/about" element={<AboutPage />} />
+        <Route path="/templates/:templateId" element={<CreatePortfolio />} />
         <Route path="/portfolios" element={<PortfolioPage />} />
         <Route path="*" element={<ErrorPage />} />
       </Routes>

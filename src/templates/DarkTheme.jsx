@@ -144,7 +144,7 @@ export default function DarkTheme() {
             {projects.map((project, index) => (
               <div
                 key={index}
-                className="border rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-shadow dark:border-gray-700"
+                className="border rounded-sm overflow-hidden shadow-md hover:shadow-xl transition-shadow dark:border-gray-700"
               >
                 <div className="relative h-48 overflow-hidden">
                   <img
@@ -204,7 +204,7 @@ export default function DarkTheme() {
               {experience.map((item, index) => (
                 <div
                   key={index}
-                  className="border rounded-lg p-6 hover:shadow-md transition-shadow dark:border-gray-700"
+                  className="border rounded-sm p-6 hover:shadow-md transition-shadow dark:border-gray-700"
                 >
                   <div className="flex justify-between items-start mb-4">
                     <div>

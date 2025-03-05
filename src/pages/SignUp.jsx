@@ -1,5 +1,4 @@
 import axios from "axios";
-import React from "react";
 import { useNavigate } from "react-router-dom";
 const env = import.meta.env.VITE_BASE_API_URL;
 
@@ -13,16 +12,16 @@ const SignUp = () => {
       name: name.value,
       password: password.value,
     };
+
     console.log(newUser);
-    axios
-      .post(`${env}/auth/signup`, newUser)
-      .then((response) => {
-        console.log("success", response);
-        navigate("/login");
-      })
-      .catch((error) => {
-        console.log("Error", error);
-      });
+
+    try {
+      const response = await axios.post(`${env}/auth/signup`, newUser);
+      console.log("success", response);
+      navigate("/login");
+    } catch (error) {
+      console.log("Error", error);
+    }
   };
 
   return (

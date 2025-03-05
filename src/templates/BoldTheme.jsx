@@ -188,7 +188,7 @@ const Hero = () => {
             <img
               src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80"
               alt="Professional portrait"
-              className="w-full h-auto rounded-lg shadow-lg object-cover"
+              className="w-full h-auto rounded-sm shadow-lg object-cover"
             />
           </div>
         </div>
@@ -214,7 +214,7 @@ const About = () => {
             <img
               src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1772&q=80"
               alt="Working on laptop"
-              className="w-full h-auto rounded-lg shadow-lg object-cover"
+              className="w-full h-auto rounded-sm shadow-lg object-cover"
             />
           </div>
           <div>
@@ -310,7 +310,7 @@ const Skills = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {skillCategories.map((category, index) => (
-            <div key={index} className="bg-white p-6 rounded-lg shadow-md">
+            <div key={index} className="bg-white p-6 rounded-sm shadow-md">
               <h3 className="text-xl font-semibold text-gray-900 mb-4">
                 {category.title}
               </h3>
@@ -391,7 +391,7 @@ const Projects = () => {
           {projects.map((project, index) => (
             <div
               key={index}
-              className="bg-white rounded-lg overflow-hidden shadow-md transition-transform hover:shadow-lg hover:-translate-y-1"
+              className="bg-white rounded-sm overflow-hidden shadow-md transition-transform hover:shadow-lg hover:-translate-y-1"
             >
               <div className="h-48 overflow-hidden">
                 <img
@@ -566,7 +566,7 @@ const Contact = () => {
         </div>
 
         <div>
-          <div className="bg-white p-8 rounded-lg shadow-md mb-8">
+          <div className="bg-white p-8 rounded-sm shadow-md mb-8">
             <h3 className="text-2xl font-semibold text-gray-900 mb-6">
               Contact Information
             </h3>
@@ -614,7 +614,7 @@ const Contact = () => {
             </div>
           </div>
 
-          <div className="bg-white p-8 rounded-lg shadow-md">
+          <div className="bg-white p-8 rounded-sm shadow-md">
             <h3 className="text-2xl font-semibold text-gray-900 mb-6">
               Let's Connect
             </h3>

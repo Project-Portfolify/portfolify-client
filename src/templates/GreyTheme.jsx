@@ -104,7 +104,7 @@ const GreyTheme = () => {
             {projects.map((project, index) => (
               <div
                 key={index}
-                className="bg-white border rounded-lg p-6 hover:shadow-lg transition-shadow"
+                className="bg-white border rounded-sm p-6 hover:shadow-lg transition-shadow"
               >
                 <h3 className="text-2xl font-semibold mb-4">{project.title}</h3>
                 <p className="text-gray-600 mb-4">{project.description}</p>
@@ -140,7 +140,7 @@ const GreyTheme = () => {
             {skills.map((skillGroup, index) => (
               <div
                 key={index}
-                className="bg-gray-50 rounded-lg p-6 text-center"
+                className="bg-gray-50 rounded-sm p-6 text-center"
               >
                 <h3 className="text-2xl font-semibold mb-6">
                   {skillGroup.name}
