@@ -748,7 +748,7 @@ const Footer = () => {
   );
 };
 
-function App() {
+function BoldTheme() {
   return (
     <div className="min-h-screen bg-white">
       <Navbar />
@@ -763,4 +763,4 @@ function App() {
   );
 }
 
-export default App;
+export default BoldTheme;
