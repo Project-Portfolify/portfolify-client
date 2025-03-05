@@ -1,9 +1,11 @@
 import axios from "axios";
 import React from "react";
-const env = import.meta.env;
+import { useNavigate } from "react-router-dom";
+const env = import.meta.env.VITE_BASE_API_URL;
 
 const SignUp = () => {
-  const handlSubmit = (e) => {
+  const navigate = useNavigate();
+  const handlSubmit = async (e) => {
     e.preventDefault();
     const { email, name, password } = e.target.elements;
     const newUser = {
@@ -13,9 +15,10 @@ const SignUp = () => {
     };
     console.log(newUser);
     axios
-      .post(`${env.VITE_BASE_API_URL}/auth/signup`, newUser)
+      .post(`${env}/auth/signup`, newUser)
       .then((response) => {
         console.log("success", response);
+        navigate("/login");
       })
       .catch((error) => {
         console.log("Error", error);
