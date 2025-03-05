@@ -2,8 +2,6 @@
 
 import { useState, useEffect } from "react";
 import {
-  MoonIcon,
-  SunIcon,
   ArrowDownIcon,
   GithubIcon,
   LinkedinIcon,
@@ -11,6 +9,7 @@ import {
   ExternalLinkIcon,
   CodeIcon,
 } from "lucide-react";
+import { Github, Linkedin, Mail } from "lucide-react";
 
 export default function DarkTheme() {
   const [darkMode, setDarkMode] = useState(false);
@@ -34,8 +33,6 @@ export default function DarkTheme() {
     }
   }, [darkMode]);
 
-  const toggleDarkMode = () => setDarkMode(!darkMode);
-
   const scrollToSection = (id) => {
     const element = document.getElementById(id);
     if (element) {
@@ -44,7 +41,7 @@ export default function DarkTheme() {
   };
 
   return (
-    <div className="min-h-screen bg-white dark:bg-gray-900 text-gray-900 dark:text-white">
+    <div className="min-h-screen bg-gray-900 text-gray-900 text-white">
       {/* Header */}
       <header className="sticky top-0 z-10 backdrop-blur-md bg-white/80 dark:bg-gray-900/80 border-b dark:border-gray-700">
         <nav className="container mx-auto px-4 py-4 flex justify-between items-center">
@@ -231,6 +228,46 @@ export default function DarkTheme() {
           </div>
         </section>
 
+        {/* Contact Section */}
+        <section id="contact" className="py-20 bg-gray-900">
+          <h2 className="text-4xl font-bold text-center mb-16">
+            Contact Information
+          </h2>
+          <div className=" bg-gray-900 rounded-l shadow-md p-8 mb-8 ml-auto mr-auto border border-gray-500 w-120">
+            <div className="space-y-4">
+              <div className="flex items-start">
+                <Mail className="text-white mt-1 mr-3" size={20} />
+                <div>
+                  <p className="font-medium text-white">Email</p>
+                  <a
+                    href="mailto:hello@example.com"
+                    className="text-white hover:text-blue-600"
+                  >
+                    hello@example.com
+                  </a>
+                </div>
+              </div>
+              <div className="flex items-start">
+                <Linkedin className="text-white mt-1 mr-3" size={20} />
+                <div>
+                  <p className="font-medium text-white">LinkedIn</p>
+                  <a href="#" className="text-white hover:text-blue-600">
+                    linkedin.com/in/yourprofile
+                  </a>
+                </div>
+              </div>
+              <div className="flex items-start">
+                <Github className="text-white mt-1 mr-3" size={20} />
+                <div>
+                  <p className="font-medium text-white">GitHub</p>
+                  <a href="#" className="text-white hover:text-blue-600">
+                    github.com/yourusername
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
         {/* Rest of the components follow similar patterns */}
       </main>
 
@@ -258,8 +295,27 @@ export default function DarkTheme() {
 
 // Existing data arrays remain the same
 const projects = [
-  /* ... */
+  {
+    title: "Digital Marketplace",
+    description:
+      "Full-stack e-commerce platform with real-time inventory management",
+    technologies: ["React", "Node.js", "GraphQL", "MongoDB"],
+    link: "#",
+  },
+  {
+    title: "AI Sentiment Analyzer",
+    description: "Machine learning tool for analyzing social media sentiment",
+    technologies: ["Python", "TensorFlow", "React", "Flask"],
+    link: "#",
+  },
+  {
+    title: "Smart Home Dashboard",
+    description: "IoT application for home automation and energy monitoring",
+    technologies: ["React Native", "Firebase", "Arduino"],
+    link: "#",
+  },
 ];
+
 const experience = [
   /* ... */
 ];
