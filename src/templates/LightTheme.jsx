@@ -234,8 +234,8 @@ function LightThemeTemplate() {
             </div>
             <div className="order-1 md:order-2">
               <div className="relative">
-                <div className="absolute -inset-1 bg-gradient-to-r from-indigo-600 to-purple-600 rounded-lg blur opacity-25"></div>
-                <div className="relative bg-white rounded-lg overflow-hidden shadow-xl">
+                <div className="absolute -inset-1 bg-gradient-to-r from-indigo-600 to-purple-600 rounded-sm blur opacity-25"></div>
+                <div className="relative bg-white rounded-sm overflow-hidden shadow-xl">
                   <img
                     src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80"
                     alt="Portfolio Owner"
@@ -263,7 +263,7 @@ function LightThemeTemplate() {
               <img
                 src="https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80"
                 alt="Working on projects"
-                className="rounded-lg shadow-lg"
+                className="rounded-sm shadow-lg"
               />
             </div>
             <div>

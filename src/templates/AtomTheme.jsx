@@ -124,7 +124,7 @@ const Navbar = () => {
 const ServiceCard = ({ icon: Icon, title, description }) => {
   return (
     <div className="bg-gray-800 rounded-xl p-6 hover:bg-gray-750 transition-colors">
-      <div className="h-12 w-12 bg-purple-500/10 rounded-lg flex items-center justify-center mb-4">
+      <div className="h-12 w-12 bg-purple-500/10 rounded-sm flex items-center justify-center mb-4">
         <Icon className="h-6 w-6 text-purple-400" />
       </div>
       <h3 className="text-xl font-bold text-white mb-2">{title}</h3>
@@ -186,7 +186,7 @@ const SkillBadge = ({ icon: Icon, name }) => {
   );
 };
 
-function Theme() {
+function AtomTheme() {
   return (
     <div className="min-h-screen bg-gray-900">
       <Navbar />
@@ -427,4 +427,4 @@ function Theme() {
   );
 }
 
-export default Theme;
+export default AtomTheme;
