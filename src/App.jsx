@@ -14,20 +14,17 @@ import Login from "./pages/Login";
 import { Routes, Route } from "react-router-dom";
 import PortfolioPage from "./pages/PortfolioPage";
 
-
 function App() {
   return (
     <>
-      <h1>APP component</h1>
-      <Navbar/>
-
+      <Navbar />
       <Routes>
-        <Route path="/" element={<HomePage />} /> 
-        <Route path="/signup" element={<SignUp/>}/>
-        <Route path="/login" element={<Login/>}/>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/signup" element={<SignUp />} />
+        <Route path="/login" element={<Login />} />
         <Route path="/about" element={<AboutPage />} />
         <Route path="/portfolios" element={<PortfolioPage />} />
-        <Route path="*" element={ <ErrorPage /> } /> 
+        <Route path="*" element={<ErrorPage />} />
       </Routes>
     </>
   );
