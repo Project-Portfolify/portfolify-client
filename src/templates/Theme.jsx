@@ -12,6 +12,14 @@ import {
   Palette,
   Globe,
   Zap,
+  Terminal,
+  Database,
+  Layout,
+  Cpu,
+  Server,
+  Braces,
+  Layers,
+  GitBranch,
 } from "lucide-react";
 
 // Components
@@ -172,6 +180,19 @@ const ProjectCard = ({ title, description, image, tags, link }) => {
   );
 };
 
+const SkillBadge = ({ icon: Icon, name }) => {
+  return (
+    <div className="bg-gray-800 rounded-full px-4 py-2 flex items-center space-x-2 hover:bg-gray-750 transition-colors group">
+      <div className="bg-purple-500/10 rounded-full p-1.5">
+        <Icon className="h-4 w-4 text-purple-400 group-hover:text-purple-300" />
+      </div>
+      <span className="text-gray-300 group-hover:text-white font-medium">
+        {name}
+      </span>
+    </div>
+  );
+};
+
 function Theme() {
   return (
     <div className="min-h-screen bg-gray-900">
@@ -223,6 +244,90 @@ function Theme() {
               >
                 <Mail size={24} />
               </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Skills Section */}
+      <section className="py-20">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold text-white">
+              Technical Skills
+            </h2>
+            <div className="mt-2 h-1 w-20 bg-purple-600 mx-auto"></div>
+            <p className="mt-4 text-xl text-gray-400">
+              Technologies and tools I work with
+            </p>
+          </div>
+
+          <div className="space-y-12">
+            <div>
+              <h3 className="text-xl font-semibold text-white mb-6">
+                Frontend Development
+              </h3>
+              <div className="flex flex-wrap gap-3">
+                <SkillBadge icon={Code} name="JavaScript" />
+                <SkillBadge icon={Braces} name="TypeScript" />
+                <SkillBadge icon={Layout} name="React.js" />
+                <SkillBadge icon={Layers} name="Next.js" />
+                <SkillBadge icon={Palette} name="Tailwind CSS" />
+                <SkillBadge icon={Code} name="HTML5/CSS3" />
+                <SkillBadge icon={Layout} name="Vue.js" />
+                <SkillBadge icon={Palette} name="Figma" />
+              </div>
+            </div>
+
+            <div>
+              <h3 className="text-xl font-semibold text-white mb-6">
+                Backend Development
+              </h3>
+              <div className="flex flex-wrap gap-3">
+                <SkillBadge icon={Server} name="Node.js" />
+                <SkillBadge icon={Database} name="PostgreSQL" />
+                <SkillBadge icon={Database} name="MongoDB" />
+                <SkillBadge icon={Terminal} name="GraphQL" />
+                <SkillBadge icon={Server} name="Express.js" />
+                <SkillBadge icon={Database} name="Redis" />
+                <SkillBadge icon={Terminal} name="REST APIs" />
+              </div>
+            </div>
+
+            <div>
+              <h3 className="text-xl font-semibold text-white mb-6">
+                Tools & Others
+              </h3>
+              <div className="flex flex-wrap gap-3">
+                <SkillBadge icon={GitBranch} name="Git" />
+                <SkillBadge icon={Terminal} name="Docker" />
+                <SkillBadge icon={Server} name="AWS" />
+                <SkillBadge icon={Terminal} name="Linux" />
+                <SkillBadge icon={Terminal} name="CI/CD" />
+                <SkillBadge icon={Terminal} name="Jest" />
+                <SkillBadge icon={Terminal} name="Webpack" />
+              </div>
+            </div>
+          </div>
+
+          <div className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-8">
+            <div className="text-center">
+              <div className="text-4xl font-bold text-purple-400 mb-2">5+</div>
+              <div className="text-gray-400">Years Experience</div>
+            </div>
+            <div className="text-center">
+              <div className="text-4xl font-bold text-purple-400 mb-2">50+</div>
+              <div className="text-gray-400">Projects Completed</div>
+            </div>
+            <div className="text-center">
+              <div className="text-4xl font-bold text-purple-400 mb-2">20+</div>
+              <div className="text-gray-400">Happy Clients</div>
+            </div>
+            <div className="text-center">
+              <div className="text-4xl font-bold text-purple-400 mb-2">
+                100%
+              </div>
+              <div className="text-gray-400">Client Satisfaction</div>
             </div>
           </div>
         </div>

@@ -7,7 +7,7 @@ import Theme from "./templates/Theme";
 function App() {
   return (
     <>
-      <BoldTheme />
+      <Theme />
     </>
   );
 }
