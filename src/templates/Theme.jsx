@@ -31,9 +31,7 @@ const Navbar = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-16">
           <div className="flex items-center">
-            <span className="text-xl font-bold text-purple-400">
-              &lt;Portfolio /&gt;
-            </span>
+            <span className="text-xl font-bold text-purple-400">Name</span>
           </div>
 
           {/* Desktop menu */}
@@ -56,12 +54,7 @@ const Navbar = () => {
             >
               Projects
             </a>
-            <a
-              href="#contact"
-              className="text-gray-300 hover:text-purple-400 transition-colors"
-            >
-              Contact
-            </a>
+
             <a
               href="#"
               className="px-4 py-2 rounded-md bg-purple-600 text-white hover:bg-purple-700 transition-colors"
@@ -207,22 +200,13 @@ function Theme() {
               Crafting Digital{" "}
               <span className="text-purple-400">Experiences</span>
             </h1>
-            <p className="text-xl text-gray-400 mb-8">
-              Full-stack developer specializing in building exceptional digital
-              experiences that live on the internet.
-            </p>
+            <p className="text-xl text-gray-400 mb-8">Full-stack developer</p>
             <div className="flex flex-wrap justify-center gap-4">
               <a
                 href="#projects"
                 className="px-6 py-3 rounded-md bg-purple-600 text-white font-medium hover:bg-purple-700 transition-colors inline-flex items-center"
               >
                 View My Work <ChevronRight size={18} className="ml-1" />
-              </a>
-              <a
-                href="#contact"
-                className="px-6 py-3 rounded-md border border-gray-700 text-gray-300 font-medium hover:border-purple-400 hover:text-purple-400 transition-colors"
-              >
-                Get in Touch
               </a>
             </div>
             <div className="mt-12 flex justify-center space-x-6">
@@ -245,6 +229,29 @@ function Theme() {
                 <Mail size={24} />
               </a>
             </div>
+          </div>
+        </div>
+      </section>
+      {/* About section */}
+      <section className="py-20">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2
+              id="about"
+              className="text-3xl md:text-4xl font-bold text-white"
+            >
+              About Me
+            </h2>
+            <div className="mt-2 h-1 w-20 bg-purple-600 mx-auto"></div>
+            <p className="mt-4 text-xl text-gray-400">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam
+              nec condimentum orci. Donec vestibulum lacinia magna, eu placerat
+              neque gravida quis. Maecenas fermentum felis sit amet magna auctor
+              ultrices. Etiam in fermentum magna. Nulla dapibus erat vitae arcu
+              volutpat, quis facilisis turpis porttitor. Integer molestie ipsum
+              at sem maximus, in faucibus nisi tincidunt. Aliquam nec elit
+              vulputate, pulvinar magna eu, sollicitudin elit.
+            </p>
           </div>
         </div>
       </section>
@@ -307,27 +314,6 @@ function Theme() {
                 <SkillBadge icon={Terminal} name="Jest" />
                 <SkillBadge icon={Terminal} name="Webpack" />
               </div>
-            </div>
-          </div>
-
-          <div className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-8">
-            <div className="text-center">
-              <div className="text-4xl font-bold text-purple-400 mb-2">5+</div>
-              <div className="text-gray-400">Years Experience</div>
-            </div>
-            <div className="text-center">
-              <div className="text-4xl font-bold text-purple-400 mb-2">50+</div>
-              <div className="text-gray-400">Projects Completed</div>
-            </div>
-            <div className="text-center">
-              <div className="text-4xl font-bold text-purple-400 mb-2">20+</div>
-              <div className="text-gray-400">Happy Clients</div>
-            </div>
-            <div className="text-center">
-              <div className="text-4xl font-bold text-purple-400 mb-2">
-                100%
-              </div>
-              <div className="text-gray-400">Client Satisfaction</div>
             </div>
           </div>
         </div>
@@ -393,76 +379,6 @@ function Theme() {
               tags={["Vue.js", "D3.js", "Firebase"]}
               link="#"
             />
-          </div>
-        </div>
-      </section>
-
-      {/* Contact Section */}
-      <section id="contact" className="py-20 bg-gray-850">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-3xl mx-auto text-center">
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
-              Get In Touch
-            </h2>
-            <p className="text-gray-400 mb-8">
-              I'm currently available for freelance work. If you have a project
-              that you want to get started, think you need my help with
-              something or just fancy saying hey, then get in touch.
-            </p>
-            <div className="bg-gray-800 p-8 rounded-xl">
-              <form className="space-y-6">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  <div>
-                    <label
-                      htmlFor="name"
-                      className="block text-sm font-medium text-gray-300 mb-1"
-                    >
-                      Name
-                    </label>
-                    <input
-                      type="text"
-                      id="name"
-                      className="w-full px-4 py-2 bg-gray-700 border border-gray-600 rounded-md text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
-                      placeholder="John Doe"
-                    />
-                  </div>
-                  <div>
-                    <label
-                      htmlFor="email"
-                      className="block text-sm font-medium text-gray-300 mb-1"
-                    >
-                      Email
-                    </label>
-                    <input
-                      type="email"
-                      id="email"
-                      className="w-full px-4 py-2 bg-gray-700 border border-gray-600 rounded-md text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
-                      placeholder="john@example.com"
-                    />
-                  </div>
-                </div>
-                <div>
-                  <label
-                    htmlFor="message"
-                    className="block text-sm font-medium text-gray-300 mb-1"
-                  >
-                    Message
-                  </label>
-                  <textarea
-                    id="message"
-                    rows={4}
-                    className="w-full px-4 py-2 bg-gray-700 border border-gray-600 rounded-md text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
-                    placeholder="Your message..."
-                  ></textarea>
-                </div>
-                <button
-                  type="submit"
-                  className="w-full px-6 py-3 bg-purple-600 text-white font-medium rounded-md hover:bg-purple-700 transition-colors"
-                >
-                  Send Message
-                </button>
-              </form>
-            </div>
           </div>
         </div>
       </section>

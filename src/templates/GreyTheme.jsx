@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Github, Linkedin, Mail } from "lucide-react";
 
 const GreyTheme = () => {
   const [activeTab, setActiveTab] = useState("home");
@@ -158,32 +159,43 @@ const GreyTheme = () => {
       </section>
 
       {/* Contact Section */}
-      <section id="contact" className="py-20 bg-gray-50">
-        <div className="container mx-auto px-4 max-w-lg">
-          <h2 className="text-4xl font-bold text-center mb-16">Get In Touch</h2>
-          <form className="space-y-6">
-            <input
-              type="text"
-              placeholder="Your Name"
-              className="w-full border border-gray-300 rounded-md px-4 py-3 focus:outline-none focus:ring-2 focus:ring-black"
-            />
-            <input
-              type="email"
-              placeholder="Your Email"
-              className="w-full border border-gray-300 rounded-md px-4 py-3 focus:outline-none focus:ring-2 focus:ring-black"
-            />
-            <textarea
-              placeholder="Your Message"
-              rows={4}
-              className="w-full border border-gray-300 rounded-md px-4 py-3 focus:outline-none focus:ring-2 focus:ring-black"
-            ></textarea>
-            <button
-              type="submit"
-              className="w-full bg-black text-white py-3 rounded-md hover:bg-gray-800 transition"
-            >
-              Send Message
-            </button>
-          </form>
+      <section id="contact" className="py-20 bg-white">
+        <h2 className="text-4xl font-bold text-center mb-16">
+          Contact Information
+        </h2>
+        <div className=" bg-gray-50 rounded-l shadow-md p-8 mb-8 ml-30 mr-30">
+          <div className="space-y-4">
+            <div className="flex items-start">
+              <Mail className="text-black mt-1 mr-3" size={20} />
+              <div>
+                <p className="font-medium text-gray-900">Email</p>
+                <a
+                  href="mailto:hello@example.com"
+                  className="text-gray-600 hover:text-gray-950"
+                >
+                  hello@example.com
+                </a>
+              </div>
+            </div>
+            <div className="flex items-start">
+              <Linkedin className="text-black mt-1 mr-3" size={20} />
+              <div>
+                <p className="font-medium text-gray-900">LinkedIn</p>
+                <a href="#" className="text-gray-600 hover:text-gray-950">
+                  linkedin.com/in/yourprofile
+                </a>
+              </div>
+            </div>
+            <div className="flex items-start">
+              <Github className="text-black mt-1 mr-3" size={20} />
+              <div>
+                <p className="font-medium text-gray-900">GitHub</p>
+                <a href="#" className="text-gray-600 hover:text-gray-950">
+                  github.com/yourusername
+                </a>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 

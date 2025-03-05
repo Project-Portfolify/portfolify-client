@@ -565,147 +565,87 @@ const Contact = () => {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-          <div className="bg-white p-8 rounded-lg shadow-md">
+        <div>
+          <div className="bg-white p-8 rounded-lg shadow-md mb-8">
             <h3 className="text-2xl font-semibold text-gray-900 mb-6">
-              Send Me a Message
+              Contact Information
             </h3>
-            <form>
-              <div className="mb-4">
-                <label htmlFor="name" className="block text-gray-700 mb-2">
-                  Name
-                </label>
-                <input
-                  type="text"
-                  id="name"
-                  className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                  placeholder="Your name"
-                />
-              </div>
-              <div className="mb-4">
-                <label htmlFor="email" className="block text-gray-700 mb-2">
-                  Email
-                </label>
-                <input
-                  type="email"
-                  id="email"
-                  className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                  placeholder="Your email"
-                />
-              </div>
-              <div className="mb-4">
-                <label htmlFor="subject" className="block text-gray-700 mb-2">
-                  Subject
-                </label>
-                <input
-                  type="text"
-                  id="subject"
-                  className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                  placeholder="Subject"
-                />
-              </div>
-              <div className="mb-6">
-                <label htmlFor="message" className="block text-gray-700 mb-2">
-                  Message
-                </label>
-                <textarea
-                  id="message"
-                  rows={5}
-                  className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                  placeholder="Your message"
-                ></textarea>
-              </div>
-              <button
-                type="submit"
-                className="w-full px-6 py-3 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors"
-              >
-                Send Message
-              </button>
-            </form>
-          </div>
-
-          <div>
-            <div className="bg-white p-8 rounded-lg shadow-md mb-8">
-              <h3 className="text-2xl font-semibold text-gray-900 mb-6">
-                Contact Information
-              </h3>
-              <div className="space-y-4">
-                <div className="flex items-start">
-                  <Mail className="text-blue-600 mt-1 mr-4" size={20} />
-                  <div>
-                    <p className="font-medium text-gray-900">Email</p>
-                    <a
-                      href="mailto:contact@example.com"
-                      className="text-gray-600 hover:text-blue-600"
-                    >
-                      contact@example.com
-                    </a>
-                  </div>
+            <div className="space-y-4">
+              <div className="flex items-start">
+                <Mail className="text-blue-600 mt-1 mr-4" size={20} />
+                <div>
+                  <p className="font-medium text-gray-900">Email</p>
+                  <a
+                    href="mailto:contact@example.com"
+                    className="text-gray-600 hover:text-blue-600"
+                  >
+                    contact@example.com
+                  </a>
                 </div>
-                <div className="flex items-start">
-                  <Linkedin className="text-blue-600 mt-1 mr-4" size={20} />
-                  <div>
-                    <p className="font-medium text-gray-900">LinkedIn</p>
-                    <a
-                      href="https://linkedin.com"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-gray-600 hover:text-blue-600"
-                    >
-                      linkedin.com/in/johndoe
-                    </a>
-                  </div>
+              </div>
+              <div className="flex items-start">
+                <Linkedin className="text-blue-600 mt-1 mr-4" size={20} />
+                <div>
+                  <p className="font-medium text-gray-900">LinkedIn</p>
+                  <a
+                    href="https://linkedin.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-gray-600 hover:text-blue-600"
+                  >
+                    linkedin.com/in/johndoe
+                  </a>
                 </div>
-                <div className="flex items-start">
-                  <GitHub className="text-blue-600 mt-1 mr-4" size={20} />
-                  <div>
-                    <p className="font-medium text-gray-900">GitHub</p>
-                    <a
-                      href="https://github.com"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-gray-600 hover:text-blue-600"
-                    >
-                      github.com/johndoe
-                    </a>
-                  </div>
+              </div>
+              <div className="flex items-start">
+                <GitHub className="text-blue-600 mt-1 mr-4" size={20} />
+                <div>
+                  <p className="font-medium text-gray-900">GitHub</p>
+                  <a
+                    href="https://github.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-gray-600 hover:text-blue-600"
+                  >
+                    github.com/johndoe
+                  </a>
                 </div>
               </div>
             </div>
+          </div>
 
-            <div className="bg-white p-8 rounded-lg shadow-md">
-              <h3 className="text-2xl font-semibold text-gray-900 mb-6">
-                Let's Connect
-              </h3>
-              <p className="text-gray-600 mb-6">
-                I'm currently available for freelance work and full-time
-                positions. If you have a project that needs some creative touch,
-                I'd love to hear about it.
-              </p>
-              <div className="flex space-x-4">
-                <a
-                  href="https://github.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="p-3 bg-gray-100 rounded-full text-gray-700 hover:bg-gray-200 transition-colors"
-                >
-                  <GitHub size={24} />
-                </a>
-                <a
-                  href="https://linkedin.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="p-3 bg-gray-100 rounded-full text-gray-700 hover:bg-gray-200 transition-colors"
-                >
-                  <Linkedin size={24} />
-                </a>
-                <a
-                  href="mailto:contact@example.com"
-                  className="p-3 bg-gray-100 rounded-full text-gray-700 hover:bg-gray-200 transition-colors"
-                >
-                  <Mail size={24} />
-                </a>
-              </div>
+          <div className="bg-white p-8 rounded-lg shadow-md">
+            <h3 className="text-2xl font-semibold text-gray-900 mb-6">
+              Let's Connect
+            </h3>
+            <p className="text-gray-600 mb-6">
+              I'm currently available for freelance work and full-time
+              positions. If you have a project that needs some creative touch,
+              I'd love to hear about it.
+            </p>
+            <div className="flex space-x-4">
+              <a
+                href="https://github.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="p-3 bg-gray-100 rounded-full text-gray-700 hover:bg-gray-200 transition-colors"
+              >
+                <GitHub size={24} />
+              </a>
+              <a
+                href="https://linkedin.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="p-3 bg-gray-100 rounded-full text-gray-700 hover:bg-gray-200 transition-colors"
+              >
+                <Linkedin size={24} />
+              </a>
+              <a
+                href="mailto:contact@example.com"
+                className="p-3 bg-gray-100 rounded-full text-gray-700 hover:bg-gray-200 transition-colors"
+              >
+                <Mail size={24} />
+              </a>
             </div>
           </div>
         </div>
