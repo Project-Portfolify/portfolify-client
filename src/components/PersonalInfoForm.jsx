@@ -1,10 +1,10 @@
-import { Controller, useForm } from "react-hook-form";
+import { Controller } from "react-hook-form";
 import countryList from "react-select-country-list";
 import Select from "react-select";
 import { Asterisk } from "lucide-react";
 import { useMemo } from "react";
 
-const PersonalInfoForm = ({ onSubmit, form }) => {
+const PersonalInfoForm = ({ onClickNext, form }) => {
   const options = useMemo(() => countryList().getData(), []);
 
   const {
@@ -16,7 +16,7 @@ const PersonalInfoForm = ({ onSubmit, form }) => {
 
   const handleOnSubmit = (data) => {
     console.log(data);
-    onSubmit();
+    onClickNext();
   };
 
   return (

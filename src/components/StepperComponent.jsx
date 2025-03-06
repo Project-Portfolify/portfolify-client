@@ -52,11 +52,9 @@ const StepperComponent = ({ step }) => {
             {
               title: "Personal Info",
             },
+
             {
-              title: "About me",
-            },
-            {
-              title: "Professional Experience",
+              title: "Professional Summary",
             },
             {
               title: "Skills",
