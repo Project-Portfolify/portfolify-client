@@ -1,4 +1,5 @@
 import AtomTheme from "../templates/AtomTheme";
+
 const TemplateSwitch = ({ template, data }) => {
   return (
     <div>

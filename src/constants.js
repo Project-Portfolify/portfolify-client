@@ -1,4 +1,4 @@
-const Templates = {
+export const Templates = {
   BoldTheme: "boldTheme",
   DarkTheme: "darkTheme",
   GreyTheme: "greyTheme",
