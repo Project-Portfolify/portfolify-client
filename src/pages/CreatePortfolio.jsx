@@ -8,6 +8,20 @@ import SkillsForm from "../components/SkillsForm";
 import ProjectDetailsForm from "../components/ProjectDetailsForm";
 
 const CreatePortfolio = () => {
+  const { templateId } = useParams();
+  console.log(templateId);
+
+  const [step, setStep] = useState(1);
+  const totalSteps = 5;
+
+  const nextStep = () => {
+    if (step < totalSteps) setStep(step + 1);
+  };
+
+  const prevStep = () => {
+    if (step > 1) setStep(step - 1);
+  };
+
   const personalInfoForm = useForm({
     defaultValues: {
       name: "Bob",
@@ -21,17 +35,21 @@ const CreatePortfolio = () => {
   const skillsForm = useForm({});
   const projectForm = useForm({});
 
-  const [step, setStep] = useState(1);
-  const totalSteps = 5;
-  const nextStep = () => {
-    if (step < totalSteps) setStep(step + 1);
-  };
+  const handleSubmit = () => {
+    const personalInfo = personalInfoForm.getValues();
+    const about = aboutForm.getValues();
+    const skills = skillsForm.getValues();
+    const projects = projectForm.getValues();
 
-  const prevStep = () => {
-    if (step > 1) setStep(step - 1);
+    const combinedData = {
+      personalInfo,
+      about,
+      skills,
+      projects,
+    };
+
+    console.log(combinedData);
   };
-  const { templateId } = useParams();
-  console.log(templateId);
 
   return (
     <div className="m-30">
@@ -61,7 +79,9 @@ const CreatePortfolio = () => {
 
       {/* Step 5 */}
 
-      {step === 4 && <ProjectDetailsForm form={projectForm} />}
+      {step === 4 && (
+        <ProjectDetailsForm form={projectForm} onClickSubmit={handleSubmit} />
+      )}
     </div>
   );
 };
