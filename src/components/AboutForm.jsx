@@ -1,20 +1,8 @@
 import { Asterisk } from "lucide-react";
-import { useForm } from "react-hook-form";
 
-const AboutForm = ({ onClickNext, onClickPrev }) => {
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm({});
-
-  const handleOnSubmit = (data) => {
-    console.log(data);
-    onClickNext();
-  };
-
+const AboutForm = () => {
   return (
-    <form onSubmit={handleSubmit(handleOnSubmit)}>
+    <form>
       <div className="flex flex-col">
         <div className="flex flex-col">
           <div className="flex flex-row gap-x-6 mb-6">
@@ -24,7 +12,6 @@ const AboutForm = ({ onClickNext, onClickPrev }) => {
               </label>
               <input
                 type="text"
-                name="role"
                 className="block w-full px-5 py-2.5 bg-white leading-7 text-base font-normal shadow-xs text-gray-900 border border-gray-300 rounded-sm placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500"
               />
             </div>

@@ -43,11 +43,7 @@ const CreatePortfolio = () => {
       {/* Step 2 */}
 
       {step === 2 && (
-        <AboutForm
-          onClickNext={nextStep}
-          onClickPrev={prevStep}
-          form={aboutForm}
-        />
+        <AboutForm onClickNext={nextStep} onClickPrev={prevStep} />
       )}
 
       {/* Step 3 */}
