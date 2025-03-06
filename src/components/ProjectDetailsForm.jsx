@@ -1,4 +1,4 @@
-const ProjectDetailsForm = ({ form }) => {
+const ProjectDetailsForm = ({ form, onClickSubmit }) => {
   const {
     register,
     handleSubmit,
@@ -7,6 +7,7 @@ const ProjectDetailsForm = ({ form }) => {
 
   const handleOnSubmit = (data) => {
     console.log(data);
+    onClickSubmit();
   };
 
   return (
