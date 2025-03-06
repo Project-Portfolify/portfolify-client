@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useParams } from "react-router-dom";
 import StepperComponent from "../components/StepperComponent";
 import PersonalInfoForm from "../components/PersonalInfoForm";
-import AboutForm from "../components/AboutForm";
+import ProfessionalSummaryForm from "../components/ProfessionalSummaryForm";
 import { useForm } from "react-hook-form";
 import SkillsForm from "../components/SkillsForm";
 import ProjectDetailsForm from "../components/ProjectDetailsForm";
@@ -31,7 +31,7 @@ const CreatePortfolio = () => {
       email: "bob@gmail.com",
     },
   });
-  const aboutForm = useForm({});
+  const professionalSummaryForm = useForm({});
   const skillsForm = useForm({});
   const projectForm = useForm({});
 
@@ -64,7 +64,7 @@ const CreatePortfolio = () => {
       {/* Step 2 */}
 
       {step === 2 && (
-        <AboutForm onClickNext={nextStep} onClickPrev={prevStep} />
+        <ProfessionalSummaryForm onClickNext={nextStep} onClickPrev={prevStep} form= {professionalSummaryForm} />
       )}
 
       {/* Step 3 */}
