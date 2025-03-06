@@ -121,6 +121,7 @@ const PersonalInfoForm = ({ onClickNext, form }) => {
                   options={options}
                   placeholder="Select your country"
                   className="w-full"
+                  required
                 />
               )}
             />
