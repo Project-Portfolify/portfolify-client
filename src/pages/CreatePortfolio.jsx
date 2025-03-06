@@ -5,6 +5,7 @@ import StepperComponent from "../components/StepperComponent";
 import PersonalInfoForm from "../components/PersonalInfoForm";
 import AboutForm from "../components/AboutForm";
 import { useForm } from "react-hook-form";
+import SkillsForm from "../components/SkillsForm";
 
 const CreatePortfolio = () => {
   const personalInfoForm = useForm({
@@ -17,6 +18,7 @@ const CreatePortfolio = () => {
     },
   });
   const aboutForm = useForm({});
+  const skillsForm = useForm({});
 
   const [step, setStep] = useState(1);
   const totalSteps = 5;
@@ -37,7 +39,7 @@ const CreatePortfolio = () => {
 
       {/* Step-1 */}
       {step === 1 && (
-        <PersonalInfoForm onSubmit={nextStep} form={personalInfoForm} />
+        <PersonalInfoForm onClickNext={nextStep} form={personalInfoForm} />
       )}
 
       {/* Step 2 */}
@@ -47,57 +49,16 @@ const CreatePortfolio = () => {
       )}
 
       {/* Step 3 */}
+
+      {step === 3 && (
+        <SkillsForm
+          onClickNext={nextStep}
+          onClickPrev={prevStep}
+          form={skillsForm}
+        />
+      )}
+
       <form>
-        {step === 3 && (
-          <div className="flex justify-between w-full mt-6">
-            <button
-              className="w-52 h-12 shadow-sm rounded-full bg-indigo-600 hover:bg-indigo-800 transition-all duration-700 text-white text-base font-semibold leading-7"
-              onClick={prevStep}
-            >
-              Previous step
-            </button>
-            <button
-              className="w-52 h-12 shadow-sm rounded-full bg-indigo-600 hover:bg-indigo-800 transition-all duration-700 text-white text-base font-semibold leading-7"
-              onClick={nextStep}
-            >
-              Next step
-            </button>
-          </div>
-        )}
-
-        {/* Step 4 */}
-        {step === 4 && (
-          <div className="flex flex-col">
-            <div className="flex flex-row gap-x-6 mb-6">
-              <div className="w-full relative">
-                <label className="flex items-center mb-2 text-gray-600 text-sm font-medium">
-                  Skills
-                </label>
-                <input
-                  type="text"
-                  name="skills"
-                  className="block w-full px-5 py-2.5 bg-white leading-7 text-base font-normal shadow-xs text-gray-900 border border-gray-300 rounded-sm placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500"
-                />
-              </div>
-            </div>
-
-            <div className="flex justify-between w-full mt-6">
-              <button
-                className="w-52 h-12 shadow-sm rounded-full bg-indigo-600 hover:bg-indigo-800 transition-all duration-700 text-white text-base font-semibold leading-7"
-                onClick={prevStep}
-              >
-                Previous step
-              </button>
-              <button
-                className="w-52 h-12 shadow-sm rounded-full bg-indigo-600 hover:bg-indigo-800 transition-all duration-700 text-white text-base font-semibold leading-7"
-                onClick={nextStep}
-              >
-                Next step
-              </button>
-            </div>
-          </div>
-        )}
-
         {/* Step 5 */}
 
         {step === 5 && (

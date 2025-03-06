@@ -65,10 +65,7 @@ const AboutForm = () => {
           </div>
 
           <div className="flex justify-between w-full mt-6">
-            <button
-              className="w-52 h-12 shadow-sm rounded-full bg-indigo-600 hover:bg-indigo-800 transition-all duration-700 text-white text-base font-semibold leading-7"
-              onClick={onClickPrev}
-            >
+            <button className="w-52 h-12 shadow-sm rounded-full bg-indigo-600 hover:bg-indigo-800 transition-all duration-700 text-white text-base font-semibold leading-7">
               Previous step
             </button>
             <button
