@@ -37,13 +37,13 @@ const CreatePortfolio = () => {
 
   const handleSubmit = () => {
     const personalInfo = personalInfoForm.getValues();
-    const about = aboutForm.getValues();
+    const professionalSummary = professionalSummaryForm.getValues();
     const skills = skillsForm.getValues();
     const projects = projectForm.getValues();
 
     const combinedData = {
       personalInfo,
-      about,
+      professionalSummary,
       skills,
       projects,
     };
@@ -64,7 +64,11 @@ const CreatePortfolio = () => {
       {/* Step 2 */}
 
       {step === 2 && (
-        <ProfessionalSummaryForm onClickNext={nextStep} onClickPrev={prevStep} form= {professionalSummaryForm} />
+        <ProfessionalSummaryForm
+          onClickNext={nextStep}
+          onClickPrev={prevStep}
+          form={professionalSummaryForm}
+        />
       )}
 
       {/* Step 3 */}
