@@ -1,106 +1,185 @@
-import React from "react";
-import { useEffect } from "react";
-import Glide from "@glidejs/glide";
+import React, { useRef } from 'react';
+import DarkTheme from "../assets/DarkTheme.png";
 
 const PortfolioList = () => {
-  useEffect(() => {
-    const slider = new Glide(".glide-08", {
-      type: "carousel",
-      focusAt: 1,
-      animationDuration: 4000,
+  const carouselRef = useRef(null);
 
-      autoplay: true,
-      rewind: true,
-      perView: 2,
-      gap: 48,
-      classes: {
-        nav: {
-          active: "[&>*]:bg-wuiSlate-700",
-        },
-      },
-      breakpoints: {
-        1020: {
-          perView: 2,
-        },
-        640: {
-          perView: 1,
-        },
-      },
-    }).mount();
+  const scrollLeft = () => {
+    if (carouselRef.current) {
+      carouselRef.current.scrollBy({ left: -300, behavior: 'smooth' });
+    }
+  };
 
-    return () => {
-      slider.destroy();
-    };
-  }, []);
+  const scrollRight = () => {
+    if (carouselRef.current) {
+      carouselRef.current.scrollBy({ left: 300, behavior: 'smooth' });
+    }
+  };
+
   return (
-    <div>
-      {/*<!-- Component: Testimonial carousel --> */}
-      <div className="glide-08 relative w-full overflow-hidden">
-        {/*    <!-- Slides --> */}
-        <div data-glide-el="track">
-          <ul className="whitespace-no-wrap flex-no-wrap [backface-visibility: hidden] [transform-style: preserve-3d] [touch-action: pan-Y] [will-change: transform] relative flex w-full overflow-hidden p-0 pb-12">
-            <li>
-              <div className="h-full w-full">
-                {/*                    <!-- Start Testimonial --> */}
-                <div className="h-full overflow-hidden rounded bg-white text-slate-500 shadow-2xl shadow-slate-200">
-                  <div className="relative p-6">
-                    <figure className="relative z-10">
-                      <blockquote className="p-6 text-lg leading-relaxed">
-                        <p>
-                          Wind-ui, is probably one of the best libraries I've
-                          came across. Good looking, easy to use and above all
-                          super accessible.
-                        </p>
-                      </blockquote>
-                    </figure>
-                  </div>
-                </div>
-                {/*                    <!-- End Testimonial --> */}
+    <section id="portfolios" className="w-full h-auto px-4 py-2 overflow-hidden bg-gradient-to-r "
+>
+      <div className="relative">
+        {/* Scroll to the Left Button */}
+        <button
+          className="absolute left-0 top-1/2 transform -translate-y-1/2 z-10 bg-gray-400 text-black p-2 rounded-lg"
+          onClick={scrollLeft}
+        >
+          &lt;
+        </button>
+
+        {/* Carousel Container */}
+        <div
+          ref={carouselRef}
+          className="flex flex-nowrap gap-10 overflow-x-auto scroll-smooth pb-4"
+        >
+          {/* Card Template 1 */}
+          <div className="min-w-[300px] flex-shrink-0">
+            <div
+              className="w-[300px] h-[400px] overflow-hidden bg-white text-slate-500 shadow-2xl shadow-slate-200 mt-4 border-2 border-gray-500 rounded-xl relative"
+              style={{
+                backgroundImage: `url(${DarkTheme})`,
+                backgroundSize: "contain",
+                backgroundRepeat: "no-repeat",
+                backgroundPosition: "center",
+              }}
+            >
+              <div className="relative p-6">
+                <figure className="relative z-10">
+                  <blockquote className="p-6 text-lg leading-relaxed">
+                  </blockquote>
+                </figure>
               </div>
-            </li>
-            <li>
-              <div className="h-full w-full">
-                {/*                    <!-- Start Testimonial --> */}
-                <div className="h-full overflow-hidden rounded bg-white text-slate-500 shadow-2xl shadow-slate-200">
-                  <div className="relative p-6">
-                    <figure className="relative z-10">
-                      <blockquote className="p-6 text-lg leading-relaxed">
-                        <p>
-                          Wind-ui components come with proper attributes to
-                          ensure full accessibility with the WAI-ARIA standards.
-                        </p>
-                      </blockquote>
-                    </figure>
-                  </div>
-                </div>
-                {/*                    <!-- End Testimonial --> */}
+            </div>
+          </div>
+
+          {/* Card Template 2 */}
+          <div className="min-w-[300px] flex-shrink-0">
+            <div
+              className="w-[300px] h-[400px] overflow-hidden bg-white text-slate-500 shadow-2xl shadow-slate-200 mt-4 border-2 border-gray-500 rounded-xl relative"
+              style={{
+                backgroundImage: `url(${DarkTheme})`,
+                backgroundSize: "contain",
+                backgroundRepeat: "no-repeat",
+                backgroundPosition: "center",
+              }}
+            >
+              <div className="relative p-6">
+                <figure className="relative z-10">
+                  <blockquote className="p-6 text-lg leading-relaxed">
+                  </blockquote>
+                </figure>
               </div>
-            </li>
-            <li>
-              <div className="h-full w-full">
-                {/*                    <!-- Start Testimonial --> */}
-                <div className="h-full overflow-hidden rounded bg-white text-slate-500 shadow-2xl shadow-slate-200">
-                  <div className="relative p-6">
-                    <figure className="relative z-10">
-                      <blockquote className="p-6 text-lg leading-relaxed">
-                        <p>
-                          You can easily communicate with Wind-ui's team for
-                          support through their discord channel. They are
-                          responsive and ultra helpful guys!
-                        </p>
-                      </blockquote>
-                    </figure>
-                  </div>
-                </div>
-                {/*                    <!-- End Testimonial --> */}
+            </div>
+          </div>
+
+          {/* Card Template 3 */}
+          <div className="min-w-[300px] flex-shrink-0">
+            <div
+              className="w-[300px] h-[400px] overflow-hidden bg-white text-slate-500 shadow-2xl shadow-slate-200 mt-4 border-2 border-gray-500 rounded-xl relative"
+              style={{
+                backgroundImage: `url(${DarkTheme})`,
+                backgroundSize: "contain",
+                backgroundRepeat: "no-repeat",
+                backgroundPosition: "center",
+              }}
+            >
+              <div className="relative p-6">
+                <figure className="relative z-10">
+                  <blockquote className="p-6 text-lg leading-relaxed">
+                  </blockquote>
+                </figure>
               </div>
-            </li>
-          </ul>
+            </div>
+          </div>
+
+          {/* Card Template 4 */}
+          <div className="min-w-[300px] flex-shrink-0">
+            <div
+              className="w-[300px] h-[400px] overflow-hidden bg-white text-slate-500 shadow-2xl shadow-slate-200 mt-4 border-2 border-gray-500 rounded-xl relative"
+              style={{
+                backgroundImage: `url(${DarkTheme})`,
+                backgroundSize: "contain",
+                backgroundRepeat: "no-repeat",
+                backgroundPosition: "center",
+              }}
+            >
+              <div className="relative p-6">
+                <figure className="relative z-10">
+                  <blockquote className="p-6 text-lg leading-relaxed">
+                  </blockquote>
+                </figure>
+              </div>
+            </div>
+          </div>
+          {/* Card Template 5 */}
+          <div className="min-w-[300px] flex-shrink-0">
+            <div
+              className="w-[300px] h-[400px] overflow-hidden bg-white text-slate-500 shadow-2xl shadow-slate-200 mt-4 border-2 border-gray-500 rounded-xl relative"
+              style={{
+                backgroundImage: `url(${DarkTheme})`,
+                backgroundSize: "contain",
+                backgroundRepeat: "no-repeat",
+                backgroundPosition: "center",
+              }}
+            >
+              <div className="relative p-6">
+                <figure className="relative z-10">
+                  <blockquote className="p-6 text-lg leading-relaxed">
+                  </blockquote>
+                </figure>
+              </div>
+            </div>
+          </div>
+          {/* Card Template 6 */}
+          <div className="min-w-[300px] flex-shrink-0">
+            <div
+              className="w-[300px] h-[400px] overflow-hidden bg-white text-slate-500 shadow-2xl shadow-slate-200 mt-4 border-2 border-gray-500 rounded-xl relative"
+              style={{
+                backgroundImage: `url(${DarkTheme})`,
+                backgroundSize: "contain",
+                backgroundRepeat: "no-repeat",
+                backgroundPosition: "center",
+              }}
+            >
+              <div className="relative p-6">
+                <figure className="relative z-10">
+                  <blockquote className="p-6 text-lg leading-relaxed">
+                  </blockquote>
+                </figure>
+              </div>
+            </div>
+          </div>
+          {/* Card Template 7 */}
+          <div className="min-w-[300px] flex-shrink-0">
+            <div
+              className="w-[300px] h-[400px] overflow-hidden bg-white text-slate-500 shadow-2xl shadow-slate-200 mt-4 border-2 border-gray-500 rounded-xl relative"
+              style={{
+                backgroundImage: `url(${DarkTheme})`,
+                backgroundSize: "contain",
+                backgroundRepeat: "no-repeat",
+                backgroundPosition: "center",
+              }}
+            >
+              <div className="relative p-6">
+                <figure className="relative z-10">
+                  <blockquote className="p-6 text-lg leading-relaxed">
+                  </blockquote>
+                </figure>
+              </div>
+            </div>
+          </div>
         </div>
-        {/*    <!-- Indicators --> */}
+
+        {/* Scroll to the Right Button */}
+        <button
+          className="absolute right-0 top-1/2 transform -translate-y-1/2 z-10 bg-gray-400 text-black p-2 rounded-lg"
+          onClick={scrollRight}
+        >
+          &gt;
+        </button>
       </div>
-      {/*<!-- End Testimonial carousel --> */}
-    </div>
+    </section>
   );
 };
 

@@ -79,8 +79,8 @@ const ProfessionalSummaryForm = ({onClickNext, onClickPrev, form}) => {
               <div className="flex space-x-4">
                 <input
                   type="number"
-                  min="1900"
-                  max="2100"
+                  min="1960"
+                  max="2026"
                   className="block w-full px-5 py-2.5 bg-white leading-7 text-base font-normal shadow-xs text-gray-900 border border-gray-300 rounded-sm placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500"
                   {...register("yearFrom", { required: true })}
                 />
@@ -93,8 +93,8 @@ const ProfessionalSummaryForm = ({onClickNext, onClickPrev, form}) => {
                 <Asterisk size={10} color="red" />
                 <input
                   type="number"
-                  min="1900"
-                  max="2100"
+                  min="1960"
+                  max="2026"
                   className="block w-full px-5 py-2.5 bg-white leading-7 text-base font-normal shadow-xs text-gray-900 border border-gray-300 rounded-sm placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500"
                   {...register("yearTo", { required: true })}
                 />
