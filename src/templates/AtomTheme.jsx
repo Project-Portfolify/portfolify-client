@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+
 import {
   Menu,
   X,
@@ -23,15 +24,18 @@ import {
 } from "lucide-react";
 
 // Components
-const Navbar = () => {
+const Navbar = ({ data }) => {
   const [isOpen, setIsOpen] = useState(false);
+  const { personalInfo, professionalSummary, projects, skills } = data;
 
   return (
-    <nav className="fixed w-full bg-gray-900/90 backdrop-blur-sm z-50 border-b border-gray-800">
+    <nav className=" w-full bg-gray-900/90 backdrop-blur-sm z-50 border-b border-gray-800">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-16">
           <div className="flex items-center">
-            <span className="text-xl font-bold text-purple-400">Name</span>
+            <span className="text-xl font-bold text-purple-400">
+              {personalInfo.name}
+            </span>
           </div>
 
           {/* Desktop menu */}
@@ -186,10 +190,12 @@ const SkillBadge = ({ icon: Icon, name }) => {
   );
 };
 
-function AtomTheme() {
+function AtomTheme({ data }) {
+  const { personalInfo, professionalSummary, projects, skills } = data;
+
   return (
     <div className="min-h-screen bg-gray-900">
-      <Navbar />
+      <Navbar data={data} />
 
       {/* Hero Section */}
       <section id="home" className="pt-32 pb-20 relative overflow-hidden">
@@ -197,10 +203,10 @@ function AtomTheme() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
           <div className="text-center max-w-3xl mx-auto">
             <h1 className="text-4xl md:text-6xl font-bold text-white mb-6">
-              Crafting Digital{" "}
+              Crafting Digital
               <span className="text-purple-400">Experiences</span>
             </h1>
-            <p className="text-xl text-gray-400 mb-8">Full-stack developer</p>
+            <p className="text-xl text-gray-400 mb-8">{personalInfo.title}</p>
             <div className="flex flex-wrap justify-center gap-4">
               <a
                 href="#projects"
@@ -211,22 +217,22 @@ function AtomTheme() {
             </div>
             <div className="mt-12 flex justify-center space-x-6">
               <a
-                href="#"
+                href={personalInfo.gitHub}
                 className="text-gray-400 hover:text-purple-400 transition-colors"
               >
-                <Github size={24} />
+                <Github size={30} />
+              </a>
+              <a
+                href={personalInfo.linkedIn}
+                className="text-gray-400 hover:text-purple-400 transition-colors"
+              >
+                <Linkedin size={30} />
               </a>
               <a
                 href="#"
                 className="text-gray-400 hover:text-purple-400 transition-colors"
               >
-                <Linkedin size={24} />
-              </a>
-              <a
-                href="#"
-                className="text-gray-400 hover:text-purple-400 transition-colors"
-              >
-                <Mail size={24} />
+                <Mail size={30} />
               </a>
             </div>
           </div>
@@ -243,15 +249,7 @@ function AtomTheme() {
               About Me
             </h2>
             <div className="mt-2 h-1 w-20 bg-purple-600 mx-auto"></div>
-            <p className="mt-4 text-xl text-gray-400">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam
-              nec condimentum orci. Donec vestibulum lacinia magna, eu placerat
-              neque gravida quis. Maecenas fermentum felis sit amet magna auctor
-              ultrices. Etiam in fermentum magna. Nulla dapibus erat vitae arcu
-              volutpat, quis facilisis turpis porttitor. Integer molestie ipsum
-              at sem maximus, in faucibus nisi tincidunt. Aliquam nec elit
-              vulputate, pulvinar magna eu, sollicitudin elit.
-            </p>
+            <p className="mt-4 text-xl text-gray-400">{personalInfo.aboutMe}</p>
           </div>
         </div>
       </section>
@@ -275,14 +273,9 @@ function AtomTheme() {
                 Frontend Development
               </h3>
               <div className="flex flex-wrap gap-3">
-                <SkillBadge icon={Code} name="JavaScript" />
-                <SkillBadge icon={Braces} name="TypeScript" />
-                <SkillBadge icon={Layout} name="React.js" />
-                <SkillBadge icon={Layers} name="Next.js" />
-                <SkillBadge icon={Palette} name="Tailwind CSS" />
-                <SkillBadge icon={Code} name="HTML5/CSS3" />
-                <SkillBadge icon={Layout} name="Vue.js" />
-                <SkillBadge icon={Palette} name="Figma" />
+                {skills.frontEnd.map((skill) => {
+                  return <SkillBadge icon={Code} name={skill.label} />;
+                })}
               </div>
             </div>
 
@@ -291,13 +284,9 @@ function AtomTheme() {
                 Backend Development
               </h3>
               <div className="flex flex-wrap gap-3">
-                <SkillBadge icon={Server} name="Node.js" />
-                <SkillBadge icon={Database} name="PostgreSQL" />
-                <SkillBadge icon={Database} name="MongoDB" />
-                <SkillBadge icon={Terminal} name="GraphQL" />
-                <SkillBadge icon={Server} name="Express.js" />
-                <SkillBadge icon={Database} name="Redis" />
-                <SkillBadge icon={Terminal} name="REST APIs" />
+                {skills.backEnd.map((skill) => {
+                  return <SkillBadge icon={Server} name={skill.label} />;
+                })}
               </div>
             </div>
 
@@ -306,13 +295,9 @@ function AtomTheme() {
                 Tools & Others
               </h3>
               <div className="flex flex-wrap gap-3">
-                <SkillBadge icon={GitBranch} name="Git" />
-                <SkillBadge icon={Terminal} name="Docker" />
-                <SkillBadge icon={Server} name="AWS" />
-                <SkillBadge icon={Terminal} name="Linux" />
-                <SkillBadge icon={Terminal} name="CI/CD" />
-                <SkillBadge icon={Terminal} name="Jest" />
-                <SkillBadge icon={Terminal} name="Webpack" />
+                {skills.otherTools.map((skill) => {
+                  return <SkillBadge icon={Terminal} name={skill.label} />;
+                })}
               </div>
             </div>
           </div>

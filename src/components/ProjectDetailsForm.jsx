@@ -1,3 +1,5 @@
+import { Asterisk } from "lucide-react";
+
 const ProjectDetailsForm = ({ form, onClickSubmit }) => {
   const {
     register,
