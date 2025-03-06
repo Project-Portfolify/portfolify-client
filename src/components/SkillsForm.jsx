@@ -1,8 +1,44 @@
+import Select from "react-select";
+import { Controller } from "react-hook-form";
+
 const SkillsForm = ({ onClickNext, onClickPrev, form }) => {
+  const options = [
+    { value: "react", label: "React" },
+    { value: "vue", label: "Vue.js" },
+    { value: "angular", label: "Angular" },
+    { value: "nextjs", label: "Next.js" },
+    { value: "nuxtjs", label: "Nuxt.js" },
+    { value: "htmlcss", label: "HTML & CSS" },
+  ];
+
+  const backendOptions = [
+    { value: "nodejs", label: "Node.js" },
+    { value: "express", label: "Express.js" },
+    { value: "django", label: "Django" },
+    { value: "flask", label: "Flask" },
+    { value: "spring", label: "Spring Boot" },
+    { value: "laravel", label: "Laravel" },
+    { value: "ruby-on-rails", label: "Ruby on Rails" },
+  ];
+
+  const toolOptions = [
+    { value: "git", label: "Git" },
+    { value: "github", label: "GitHub" },
+    { value: "docker", label: "Docker" },
+    { value: "kubernetes", label: "Kubernetes" },
+    { value: "jenkins", label: "Jenkins" },
+    { value: "aws", label: "AWS" },
+    { value: "azure", label: "Azure" },
+    { value: "vscode", label: "VS Code" },
+    { value: "postman", label: "Postman" },
+  ];
+
   const {
+    control,
     register,
     handleSubmit,
     formState: { errors },
+    getValues,
   } = form;
 
   const handleOnSubmit = (data) => {
@@ -16,15 +52,79 @@ const SkillsForm = ({ onClickNext, onClickPrev, form }) => {
         <div className="flex flex-row gap-x-6 mb-6">
           <div className="w-full relative">
             <label className="flex items-center mb-2 text-gray-600 text-sm font-medium">
-              Skills
+              Front-end
             </label>
-            <input
-              type="text"
-              name="skills"
-              className="block w-full px-5 py-2.5 bg-white leading-7 text-base font-normal shadow-xs text-gray-900 border border-gray-300 rounded-sm placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500"
-              {...register("skills", { required: true })}
+            <Controller
+              name="frontEnd"
+              control={control}
+              render={({ field }) => (
+                <Select
+                  {...field}
+                  options={options}
+                  isMulti
+                  className="basic-multi-select"
+                  classNamePrefix="select"
+                  required
+                />
+              )}
             />
-            {errors.skills && (
+
+            {errors.frontEnd && (
+              <span className="text-red-600 text-xs">
+                This field is required
+              </span>
+            )}
+          </div>
+        </div>
+
+        <div className="flex flex-row gap-x-6 mb-6">
+          <div className="w-full relative">
+            <label className="flex items-center mb-2 text-gray-600 text-sm font-medium">
+              Back-end
+            </label>
+            <Controller
+              name="backEnd"
+              control={control}
+              render={({ field }) => (
+                <Select
+                  {...field}
+                  options={backendOptions}
+                  isMulti
+                  className="basic-multi-select"
+                  classNamePrefix="select"
+                  required
+                />
+              )}
+            />
+
+            {errors.backEnd && (
+              <span className="text-red-600 text-xs">
+                This field is required
+              </span>
+            )}
+          </div>
+        </div>
+
+        <div className="flex flex-row gap-x-6 mb-6">
+          <div className="w-full relative">
+            <label className="flex items-center mb-2 text-gray-600 text-sm font-medium">
+              Other Tools
+            </label>
+            <Controller
+              name="otherTools"
+              control={control}
+              render={({ field }) => (
+                <Select
+                  {...field}
+                  options={toolOptions}
+                  isMulti
+                  className="basic-multi-select"
+                  classNamePrefix="select"
+                  required
+                />
+              )}
+            />
+            {errors.otherTools && (
               <span className="text-red-600 text-xs">
                 This field is required
               </span>
