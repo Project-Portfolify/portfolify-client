@@ -1,6 +1,6 @@
 import { Asterisk } from "lucide-react";
 
-const ProjectDetailsForm = ({ form, onClickSubmit }) => {
+const ProjectDetailsForm = ({ form, onClickSubmit, onClickPrev }) => {
   const {
     register,
     handleSubmit,
@@ -66,14 +66,23 @@ const ProjectDetailsForm = ({ form, onClickSubmit }) => {
               </span>
             )}
           </div>
+          <button className="w-52 h-12 shadow-sm rounded-full bg-indigo-600 hover:bg-indigo-800 transition-all duration-700 text-white text-base font-semibold leading-7">
+            + Add Project
+          </button>
         </div>
 
         <div className="flex justify-between w-full mt-6">
           <button
             className="w-52 h-12 shadow-sm rounded-full bg-indigo-600 hover:bg-indigo-800 transition-all duration-700 text-white text-base font-semibold leading-7"
+            onClick={onClickPrev}
+          >
+            Previous step
+          </button>
+          <button
+            className="w-52 h-12 shadow-sm rounded-full bg-indigo-600 hover:bg-indigo-800 transition-all duration-700 text-white text-base font-semibold leading-7"
             type="submit"
           >
-            Submit
+            Preview
           </button>
         </div>
       </div>
