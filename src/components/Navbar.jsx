@@ -10,7 +10,13 @@ function Navbar() {
       <header className="bg-white/80 backdrop-blur-md shadow-lg">
         <div className="container mx-auto px-6 py-4 flex justify-between items-center">
           {/* Logo */}
-          <h1 className="text-3xl font-bold text-gray-800">Portfolify</h1>
+          <h1 className="text-3xl font-bold text-gray-800">
+            <Link
+            to="/">
+            Portfolify
+            </Link>
+            
+            </h1>
 
           {/* Navegación */}
           <nav>
