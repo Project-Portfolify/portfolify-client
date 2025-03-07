@@ -273,8 +273,8 @@ function AtomTheme({ data }) {
                 Frontend Development
               </h3>
               <div className="flex flex-wrap gap-3">
-                {skills.frontEnd.map((skill) => {
-                  return <SkillBadge icon={Code} name={skill.label} />;
+                {skills.frontEnd.map((skill, i) => {
+                  return <SkillBadge key={i} icon={Code} name={skill.label} />;
                 })}
               </div>
             </div>
@@ -284,8 +284,10 @@ function AtomTheme({ data }) {
                 Backend Development
               </h3>
               <div className="flex flex-wrap gap-3">
-                {skills.backEnd.map((skill) => {
-                  return <SkillBadge icon={Server} name={skill.label} />;
+                {skills.backEnd.map((skill, i) => {
+                  return (
+                    <SkillBadge key={i} icon={Server} name={skill.label} />
+                  );
                 })}
               </div>
             </div>
@@ -295,8 +297,10 @@ function AtomTheme({ data }) {
                 Tools & Others
               </h3>
               <div className="flex flex-wrap gap-3">
-                {skills.otherTools.map((skill) => {
-                  return <SkillBadge icon={Terminal} name={skill.label} />;
+                {skills.otherTools.map((skill, i) => {
+                  return (
+                    <SkillBadge key={i} icon={Terminal} name={skill.label} />
+                  );
                 })}
               </div>
             </div>
