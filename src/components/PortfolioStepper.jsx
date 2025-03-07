@@ -26,30 +26,59 @@ const PortfolioStepper = () => {
 
   const personalInfoForm = useForm({
     defaultValues: {
-      aboutMe: "sdfghjkl",
-      country: { value: "AF", label: "Afghanistan" },
-      email: "as@example.com",
-      gitHub: "wetryjk",
-      linkedIn: "qwdy",
-      name: "fsdfgh",
-      title: "etryu",
+      aboutMe:
+        "Passionate developer with expertise in building scalable web applications and user-friendly experiences.",
+      country: { value: "US", label: "United States" },
+      email: "alex.johnson@example.com",
+      gitHub: "https://github.com/alexjohnson",
+      linkedIn: "https://linkedin.com/in/alexjohnson",
+      name: "Alex Johnson",
+      title: "Full Stack Developer",
     },
   });
   const professionalSummaryForm = useForm({
     defaultValues: {
-      company: "qwertyj,",
-      role: "adsfghj",
-      roleDescription: "werthj,",
-      yearFrom: "2023",
+      company: "TechNova Solutions",
+      role: "Senior Full Stack Developer",
+      roleDescription:
+        "Developing scalable web applications and leading a team of developers to build innovative solutions.",
+      yearFrom: "2018",
       yearTo: "2024",
     },
   });
-  const skillsForm = useForm({});
+  const skillsForm = useForm({
+    skills: {
+      frontEnd: [
+        { value: "react", label: "React" },
+        { value: "vue", label: "Vue.js" },
+        { value: "angular", label: "Angular" },
+        { value: "nextjs", label: "Next.js" },
+        { value: "nuxtjs", label: "Nuxt.js" },
+        { value: "htmlcss", label: "HTML & CSS" },
+      ],
+      backEnd: [
+        { value: "nodejs", label: "Node.js" },
+        { value: "express", label: "Express.js" },
+        { value: "django", label: "Django" },
+        { value: "flask", label: "Flask" },
+        { value: "spring", label: "Spring Boot" },
+      ],
+      otherTools: [
+        { value: "git", label: "Git" },
+        { value: "github", label: "GitHub" },
+        { value: "docker", label: "Docker" },
+        { value: "kubernetes", label: "Kubernetes" },
+        { value: "jenkins", label: "Jenkins" },
+        { value: "aws", label: "AWS" },
+      ],
+    },
+  });
   const projectForm = useForm({
     defaultValues: {
-      description: "asdfghj",
-      link: "sdfghj",
-      title: "asdfghj",
+      description:
+        "A productivity tool that helps users track and manage daily tasks efficiently.",
+      link: "https://taskify.example.com",
+      title: "Taskify - Task Management App",
     },
   });
 
@@ -60,6 +89,7 @@ const PortfolioStepper = () => {
     const projects = projectForm.getValues();
 
     setCombinedData({ personalInfo, professionalSummary, skills, projects });
+    console.log({ personalInfo, professionalSummary, skills, projects });
 
     nextStep();
   };
@@ -96,13 +126,21 @@ const PortfolioStepper = () => {
       {/* Step 4 */}
 
       {step === 4 && (
-        <ProjectDetailsForm form={projectForm} onClickSubmit={handleSubmit} />
+        <ProjectDetailsForm
+          form={projectForm}
+          onClickSubmit={handleSubmit}
+          onClickPrev={prevStep}
+        />
       )}
 
       {/* Step 5 */}
 
       {step === 5 && (
-        <TemplateSwitch template={templateId} data={combinedData} />
+        <TemplateSwitch
+          templateId={templateId}
+          data={combinedData}
+          onClickPrev={prevStep}
+        />
       )}
     </div>
   );
