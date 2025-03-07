@@ -2,7 +2,7 @@ import Select from "react-select";
 import { Controller } from "react-hook-form";
 
 const SkillsForm = ({ onClickNext, onClickPrev, form }) => {
-  const options = [
+  const frontEndOptions = [
     { value: "react", label: "React" },
     { value: "vue", label: "Vue.js" },
     { value: "angular", label: "Angular" },
@@ -60,7 +60,7 @@ const SkillsForm = ({ onClickNext, onClickPrev, form }) => {
               render={({ field }) => (
                 <Select
                   {...field}
-                  options={options}
+                  options={frontEndOptions}
                   isMulti
                   className="basic-multi-select"
                   classNamePrefix="select"
