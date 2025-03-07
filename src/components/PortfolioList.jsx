@@ -48,6 +48,9 @@ const PortfolioList = () => {
   const handlePreview = (templateId) => {
     navigate(`/preview/${templateId}`);
   };
+  const handleCreate = (templateId) => {
+    navigate(`/templates/${templateId}`);
+  };
 
   return (
     <section
@@ -91,7 +94,9 @@ const PortfolioList = () => {
                     >
                       Preview
                     </button>
-                    <button className="w-20 h-8 shadow-sm rounded-lg bg-indigo-600 hover:bg-indigo-800 transition-all duration-300 text-white text-sm">
+                    <button 
+                    onClick={() => handleCreate(obj.templateId)}
+                    className="w-20 h-8 shadow-sm rounded-lg bg-indigo-600 hover:bg-indigo-800 transition-all duration-300 text-white text-sm">
                       Create
                     </button>
                   </div>
