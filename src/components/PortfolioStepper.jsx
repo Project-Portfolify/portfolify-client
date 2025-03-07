@@ -87,10 +87,18 @@ const PortfolioStepper = () => {
     const professionalSummary = professionalSummaryForm.getValues();
     const skills = skillsForm.getValues();
     const projects = projectForm.getValues();
-
-    setCombinedData({ personalInfo, professionalSummary, skills, projects });
-    console.log({ personalInfo, professionalSummary, skills, projects });
-
+  
+    
+    const combinedData = {
+      personalInfo,
+      professionalSummary,
+      skills,
+      projects
+    };
+  
+    setCombinedData(combinedData);
+    console.log(combinedData);
+  
     nextStep();
   };
   return (

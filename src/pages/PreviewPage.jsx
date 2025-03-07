@@ -2,6 +2,9 @@ import { useParams } from "react-router-dom";
 import { Templates } from "../constants";
 import AtomTheme from "../templates/AtomTheme";
 import BoldTheme from "../templates/BoldTheme";
+import LightTheme from "../templates/LightTheme";
+import GreyTheme from "../templates/GreyTheme";
+import DarkTheme from "../templates/GreyTheme";
 
 const dummyData = {
   personalInfo: {
@@ -55,10 +58,16 @@ const PreviewPage = () => {
   switch (templateId) {
     case Templates.AtomTheme:
       return <AtomTheme data={dummyData} />;
+    case Templates.LightTheme:
+      return <LightTheme data={dummyData} />;
     case Templates.BoldTheme:
       return <BoldTheme data={dummyData} />;
+    case Templates.GreyTheme:
+      return <GreyTheme data={dummyData} />;
+    case Templates.DarkTheme:
+      return <DarkTheme data={dummyData} />;
+      default:
+      return <h1>Preview not found</h1>;
   }
-
-  return <h1>preview</h1>;
 };
 export default PreviewPage;

@@ -8,18 +8,31 @@ import {
   ExternalLink,
   ChevronRight,
   ArrowRight,
+  Code,
+  Palette,
+  Globe,
+  Zap,
+  Terminal,
+  Database,
+  Layout,
+  Cpu,
+  Server,
+  Braces,
+  Layers,
+  GitBranch,
 } from "lucide-react";
 
 // Components
-const Navbar = () => {
+const Navbar = ({ data }) => {
   const [isOpen, setIsOpen] = useState(false);
+  const { personalInfo, professionalSummary, projects, skills } = data;
 
   return (
-    <nav className="fixed w-full bg-white/90 backdrop-blur-sm z-50 border-b border-gray-100">
+    <nav className="w-full bg-white/90 backdrop-blur-sm z-50 border-b border-gray-100">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-16">
           <div className="flex items-center">
-            <span className="text-xl font-bold text-indigo-600">Portfolio</span>
+            {personalInfo.name}
           </div>
 
           {/* Desktop menu */}
@@ -155,34 +168,25 @@ const ProjectCard = ({ title, description, image, tags, link }) => {
   );
 };
 
-// Testimonial Component
-const Testimonial = ({ quote, author, role, image }) => {
+const SkillBadge = ({ icon: Icon, name }) => {
   return (
-    <div className="bg-white rounded-xl shadow-md p-6 md:p-8">
-      <div className="flex items-start">
-        <div className="flex-shrink-0 mr-4">
-          <img
-            src={image}
-            alt={author}
-            className="h-12 w-12 rounded-full object-cover"
-          />
-        </div>
-        <div>
-          <p className="text-gray-600 italic mb-4">"{quote}"</p>
-          <div>
-            <h4 className="font-medium text-gray-900">{author}</h4>
-            <p className="text-gray-500 text-sm">{role}</p>
-          </div>
-        </div>
+    <div className="bg-gray-200 rounded-full px-4 py-2 flex items-center space-x-2 hover:bg-gray-300 transition-colors group">
+      <div className="bg-purple-500/20 rounded-full p-1.5">
+        <Icon className="h-4 w-4 text-purple-600 group-hover:text-purple-500" />
       </div>
+      <span className="text-gray-800 group-hover:text-black font-medium">
+        {name}
+      </span>
     </div>
   );
 };
 
-function LightThemeTemplate() {
+function LightThemeTemplate({ data }) {
+  const { personalInfo, professionalSummary, projects, skills } = data;
+
   return (
     <div className="min-h-screen bg-gray-50">
-      <Navbar />
+      <Navbar data={data} />
 
       {/* Hero Section */}
       <section id="home" className="pt-24 md:pt-32 pb-16 md:pb-24">
@@ -190,7 +194,7 @@ function LightThemeTemplate() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
             <div className="order-2 md:order-1">
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight">
-                Creative <span className="text-indigo-600">Designer</span> &{" "}
+                Creative <span className="text-indigo-600">{personalInfo.title}</span> &{" "}
                 <span className="text-indigo-600">Developer</span>
               </h1>
               <p className="mt-6 text-xl text-gray-600 max-w-2xl">
@@ -271,10 +275,7 @@ function LightThemeTemplate() {
                 My Journey
               </h3>
               <p className="text-gray-600 mb-6">
-                With over 5 years of experience in design and development, I've
-                helped dozens of clients transform their digital presence. My
-                approach combines aesthetic sensibility with technical expertise
-                to create solutions that are both beautiful and functional.
+                {personalInfo.aboutMe}
               </p>
               <p className="text-gray-600 mb-6">
                 I specialize in responsive web design, user experience, and
@@ -285,24 +286,36 @@ function LightThemeTemplate() {
               <div className="grid grid-cols-2 gap-4 mb-8">
                 <div>
                   <h4 className="font-bold text-gray-900 mb-2">
-                    Design Skills
+                    Frontend Development
                   </h4>
                   <ul className="space-y-2 text-gray-600">
-                    <li>UI/UX Design</li>
-                    <li>Wireframing</li>
-                    <li>Prototyping</li>
-                    <li>Brand Identity</li>
+                    {skills.frontEnd.map((skill, i) => {
+                      return <SkillBadge key={i} icon={Code} name={skill.label} />;
+                    })}
                   </ul>
                 </div>
                 <div>
                   <h4 className="font-bold text-gray-900 mb-2">
-                    Technical Skills
+                    Backend Development
                   </h4>
                   <ul className="space-y-2 text-gray-600">
-                    <li>React.js</li>
-                    <li>TypeScript</li>
-                    <li>Tailwind CSS</li>
-                    <li>Next.js</li>
+                    {skills.backEnd.map((skill, i) => {
+                      return (
+                        <SkillBadge key={i} icon={Server} name={skill.label} />
+                      );
+                    })}
+                  </ul>
+                </div>
+                <div>
+                  <h4 className="font-bold text-gray-900 mb-2">
+                    Tools & Others
+                  </h4>
+                  <ul className="space-y-2 text-gray-600">
+                    {skills.otherTools.map((skill, i) => {
+                      return (
+                        <SkillBadge key={i} icon={Terminal} name={skill.label} />
+                      );
+                    })}
                   </ul>
                 </div>
               </div>
@@ -354,27 +367,6 @@ function LightThemeTemplate() {
               tags={["React", "GraphQL", "Tailwind CSS"]}
               link="#"
             />
-            <ProjectCard
-              title="Health & Fitness App"
-              description="A mobile-first web application for tracking workouts, nutrition, and health metrics with personalized recommendations."
-              image="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80"
-              tags={["React Native", "Redux", "Node.js"]}
-              link="#"
-            />
-            <ProjectCard
-              title="Educational Platform"
-              description="An interactive learning platform with course management, progress tracking, and video content delivery."
-              image="https://images.unsplash.com/photo-1501504905252-473c47e087f8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1674&q=80"
-              tags={["Vue.js", "Express", "MongoDB"]}
-              link="#"
-            />
-            <ProjectCard
-              title="Real Estate Website"
-              description="A property listing website with advanced search functionality, virtual tours, and agent contact features."
-              image="https://images.unsplash.com/photo-1560518883-ce09059eeffa?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1773&q=80"
-              tags={["React", "Mapbox", "Strapi CMS"]}
-              link="#"
-            />
           </div>
 
           <div className="text-center mt-12">
@@ -388,41 +380,6 @@ function LightThemeTemplate() {
         </div>
       </section>
 
-      {/* Testimonials Section */}
-      <section className="py-16 md:py-24 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900">
-              Client Testimonials
-            </h2>
-            <div className="mt-2 h-1 w-20 bg-indigo-600 mx-auto"></div>
-            <p className="mt-4 text-xl text-gray-600 max-w-2xl mx-auto">
-              What my clients say about working with me.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <Testimonial
-              quote="Working with this designer was a game-changer for our business. The website not only looks stunning but has significantly improved our conversion rates."
-              author="Sarah Johnson"
-              role="CEO, TechStart"
-              image="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80"
-            />
-            <Testimonial
-              quote="Exceptional attention to detail and a true understanding of our brand. The redesign perfectly captured our vision while improving user experience."
-              author="Michael Chen"
-              role="Marketing Director, GrowthBrand"
-              image="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80"
-            />
-            <Testimonial
-              quote="Not only is the design work top-notch, but the technical implementation is flawless. Our site is now faster, more responsive, and easier to maintain."
-              author="Emily Rodriguez"
-              role="Product Manager, InnovateCo"
-              image="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80"
-            />
-          </div>
-        </div>
-      </section>
 
       {/* Contact Section */}
       <section id="contact" className="py-16 md:py-24 bg-gray-50">
