@@ -4,7 +4,8 @@ const env = import.meta.env.VITE_BASE_API_URL;
 
 const SignUp = () => {
   const navigate = useNavigate();
-  const handlSubmit = async (e) => {
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const { email, name, password } = e.target.elements;
     const newUser = {
@@ -25,7 +26,7 @@ const SignUp = () => {
   };
 
   return (
-    <form onSubmit={handlSubmit}>
+    <form onSubmit={handleSubmit}>
       <div className="min-h-screen bg-gray-100 py-6 flex flex-col justify-center sm:py-12">
         <div className="relative py-3 sm:max-w-xl sm:mx-auto">
           <div className="absolute inset-0 bg-gradient-to-r from-blue-300 to-blue-600 shadow-lg transform -skew-y-6 sm:skew-y-0 sm:-rotate-6 sm:rounded-3xl"></div>
@@ -42,7 +43,7 @@ const SignUp = () => {
                       id="email"
                       name="email"
                       type="text"
-                      className="peer placeholder-transparent h-10 w-full border-b-2 border-gray-300 text-gray-900 focus:outline-none focus:borer-rose-600"
+                      className="peer placeholder-transparent h-10 w-full border-b-2 border-gray-300 text-gray-900 focus:outline-none "
                       placeholder="Email address"
                       required
                     />
@@ -56,7 +57,7 @@ const SignUp = () => {
                       id="name"
                       name="name"
                       type="text"
-                      className="peer placeholder-transparent h-10 w-full border-b-2 border-gray-300 text-gray-900 focus:outline-none focus:borer-rose-600"
+                      className="peer placeholder-transparent h-10 w-full border-b-2 border-gray-300 text-gray-900 focus:outline-none "
                       placeholder="Email address"
                       required
                     />
@@ -70,7 +71,7 @@ const SignUp = () => {
                       id="password"
                       name="password"
                       type="password"
-                      className="peer placeholder-transparent h-10 w-full border-b-2 border-gray-300 text-gray-900 focus:outline-none focus:borer-rose-600"
+                      className="peer placeholder-transparent h-10 w-full border-b-2 border-gray-300 text-gray-900 focus:outline-none "
                       placeholder="Password"
                       required
                     />
@@ -79,7 +80,10 @@ const SignUp = () => {
                     </label>
                   </div>
                   <div className="relative">
-                    <button className="bg-blue-500 w-full text-white rounded-md px-2 py-1 onClick={}">
+                    <button
+                      className="bg-blue-500 w-full text-white rounded-md px-2 py-1  hover:bg-blue-600 transition"
+                      type="submit"
+                    >
                       Submit
                     </button>
                   </div>
