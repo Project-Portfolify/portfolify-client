@@ -100,15 +100,15 @@ const PortfolioList = () => {
             );
           })}
         </div>
-      </div>
 
-      {/* Scroll to the Right Button */}
-      <button
-        className="absolute right-0 top-1/2 transform -translate-y-1/2 z-10 bg-gray-400 text-black p-2 rounded-lg"
-        onClick={scrollRight}
-      >
-        &gt;
-      </button>
+        {/* Scroll to the Right Button */}
+        <button
+          className="absolute right-0 top-1/2 transform -translate-y-1/2 z-10 bg-gray-400 text-black p-2 rounded-lg"
+          onClick={scrollRight}
+        >
+          &gt;
+        </button>
+      </div>
     </section>
   );
 };
