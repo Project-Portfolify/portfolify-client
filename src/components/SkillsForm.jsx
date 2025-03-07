@@ -49,6 +49,7 @@ const SkillsForm = ({ onClickNext, onClickPrev, form }) => {
   return (
     <form onSubmit={handleSubmit(handleOnSubmit)}>
       <div className="flex flex-col">
+        {/* Front-End Skills */}
         <div className="flex flex-row gap-x-6 mb-6">
           <div className="w-full relative">
             <label className="flex items-center mb-2 text-gray-600 text-sm font-medium">
@@ -57,6 +58,7 @@ const SkillsForm = ({ onClickNext, onClickPrev, form }) => {
             <Controller
               name="frontEnd"
               control={control}
+              defaultValue={[frontEndOptions[0]]} // Hardcoded default we can modify here
               render={({ field }) => (
                 <Select
                   {...field}
@@ -68,15 +70,13 @@ const SkillsForm = ({ onClickNext, onClickPrev, form }) => {
                 />
               )}
             />
-
             {errors.frontEnd && (
-              <span className="text-red-600 text-xs">
-                This field is required
-              </span>
+              <span className="text-red-600 text-xs">This field is required</span>
             )}
           </div>
         </div>
 
+        {/* Back-End Skills */}
         <div className="flex flex-row gap-x-6 mb-6">
           <div className="w-full relative">
             <label className="flex items-center mb-2 text-gray-600 text-sm font-medium">
@@ -85,6 +85,7 @@ const SkillsForm = ({ onClickNext, onClickPrev, form }) => {
             <Controller
               name="backEnd"
               control={control}
+              defaultValue={[backendOptions[0]]} // Hardcoded default we can modify here
               render={({ field }) => (
                 <Select
                   {...field}
@@ -96,15 +97,13 @@ const SkillsForm = ({ onClickNext, onClickPrev, form }) => {
                 />
               )}
             />
-
             {errors.backEnd && (
-              <span className="text-red-600 text-xs">
-                This field is required
-              </span>
+              <span className="text-red-600 text-xs">This field is required</span>
             )}
           </div>
         </div>
 
+        {/* Other Tools */}
         <div className="flex flex-row gap-x-6 mb-6">
           <div className="w-full relative">
             <label className="flex items-center mb-2 text-gray-600 text-sm font-medium">
@@ -113,6 +112,7 @@ const SkillsForm = ({ onClickNext, onClickPrev, form }) => {
             <Controller
               name="otherTools"
               control={control}
+              defaultValue={[toolOptions[0]]} // Hardcoded default we can modify here
               render={({ field }) => (
                 <Select
                   {...field}
@@ -125,9 +125,7 @@ const SkillsForm = ({ onClickNext, onClickPrev, form }) => {
               )}
             />
             {errors.otherTools && (
-              <span className="text-red-600 text-xs">
-                This field is required
-              </span>
+              <span className="text-red-600 text-xs">This field is required</span>
             )}
           </div>
         </div>
