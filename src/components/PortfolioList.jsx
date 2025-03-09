@@ -6,6 +6,7 @@ import AtomTheme from "../assets/AtomTheme.png";
 import BoldTheme from "../assets/BoldTheme.png";
 import { Templates } from "../constants";
 import { useNavigate } from "react-router-dom";
+import { ChevronsLeft, ChevronsRight } from "lucide-react";
 
 const templateList = [
   {
@@ -55,21 +56,21 @@ const PortfolioList = () => {
   return (
     <section
       id="portfolios"
-      className="w-full h-auto px-4 py-2 overflow-hidden bg-gradient-to-r "
+      className="w-full h-auto px-4 py-2 overflow-hidden bg-gradient-to-r"
     >
       <div className="relative">
         {/* Scroll to the Left Button */}
         <button
-          className="absolute left-0 top-1/2 transform -translate-y-1/2 z-10 bg-gray-400 text-black p-2 rounded-lg"
+          className="absolute hover:cursor-pointer hover:scale-110 hover:text-gray-600 left-10 top-1/2 w-10 z-10  text-black p-2 rounded-full"
           onClick={scrollLeft}
         >
-          &lt;
+          <ChevronsLeft size={40} />
         </button>
 
         {/* Carousel Container */}
         <div
           ref={carouselRef}
-          className="flex flex-nowrap gap-10 overflow-x-auto scroll-smooth pb-4 m-20"
+          className="flex flex-nowrap gap-10 overflow-hidden pb-4 m-30"
         >
           {/* Card Template 1 */}
           {templateList.map((obj, i) => {
@@ -94,9 +95,10 @@ const PortfolioList = () => {
                     >
                       Preview
                     </button>
-                    <button 
-                    onClick={() => handleCreate(obj.templateId)}
-                    className="w-20 h-8 shadow-sm rounded-lg bg-indigo-600 hover:bg-indigo-800 transition-all duration-300 text-white text-sm">
+                    <button
+                      onClick={() => handleCreate(obj.templateId)}
+                      className="w-20 h-8 shadow-sm rounded-lg bg-indigo-600 hover:bg-indigo-800 transition-all duration-300 text-white text-sm"
+                    >
                       Create
                     </button>
                   </div>
@@ -108,10 +110,10 @@ const PortfolioList = () => {
 
         {/* Scroll to the Right Button */}
         <button
-          className="absolute right-0 top-1/2 transform -translate-y-1/2 z-10 bg-gray-400 text-black p-2 rounded-lg"
+          className="absolute hover:cursor-pointer hover:scale-110  hover:text-gray-600 right-10 top-1/2 w-10 z-10  text-black p-2 rounded-full"
           onClick={scrollRight}
         >
-          &gt;
+          <ChevronsRight size={40} />
         </button>
       </div>
     </section>
