@@ -38,7 +38,7 @@ const HomePage = () => {
           </div>
         </section>
       </div>
-      
+
       {/* Content sections below the hero */}
       <div>
         <PortfolioList />
@@ -46,7 +46,7 @@ const HomePage = () => {
       <div>
         <PortfolioTips />
       </div>
-      
+
       <Footer />
     </>
   );
