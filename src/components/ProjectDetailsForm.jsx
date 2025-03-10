@@ -23,7 +23,9 @@ const ProjectDetailsForm = ({ form, onClickSubmit, onClickPrev }) => {
   console.log(errors);
 
   useEffect(() => {
-    append();
+    if (fields.length === 0) {
+      append();
+    }
   }, []);
 
   return (
