@@ -190,9 +190,15 @@ const SkillBadge = ({ icon: Icon, name }) => {
 };
 
 function AtomTheme({ data }) {
-  const frontEndSkills = data?.skills?.find(skill => skill.skillType === "FrontEnd")?.skills || [];
-  const backEndSkills = data?.skills?.find(skill => skill.skillType === "BackEnd")?.skills || [];
-  const otherTools = data?.skills?.find(skill => skill.skillType === "OtherTools")?.skills || [];
+  const frontEndSkills = Array.isArray(data?.skills)
+  ? data.skills.find(skill => skill.skillType === "FrontEnd")?.skills || []
+  : [];
+  const backEndSkills = Array.isArray(data?.skills)
+  ? data.skills.find(skill => skill.skillType === "BackEnd")?.skills || []
+  : [];
+  const otherTools = Array.isArray(data?.skills)
+  ? data.skills.find(skill => skill.skillType === "OtherTools")?.skills || []
+  : [];
 
   return (
     <div className="min-h-screen bg-gray-900">

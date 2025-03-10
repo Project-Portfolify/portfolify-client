@@ -10,9 +10,10 @@ import { AuthContext } from "../context/AuthContext";
 import slugify from "slugify";
 import { useNavigate } from "react-router-dom";
 
+
 const env = import.meta.env.VITE_BASE_API_URL;
 
-const TemplateSwitch = ({ templateId, data, onClickPrev}) => {
+const TemplateSwitch = ({ templateId, data={}, onClickPrev}) => {
   const themes = {
     [Templates.AtomTheme]: <AtomTheme data={data} />,
     [Templates.LightTheme]: <LightTheme data={data} />,
@@ -26,39 +27,46 @@ const TemplateSwitch = ({ templateId, data, onClickPrev}) => {
   const currentTheme = themes[templateId] || <h1>Template not found</h1>;
 
   const { aboutMe, country, email, gitHub, linkedIn, name, jobTitle } =
-    data.personalInfo;
+    data?.personalInfo || {};
 
   const { company, role, roleDescription, yearFrom, yearTo } =
-    data.professionalSummary;
+    data?.professionalSummary || {};
 
-  const { description, link, title } = data.projects;
+  const { description, link, title } = data?.projects || {};
 
-  const { backEnd, frontEnd, otherTools } = data.skills;
+  const { backEnd, frontEnd, otherTools } = data?.skills || {};
 
   const generateSlug = (name) => {
+    if (!name || typeof name !== "string") {
+      return slugify("default-name", {
+        lower: true,
+        strict: true,
+        trim: true,
+      });
+    }
     return slugify(name, {
-      lower: true, // Convert to lowercase
-      strict: true, // Remove special characters
-      trim: true, // Trim whitespace
+      lower: true,
+      strict: true,
+      trim: true,
     });
   };
-
-  // Generate unique slug with random ID to avoid duplicates
+  
   const generateUniqueSlug = (name) => {
-    const baseSlug = generateSlug(name);
+    const baseSlug = generateSlug(name || "default-name");
     const randomId = Math.random().toString(36).substring(2, 6);
-    return `${baseSlug}-${randomId}-${templateId}`;
+    // Use a fallback for templateId if it's undefined.
+    return `${baseSlug}-${randomId}-${templateId || "defaultTemplate"}`;
   };
-
-  console.log(generateUniqueSlug(name));
+  
+  console.log(generateUniqueSlug(name || "default-name"));
 
   const portfolioData = {
-    slug: generateUniqueSlug(name),
-    name,
+    slug: generateUniqueSlug(name || "default-name"),
+    name: name || "Unknown",
     gitHub,
     linkedIn,
     email,
-    country: country.label,
+    country: country?.label || "Unknown", 
     title:jobTitle,
     about: aboutMe,
     experience: [
@@ -82,21 +90,15 @@ const TemplateSwitch = ({ templateId, data, onClickPrev}) => {
     skills: [
       {
         skillType: "FrontEnd",
-        skills: frontEnd.map((skill) => {
-          return skill.value;
-        }),
+        skills: frontEnd?.map(skill => skill.value) || [],
       },
       {
         skillType: "BackEnd",
-        skills: backEnd.map((skill) => {
-          return skill.value;
-        }),
+        skills: backEnd?.map(skill => skill.value) || [],
       },
       {
         skillType: "OtherTools",
-        skills: otherTools.map((skill) => {
-          return skill.value;
-        }),
+        skills: otherTools?.map(skill => skill.value) || [],
       },
     ],
     template: templateId,
@@ -106,22 +108,28 @@ const TemplateSwitch = ({ templateId, data, onClickPrev}) => {
   console.log(portfolioData);
 
   const handleSubmit = () => {
+    
+  
     axios
       .post(`${env}/portfolios`, portfolioData, {
         headers: { Authorization: `Bearer ${getToken()}` },
       })
       .then((response) => {
-        // alert("Portfolio Published Successfully! 🎉");
-        console.log(response);
-        setPortfolio(response.data);
-        navigate("/portfolios");
+        const publishedPortfolio = response.data.data || response.data;
+        console.log(publishedPortfolio);
+        // Verifica que el slug existe antes de redirigir
+        if (publishedPortfolio?.slug) {
+          setPortfolio(publishedPortfolio);
+          navigate(`/portfolios/${publishedPortfolio.slug.trim()}`);
+        } else {
+          console.error("Slug is missing from response");
+        }
       })
       .catch((error) => {
         alert("Failed to publish portfolio. ❌");
         console.log(error);
       });
   };
-
   return (
     <div>
       <div className="flex justify-between mb-20">

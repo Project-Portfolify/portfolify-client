@@ -7,7 +7,7 @@ import PortfolioTips from "../components/PortfolioTips";
 const HomePage = () => {
   return (
     <>
-      {/* Hero Section with a modern gradient background and full-width video */}
+      {/* Hero Section with video background and overlay */}
       <div className="relative w-full h-screen bg-gradient-to-r">
         <video
           className="absolute top-0 left-0 w-full h-full object-cover opacity-50"
@@ -18,24 +18,20 @@ const HomePage = () => {
           <source src={heroVideo} type="video/mp4" />
           Your browser does not support the video tag.
         </video>
+
+        {/* Overlay to improve text readability */}
+        <div className="absolute top-0 left-0 w-full h-full bg-black opacity-40"></div>
+
         <section
           id="home"
-          className="relative z-10 flex flex-col items-center justify-center h-full text-center"
+          className="relative z-10 flex flex-col items-center justify-center h-full text-center px-4"
         >
-          <h2 className="text-4xl font-extrabold text-white mb-4">
-            Welcome to My Website
-          </h2>
-          <p className="text-lg text-gray-200">
-            This is a sample website built with React and Tailwind CSS.
+          <h1 className="text-5xl md:text-6xl font-extrabold text-white drop-shadow-lg animate-fadeIn">
+            
+          </h1>
+          <p className="mt-4 text-xl md:text-2xl text-gray-200 max-w-2xl drop-shadow-sm animate-fadeInDelay">
+            
           </p>
-          <div className="mt-6">
-            <a
-              href="#about"
-              className="bg-blue-500 text-white px-6 py-3 rounded-full hover:bg-blue-600 transition"
-            >
-              Learn More
-            </a>
-          </div>
         </section>
       </div>
 

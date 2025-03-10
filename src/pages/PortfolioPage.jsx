@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
+import { useParams, Link } from "react-router-dom";
 import axios from "axios";
-import { Link } from "react-router-dom";
 
 import AtomTheme from "../templates/AtomTheme";
 import LightTheme from "../templates/LightTheme";
@@ -9,24 +9,27 @@ import GreyTheme from "../templates/GreyTheme";
 import DarkTheme from "../templates/DarkTheme";
 import { Templates } from "../constants";
 
-const env = import.meta.env.VITE_BASE_API_URL;
-
 const PortfolioPage = () => {
-    const [portfolios, setPortfolios] = useState([]);
+    const { slug } = useParams();
+    // Use an object for a single portfolio
+    const [portfolio, setPortfolio] = useState(null);
+    const env = import.meta.env.VITE_BASE_API_URL;
 
     useEffect(() => {
         axios
-            .get(`${env}/portfolios`)
+            .get(`${env}/portfolios/${slug}`)
             .then((response) => {
                 console.log(response.data);
-                setPortfolios(response.data);
+                setPortfolio(response.data);
             })
             .catch((error) => {
-                console.error("Error al obtener portfolios:", error);
+                console.error("Error:", error);
             });
-    }, []);
+    }, [slug, env]);
 
+    // Function to render the correct template based on the portfolio.template value
     const renderTemplate = (portfolio) => {
+        if (!portfolio) return <p>Loading...</p>;
         switch (portfolio.template) {
             case Templates.AtomTheme:
                 return <AtomTheme data={portfolio} />;
@@ -39,33 +42,33 @@ const PortfolioPage = () => {
             case Templates.DarkTheme:
                 return <DarkTheme data={portfolio} />;
             default:
-                return <div>Template not found</div>;
+                return <p>Template not found</p>;
         }
     };
 
+    // While loading, display a loading message
+    if (!portfolio) {
+        return (
+            <div className="container mx-auto p-4">
+                <h1 className="text-3xl font-bold mb-6">Loading Portfolio...</h1>
+            </div>
+        );
+    }
+
     return (
         <div className="container mx-auto p-4">
-            <h1 className="text-3xl font-bold mb-6">Portfolios Published</h1>
-            {portfolios.length === 0 ? (
-                <p>There are no portfolios yet</p>
-            ) : (
-                portfolios.map((portfolio) => (
-                    <div
-                        key={portfolio._id}
-                        className="border p-4 rounded-lg shadow-lg mb-6"
-                    >
-                        <h2 className="text-xl font-semibold">{portfolio.name}</h2>
-                        <p className="text-gray-600">{portfolio.title}</p>
-                        <div className="mt-4">{renderTemplate(portfolio)}</div>
-                        <Link
-                            to={`/portfolio/${portfolio.slug}`}
-                            className="mt-4 inline-block bg-blue-500 text-white px-4 py-2 rounded-lg"
-                        >
-                            Portfolio
-                        </Link>
-                    </div>
-                ))
-            )}
+            <h1 className="text-3xl font-bold mb-6">Portfolio Published</h1>
+            <div className="border p-4 rounded-lg shadow-lg mb-6">
+                <h2 className="text-xl font-semibold">{portfolio.name}</h2>
+                <p className="text-gray-600">{portfolio.title}</p>
+                <div className="mt-4">{renderTemplate(portfolio)}</div>
+                <Link
+                    to={`/portfolios/${portfolio.slug}`}
+                    className="mt-4 inline-block bg-blue-500 text-white px-4 py-2 rounded-lg"
+                >
+                    View Portfolio
+                </Link>
+            </div>
         </div>
     );
 };

@@ -25,7 +25,7 @@ function App() {
           <Route path="/about" element={<AboutPage />} />
           <Route path="/templates/:templateId" element={<CreatePortfolio />} />
           <Route path="/preview/:templateId" element={<PreviewPage />} />
-          <Route path="/portfolio/:slug" element={<TemplateSwitch />} />
+          <Route path="/portfolios/:slug" element={<TemplateSwitch />} />
           <Route path="/portfolios" element={<PortfolioPage />} />
           <Route path="*" element={<ErrorPage />} />
         </Routes>
