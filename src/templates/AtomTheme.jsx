@@ -190,6 +190,9 @@ const SkillBadge = ({ icon: Icon, name }) => {
 };
 
 function AtomTheme({ data }) {
+  const frontEndSkills = data?.skills?.find(skill => skill.skillType === "FrontEnd")?.skills || [];
+  const backEndSkills = data?.skills?.find(skill => skill.skillType === "BackEnd")?.skills || [];
+  const otherTools = data?.skills?.find(skill => skill.skillType === "OtherTools")?.skills || [];
 
   return (
     <div className="min-h-screen bg-gray-900">
@@ -205,7 +208,7 @@ function AtomTheme({ data }) {
               <span className="text-purple-400">Experiences</span>
             </h1>
             <p className="text-xl text-gray-400 mb-8">
-            
+
               {data.title}
             </p>
             <div className="flex flex-wrap justify-center gap-4">
@@ -274,10 +277,13 @@ function AtomTheme({ data }) {
                 Frontend Development
               </h3>
               <div className="flex flex-wrap gap-3">
-                {data.skills.frontEnd.map((skill, i) => {
-                  return <SkillBadge key={i} icon={Code} name={skill.label} />;
-                })}
-                {console.log(data.skills.frontEnd[0])}
+                {frontEndSkills.length > 0 ? (
+                  frontEndSkills.map((skill, i) => (
+                    <SkillBadge key={i} icon={Code} name={skill || "Unknown Skill"} />
+                  ))
+                ) : (
+                  <p>No Front-End skills found</p>
+                )}
               </div>
             </div>
 
@@ -286,9 +292,13 @@ function AtomTheme({ data }) {
                 Backend Development
               </h3>
               <div className="flex flex-wrap gap-3">
-              {data.skills.backEnd.map((skill, i) => {
-                  return <SkillBadge key={i} icon={Server} name={skill.label} />;
-                })}
+                {backEndSkills.length > 0 ? (
+                  backEndSkills.map((skill, i) => (
+                    <SkillBadge key={i} icon={Server} name={skill || "Unknown Skill"} />
+                  ))
+                ) : (
+                  <p>No Back-End skills found</p>
+                )}
               </div>
             </div>
 
@@ -297,9 +307,13 @@ function AtomTheme({ data }) {
                 Tools & Others
               </h3>
               <div className="flex flex-wrap gap-3">
-              {data.skills.otherTools.map((skill, i) => {
-                  return <SkillBadge key={i} icon={Terminal} name={skill.label} />;
-                })}
+                {otherTools.length > 0 ? (
+                  otherTools.map((skill, i) => (
+                    <SkillBadge key={i} icon={Terminal} name={skill || "Unknown Skill"} />
+                  ))
+                ) : (
+                  <p>No Other Tools found</p>
+                )}
               </div>
             </div>
           </div>
