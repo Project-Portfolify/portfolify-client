@@ -39,7 +39,6 @@ const SignUp = () => {
                 <div className="py-8 text-base leading-6 space-y-4 text-gray-700 sm:text-lg sm:leading-7">
                   <div className="relative">
                     <input
-                      autoComplete="off"
                       id="email"
                       name="email"
                       type="text"
@@ -53,7 +52,6 @@ const SignUp = () => {
                   </div>
                   <div className="relative">
                     <input
-                      autoComplete="off"
                       id="name"
                       name="name"
                       type="text"
@@ -67,7 +65,6 @@ const SignUp = () => {
                   </div>
                   <div className="relative">
                     <input
-                      autoComplete="off"
                       id="password"
                       name="password"
                       type="password"
