@@ -206,7 +206,9 @@ function AtomTheme({ data }) {
               Crafting Digital
               <span className="text-purple-400">Experiences</span>
             </h1>
-            <p className="text-xl text-gray-400 mb-8">{personalInfo.title}</p>
+            <p className="text-xl text-gray-400 mb-8">
+              {personalInfo.jobTitle}
+            </p>
             <div className="flex flex-wrap justify-center gap-4">
               <a
                 href="#projects"

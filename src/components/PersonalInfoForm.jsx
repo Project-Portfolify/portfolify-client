@@ -47,9 +47,9 @@ const PersonalInfoForm = ({ onClickNext, form }) => {
             <input
               type="text"
               className="block w-full h-9 px-5 py-2.5 bg-white leading-7 text-base font-normal shadow-xs text-gray-900 bg-transparent border border-gray-300 rounded-sm placeholder-gray-400 focus:outline-none "
-              {...register("title", { required: true })}
+              {...register("jobTitle", { required: true })}
             />
-            {errors.title && (
+            {errors.jobTitle && (
               <span className="text-red-600 text-xs">
                 This field is required
               </span>
