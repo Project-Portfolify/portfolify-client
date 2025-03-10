@@ -5,7 +5,6 @@ const AuthContext = createContext();
 const AuthProvider = ({ children }) => {
   const [token, setToken] = useState(localStorage.getItem("auth") || null);
 
-
   useEffect(() => {
     const storedToken = localStorage.getItem("auth");
     if (storedToken) {
@@ -13,16 +12,14 @@ const AuthProvider = ({ children }) => {
     }
   }, []);
 
-
   const getToken = () => token;
-
 
   const login = (newToken) => {
     localStorage.setItem("auth", newToken);
     setToken(newToken);
   };
 
-
+  // Log Out Function
   const logout = () => {
     localStorage.removeItem("auth");
     setToken(null);
