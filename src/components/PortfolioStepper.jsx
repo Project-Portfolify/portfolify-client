@@ -33,7 +33,7 @@ const PortfolioStepper = () => {
       gitHub: "https://github.com/alexjohnson",
       linkedIn: "https://linkedin.com/in/alexjohnson",
       name: "Alex Johnson",
-      title: "Full Stack Developer",
+      jobTitle: "Full Stack Developer",
     },
   });
   const professionalSummaryForm = useForm({
@@ -87,18 +87,17 @@ const PortfolioStepper = () => {
     const professionalSummary = professionalSummaryForm.getValues();
     const skills = skillsForm.getValues();
     const projects = projectForm.getValues();
-  
-    
+
     const combinedData = {
       personalInfo,
       professionalSummary,
       skills,
-      projects
+      projects,
     };
-  
+
     setCombinedData(combinedData);
     console.log(combinedData);
-  
+
     nextStep();
   };
   return (

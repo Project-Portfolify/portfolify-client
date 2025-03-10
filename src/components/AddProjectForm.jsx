@@ -54,7 +54,12 @@ const AddProjectForm = ({ register, index, remove, error }) => {
         </div>
         {index > 0 && (
           <div className="mt-10 text-red-600 hover:cursor-pointer hover:scale-110">
-            <Trash2 onClick={remove} />
+            <Trash2
+              onClick={(e) => {
+                e.preventDefault();
+                remove(index);
+              }}
+            />
           </div>
         )}
       </div>
