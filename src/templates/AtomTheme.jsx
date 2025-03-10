@@ -26,7 +26,6 @@ import {
 // Components
 const Navbar = ({ data }) => {
   const [isOpen, setIsOpen] = useState(false);
-  const { personalInfo, professionalSummary, projects, skills } = data;
 
   return (
     <nav className=" w-full bg-gray-900/90 backdrop-blur-sm z-50 border-b border-gray-800">
@@ -34,7 +33,7 @@ const Navbar = ({ data }) => {
         <div className="flex justify-between h-16">
           <div className="flex items-center">
             <span className="text-xl font-bold text-purple-400">
-              {personalInfo.name}
+              {data.name}
             </span>
           </div>
 
@@ -191,7 +190,6 @@ const SkillBadge = ({ icon: Icon, name }) => {
 };
 
 function AtomTheme({ data }) {
-  const { personalInfo, professionalSummary, projects, skills } = data;
 
   return (
     <div className="min-h-screen bg-gray-900">
@@ -207,7 +205,8 @@ function AtomTheme({ data }) {
               <span className="text-purple-400">Experiences</span>
             </h1>
             <p className="text-xl text-gray-400 mb-8">
-              {personalInfo.jobTitle}
+            
+              {data.title}
             </p>
             <div className="flex flex-wrap justify-center gap-4">
               <a
@@ -219,13 +218,13 @@ function AtomTheme({ data }) {
             </div>
             <div className="mt-12 flex justify-center space-x-6">
               <a
-                href={personalInfo.gitHub}
+                href={data.gitHub}
                 className="text-gray-400 hover:text-purple-400 transition-colors"
               >
                 <Github size={30} />
               </a>
               <a
-                href={personalInfo.linkedIn}
+                href={data.linkedIn}
                 className="text-gray-400 hover:text-purple-400 transition-colors"
               >
                 <Linkedin size={30} />
@@ -251,7 +250,7 @@ function AtomTheme({ data }) {
               About Me
             </h2>
             <div className="mt-2 h-1 w-20 bg-purple-600 mx-auto"></div>
-            <p className="mt-4 text-xl text-gray-400">{personalInfo.aboutMe}</p>
+            <p className="mt-4 text-xl text-gray-400">{data.aboutMe}</p>
           </div>
         </div>
       </section>
@@ -275,9 +274,10 @@ function AtomTheme({ data }) {
                 Frontend Development
               </h3>
               <div className="flex flex-wrap gap-3">
-                {skills.frontEnd.map((skill, i) => {
+                {data.skills.frontEnd.map((skill, i) => {
                   return <SkillBadge key={i} icon={Code} name={skill.label} />;
                 })}
+                {console.log(data.skills.frontEnd[0])}
               </div>
             </div>
 
@@ -286,10 +286,8 @@ function AtomTheme({ data }) {
                 Backend Development
               </h3>
               <div className="flex flex-wrap gap-3">
-                {skills.backEnd.map((skill, i) => {
-                  return (
-                    <SkillBadge key={i} icon={Server} name={skill.label} />
-                  );
+              {data.skills.backEnd.map((skill, i) => {
+                  return <SkillBadge key={i} icon={Server} name={skill.label} />;
                 })}
               </div>
             </div>
@@ -299,10 +297,8 @@ function AtomTheme({ data }) {
                 Tools & Others
               </h3>
               <div className="flex flex-wrap gap-3">
-                {skills.otherTools.map((skill, i) => {
-                  return (
-                    <SkillBadge key={i} icon={Terminal} name={skill.label} />
-                  );
+              {data.skills.otherTools.map((skill, i) => {
+                  return <SkillBadge key={i} icon={Terminal} name={skill.label} />;
                 })}
               </div>
             </div>

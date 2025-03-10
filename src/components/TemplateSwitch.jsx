@@ -5,13 +5,14 @@ import GreyTheme from "../templates/GreyTheme";
 import DarkTheme from "../templates/DarkTheme";
 import { Templates } from "../constants";
 import axios from "axios";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { AuthContext } from "../context/AuthContext";
 import slugify from "slugify";
+import { useNavigate } from "react-router-dom";
 
 const env = import.meta.env.VITE_BASE_API_URL;
 
-const TemplateSwitch = ({ templateId, data, onClickPrev }) => {
+const TemplateSwitch = ({ templateId, data, onClickPrev}) => {
   const themes = {
     [Templates.AtomTheme]: <AtomTheme data={data} />,
     [Templates.LightTheme]: <LightTheme data={data} />,
@@ -20,7 +21,8 @@ const TemplateSwitch = ({ templateId, data, onClickPrev }) => {
     [Templates.DarkTheme]: <DarkTheme data={data} />,
   };
   const { getToken, isAuthenticated } = useContext(AuthContext);
-
+  const [portfolio, setPortfolio] = useState(null);
+  const navigate = useNavigate();
   const currentTheme = themes[templateId] || <h1>Template not found</h1>;
 
   const { aboutMe, country, email, gitHub, linkedIn, name, jobTitle } =
@@ -57,7 +59,7 @@ const TemplateSwitch = ({ templateId, data, onClickPrev }) => {
     linkedIn,
     email,
     country: country.label,
-    title: jobTitle,
+    title:jobTitle,
     about: aboutMe,
     experience: [
       {
@@ -98,6 +100,7 @@ const TemplateSwitch = ({ templateId, data, onClickPrev }) => {
       },
     ],
     template: templateId,
+    published: true, 
   };
 
   console.log(portfolioData);
@@ -108,8 +111,10 @@ const TemplateSwitch = ({ templateId, data, onClickPrev }) => {
         headers: { Authorization: `Bearer ${getToken()}` },
       })
       .then((response) => {
-        alert("Portfolio Published Successfully! 🎉");
+        // alert("Portfolio Published Successfully! 🎉");
         console.log(response);
+        setPortfolio(response.data);
+        navigate("/portfolios");
       })
       .catch((error) => {
         alert("Failed to publish portfolio. ❌");
@@ -125,18 +130,22 @@ const TemplateSwitch = ({ templateId, data, onClickPrev }) => {
           onClick={onClickPrev}
         >
           Previous step
-        </button>
-        {isAuthenticated && (
-          <button
-            onClick={handleSubmit}
+        </button >
+        {isAuthenticated ? (
+          portfolio && portfolio.published ? (
+            <a href={`/portfolio/${portfolio.slug}`}>Ver Publicado</a>
+          ) : (
+            <button 
             className="w-52 h-12 shadow-sm rounded-full bg-indigo-600 hover:bg-indigo-800 transition-all duration-700 text-white text-base font-semibold leading-7"
-          >
-            Publish
+            onClick={handleSubmit}>
+              Publish
+              </button>
+          )
+        ) : (
+          <button className="w-52 h-12 shadow-sm rounded-full bg-indigo-600 hover:bg-indigo-800 transition-all duration-700 text-white text-base font-semibold leading-7">
+            SignUp / LogIn
           </button>
         )}
-        <button className="w-52 h-12 shadow-sm rounded-full bg-indigo-600 hover:bg-indigo-800 transition-all duration-700 text-white text-base font-semibold leading-7">
-          SignUp / LogIn
-        </button>
       </div>
 
       {currentTheme}
