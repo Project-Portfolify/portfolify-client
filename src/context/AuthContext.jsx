@@ -12,9 +12,13 @@ const AuthProvider = ({ children }) => {
     setIsAuthenticated(auth);
   }, []);
 
+  const getToken = () => {
+    return localStorage.getItem("auth");
+  };
+
   // Login Function
-  const login = () => {
-    localStorage.setItem("auth", "true");
+  const login = (token) => {
+    localStorage.setItem("auth", token);
     setIsAuthenticated(true);
   };
 
@@ -25,7 +29,7 @@ const AuthProvider = ({ children }) => {
   };
 
   return (
-    <AuthContext.Provider value={{ isAuthenticated, login, logout }}>
+    <AuthContext.Provider value={{ isAuthenticated, login, logout, getToken }}>
       {children}
     </AuthContext.Provider>
   );
