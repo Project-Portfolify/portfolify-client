@@ -8,6 +8,7 @@ import axios from "axios";
 import { useContext } from "react";
 import { AuthContext } from "../context/AuthContext";
 import slugify from "slugify";
+import LogInModal from "./logInModal";
 
 const env = import.meta.env.VITE_BASE_API_URL;
 
@@ -98,6 +99,7 @@ const TemplateSwitch = ({ templateId, data, onClickPrev }) => {
       },
     ],
     template: templateId,
+    imageUrl: data.imageUrl,
   };
 
   console.log(portfolioData);
@@ -119,24 +121,30 @@ const TemplateSwitch = ({ templateId, data, onClickPrev }) => {
 
   return (
     <div>
-      <div className="flex justify-between mb-20">
-        <button
-          className="w-52 h-12 shadow-sm rounded-full bg-indigo-600 hover:bg-indigo-800 transition-all duration-700 text-white text-base font-semibold leading-7"
-          onClick={onClickPrev}
-        >
-          Previous step
-        </button>
-        {isAuthenticated && (
+      <div className="flex justify-between items-center mb-20 w-full">
+        {/* Left-aligned Previous Step button */}
+        <div className="flex-1">
           <button
-            onClick={handleSubmit}
             className="w-52 h-12 shadow-sm rounded-full bg-indigo-600 hover:bg-indigo-800 transition-all duration-700 text-white text-base font-semibold leading-7"
+            onClick={onClickPrev}
           >
-            Publish
+            Previous step
           </button>
-        )}
-        <button className="w-52 h-12 shadow-sm rounded-full bg-indigo-600 hover:bg-indigo-800 transition-all duration-700 text-white text-base font-semibold leading-7">
-          SignUp / LogIn
-        </button>
+        </div>
+
+        {/* Right-aligned: Either Publish button or Login Modal */}
+        <div className="flex-1 flex justify-end">
+          {isAuthenticated ? (
+            <button
+              onClick={handleSubmit}
+              className="w-52 h-12 shadow-sm rounded-full bg-indigo-600 hover:bg-indigo-800 transition-all duration-700 text-white text-base font-semibold leading-7"
+            >
+              Publish
+            </button>
+          ) : (
+            <LogInModal />
+          )}
+        </div>
       </div>
 
       {currentTheme}

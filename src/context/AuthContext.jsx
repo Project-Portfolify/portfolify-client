@@ -8,7 +8,7 @@ const AuthProvider = ({ children }) => {
 
   // verify if is storage
   useEffect(() => {
-    const auth = localStorage.getItem("auth") === "true";
+    const auth = localStorage.getItem("auth") !== undefined;
     setIsAuthenticated(auth);
   }, []);
 

@@ -7,14 +7,17 @@ import ProfessionalSummaryForm from "./ProfessionalSummaryForm";
 import SkillsForm from "./SkillsForm";
 import ProjectDetailsForm from "./ProjectDetailsForm";
 import TemplateSwitch from "./TemplateSwitch";
+import ImageUpload from "./ImageUpload";
 
 const PortfolioStepper = () => {
+  const [imageUrl, setImageUrl] = useState(null);
+
   const [combinedData, setCombinedData] = useState();
   const { templateId } = useParams();
   console.log(templateId);
 
   const [step, setStep] = useState(1);
-  const totalSteps = 5;
+  const totalSteps = 6;
 
   const nextStep = () => {
     if (step < totalSteps) setStep(step + 1);
@@ -93,6 +96,7 @@ const PortfolioStepper = () => {
       professionalSummary,
       skills,
       projects,
+      imageUrl,
     };
 
     setCombinedData(combinedData);
@@ -135,14 +139,23 @@ const PortfolioStepper = () => {
       {step === 4 && (
         <ProjectDetailsForm
           form={projectForm}
-          onClickSubmit={handleSubmit}
+          onClickNext={nextStep}
           onClickPrev={prevStep}
+        />
+      )}
+
+      {step === 5 && (
+        <ImageUpload
+          onClickPrev={prevStep}
+          onClickSubmit={handleSubmit}
+          imageUrl={imageUrl}
+          onFileUpload={setImageUrl}
         />
       )}
 
       {/* Step 5 */}
 
-      {step === 5 && (
+      {step === 6 && (
         <TemplateSwitch
           templateId={templateId}
           data={combinedData}

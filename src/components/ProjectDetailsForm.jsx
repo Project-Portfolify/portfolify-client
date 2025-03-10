@@ -3,7 +3,7 @@ import AddProjectForm from "./AddProjectForm";
 import { SquarePlus } from "lucide-react";
 import { useEffect } from "react";
 
-const ProjectDetailsForm = ({ form, onClickSubmit, onClickPrev }) => {
+const ProjectDetailsForm = ({ form, onClickNext, onClickPrev }) => {
   const {
     control,
     register,
@@ -18,7 +18,7 @@ const ProjectDetailsForm = ({ form, onClickSubmit, onClickPrev }) => {
 
   const handleOnSubmit = (data) => {
     console.log(data);
-    onClickSubmit();
+    onClickNext();
   };
   console.log(errors);
 
@@ -63,7 +63,7 @@ const ProjectDetailsForm = ({ form, onClickSubmit, onClickPrev }) => {
             className="w-52 h-12 shadow-sm rounded-full bg-indigo-600 hover:bg-indigo-800 transition-all duration-700 text-white text-base font-semibold leading-7"
             type="submit"
           >
-            Preview
+            Next Step
           </button>
         </div>
       </div>

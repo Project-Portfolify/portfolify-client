@@ -132,18 +132,6 @@ const PersonalInfoForm = ({ onClickNext, form }) => {
               </span>
             )}
           </div>
-          {/* <div className="w-full relative">
-            <label className="flex items-center mb-2 text-gray-600 text-sm font-medium">
-              Portfolio Picture
-            </label>
-            <input
-              type="file"
-              name="imageUrl"
-              accept="image/*"
-              className="block w-full h-9 px-5 py-2.5 bg-white text-base font-normal shadow-xs text-gray-900 border border-gray-300 rounded-sm placeholder-gray-400 focus:outline-none cursor-pointer"
-
-            />
-          </div> */}
         </div>
         <div className="flex flex-col gap-x-6 mb-6">
           <div className="w-full relative">
