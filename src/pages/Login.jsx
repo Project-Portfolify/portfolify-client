@@ -49,7 +49,6 @@ const Login = () => {
             <form onSubmit={handleSubmit} className="space-y-4">
               <div className="relative">
                 <input
-                  autoComplete="on"
                   id="email"
                   type="text"
                   value={email}
@@ -67,7 +66,6 @@ const Login = () => {
 
               <div className="relative">
                 <input
-                  autoComplete="off"
                   id="password"
                   type="password"
                   value={password}

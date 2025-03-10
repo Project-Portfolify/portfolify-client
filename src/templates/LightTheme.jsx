@@ -31,9 +31,7 @@ const Navbar = ({ data }) => {
     <nav className="w-full bg-white/90 backdrop-blur-sm z-50 border-b border-gray-100">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-16">
-          <div className="flex items-center">
-            {personalInfo.name}
-          </div>
+          <div className="flex items-center">{personalInfo.name}</div>
 
           {/* Desktop menu */}
           <div className="hidden md:flex items-center space-x-8">
@@ -194,7 +192,8 @@ function LightThemeTemplate({ data }) {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
             <div className="order-2 md:order-1">
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight">
-                Creative <span className="text-indigo-600">{personalInfo.title}</span> &{" "}
+                Creative{" "}
+                <span className="text-indigo-600">{personalInfo.title}</span> &{" "}
                 <span className="text-indigo-600">Developer</span>
               </h1>
               <p className="mt-6 text-xl text-gray-600 max-w-2xl">
@@ -274,9 +273,7 @@ function LightThemeTemplate({ data }) {
               <h3 className="text-2xl font-bold text-gray-900 mb-4">
                 My Journey
               </h3>
-              <p className="text-gray-600 mb-6">
-                {personalInfo.aboutMe}
-              </p>
+              <p className="text-gray-600 mb-6">{personalInfo.aboutMe}</p>
               <p className="text-gray-600 mb-6">
                 I specialize in responsive web design, user experience, and
                 front-end development, with a focus on creating accessible and
@@ -290,7 +287,9 @@ function LightThemeTemplate({ data }) {
                   </h4>
                   <ul className="space-y-2 text-gray-600">
                     {skills.frontEnd.map((skill, i) => {
-                      return <SkillBadge key={i} icon={Code} name={skill.label} />;
+                      return (
+                        <SkillBadge key={i} icon={Code} name={skill.label} />
+                      );
                     })}
                   </ul>
                 </div>
@@ -313,7 +312,11 @@ function LightThemeTemplate({ data }) {
                   <ul className="space-y-2 text-gray-600">
                     {skills.otherTools.map((skill, i) => {
                       return (
-                        <SkillBadge key={i} icon={Terminal} name={skill.label} />
+                        <SkillBadge
+                          key={i}
+                          icon={Terminal}
+                          name={skill.label}
+                        />
                       );
                     })}
                   </ul>
@@ -379,7 +382,6 @@ function LightThemeTemplate({ data }) {
           </div>
         </div>
       </section>
-
 
       {/* Contact Section */}
       <section id="contact" className="py-16 md:py-24 bg-gray-50">
