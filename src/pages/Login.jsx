@@ -44,8 +44,6 @@ const Login = () => {
           <div className="max-w-md mx-auto">
             <h1 className="text-2xl font-semibold mb-10">Login</h1>
 
-            {error && <p className="text-red-500">{error}</p>}
-
             <form onSubmit={handleSubmit} className="space-y-4">
               <div className="relative">
                 <input
@@ -87,6 +85,8 @@ const Login = () => {
               >
                 Log In
               </button>
+
+              {error && <p className="text-red-500 text-sm">{error}</p>}
             </form>
           </div>
         </div>
