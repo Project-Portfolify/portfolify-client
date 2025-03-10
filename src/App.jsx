@@ -11,6 +11,7 @@ import Login from "./pages/Login";
 import PortfolioPage from "./pages/PortfolioPage";
 import CreatePortfolio from "./pages/CreatePortfolio";
 import PreviewPage from "./pages/PreviewPage";
+import TemplateSwitch from "./components/TemplateSwitch";
 
 function App() {
   return (
@@ -24,7 +25,7 @@ function App() {
           <Route path="/about" element={<AboutPage />} />
           <Route path="/templates/:templateId" element={<CreatePortfolio />} />
           <Route path="/preview/:templateId" element={<PreviewPage />} />
-
+          <Route path="/portfolio/:slug" element={<TemplateSwitch />} />
           <Route path="/portfolios" element={<PortfolioPage />} />
           <Route path="*" element={<ErrorPage />} />
         </Routes>

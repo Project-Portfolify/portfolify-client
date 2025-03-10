@@ -5,10 +5,11 @@ import GreyTheme from "../templates/GreyTheme";
 import DarkTheme from "../templates/DarkTheme";
 import { Templates } from "../constants";
 import axios from "axios";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { AuthContext } from "../context/AuthContext";
 import slugify from "slugify";
 import LogInModal from "./logInModal";
+import { useNavigate } from "react-router-dom";
 
 const env = import.meta.env.VITE_BASE_API_URL;
 
@@ -21,7 +22,8 @@ const TemplateSwitch = ({ templateId, data, onClickPrev }) => {
     [Templates.DarkTheme]: <DarkTheme data={data} />,
   };
   const { getToken, isAuthenticated } = useContext(AuthContext);
-
+  const [portfolio, setPortfolio] = useState(null);
+  const navigate = useNavigate();
   const currentTheme = themes[templateId] || <h1>Template not found</h1>;
 
   const { aboutMe, country, email, gitHub, linkedIn, name, jobTitle } =
@@ -100,6 +102,7 @@ const TemplateSwitch = ({ templateId, data, onClickPrev }) => {
     ],
     template: templateId,
     imageUrl: data.imageUrl,
+    published: true,
   };
 
   console.log(portfolioData);
@@ -110,8 +113,10 @@ const TemplateSwitch = ({ templateId, data, onClickPrev }) => {
         headers: { Authorization: `Bearer ${getToken()}` },
       })
       .then((response) => {
-        alert("Portfolio Published Successfully! 🎉");
+        // alert("Portfolio Published Successfully! 🎉");
         console.log(response);
+        setPortfolio(response.data);
+        navigate("/portfolios");
       })
       .catch((error) => {
         alert("Failed to publish portfolio. ❌");

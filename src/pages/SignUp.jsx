@@ -1,29 +1,69 @@
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { AuthContext } from "../context/AuthContext";
+import { useContext, useState } from "react";
 const env = import.meta.env.VITE_BASE_API_URL;
 
 const SignUp = () => {
   const navigate = useNavigate();
+const { login } = useContext(AuthContext);
+const [error, setError] = useState(null);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setError(null);
+
     const { email, name, password } = e.target.elements;
     const newUser = {
       email: email.value,
       name: name.value,
       password: password.value,
     };
-
-    console.log(newUser);
+    
+    console.log({ email: newUser.email, name: newUser.name });
 
     try {
-      const response = await axios.post(`${env}/auth/signup`, newUser);
-      console.log("success", response);
-      navigate("/login");
+      // Primero se hace el signUp
+      const signUpResponse = await fetch(`${env}/auth/signup`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(newUser),
+      });
+  
+      const signUpData = await signUpResponse.json();
+  
+      if (!signUpResponse.ok) {
+        throw new Error(signUpData.message || "Sign up failed");
+      }
+  
+      console.log("Sign up successful:", signUpData);
+  
+      // Después de signUp, automáticamente hace el login para obtener el token
+      const loginResponse = await fetch(`${env}/auth/login`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email: newUser.email, password: newUser.password }),
+      });
+  
+      const loginData = await loginResponse.json();
+  
+      if (loginResponse.ok) {
+        console.log("Login successful:", loginData.authToken);
+  
+        // Guarda el token en el contexto para mantener la sesión activa
+        login(loginData.authToken);
+  
+        // Redirige al dashboard o homepage después del login
+        navigate("/");
+      } else {
+        setError(loginData.message || "Login failed, please try again.");
+      }
     } catch (error) {
-      console.log("Error", error);
+      setError("Error en el servidor, por favor intenta más tarde.");
+      console.error("Error:", error);
     }
   };
+  
 
   return (
     <form onSubmit={handleSubmit}>
