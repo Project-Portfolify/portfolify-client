@@ -7,6 +7,7 @@ import { Templates } from "../constants";
 import axios from "axios";
 import { useContext } from "react";
 import { AuthContext } from "../context/AuthContext";
+import slugify from "slugify";
 
 const env = import.meta.env.VITE_BASE_API_URL;
 
@@ -18,9 +19,7 @@ const TemplateSwitch = ({ templateId, data, onClickPrev }) => {
     [Templates.GreyTheme]: <GreyTheme data={data} />,
     [Templates.DarkTheme]: <DarkTheme data={data} />,
   };
-  const { getToken } = useContext(AuthContext);
-
-  const storedToken = localStorage.getItem("authToken");
+  const { getToken, isAuthenticated } = useContext(AuthContext);
 
   const currentTheme = themes[templateId] || <h1>Template not found</h1>;
 
@@ -34,7 +33,25 @@ const TemplateSwitch = ({ templateId, data, onClickPrev }) => {
 
   const { backEnd, frontEnd, otherTools } = data.skills;
 
+  const generateSlug = (name) => {
+    return slugify(name, {
+      lower: true, // Convert to lowercase
+      strict: true, // Remove special characters
+      trim: true, // Trim whitespace
+    });
+  };
+
+  // Generate unique slug with random ID to avoid duplicates
+  const generateUniqueSlug = (name) => {
+    const baseSlug = generateSlug(name);
+    const randomId = Math.random().toString(36).substring(2, 6);
+    return `${baseSlug}-${randomId}-${templateId}`;
+  };
+
+  console.log(generateUniqueSlug(name));
+
   const portfolioData = {
+    slug: generateUniqueSlug(name),
     name,
     gitHub,
     linkedIn,
@@ -85,17 +102,17 @@ const TemplateSwitch = ({ templateId, data, onClickPrev }) => {
 
   console.log(portfolioData);
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-
+  const handleSubmit = () => {
     axios
       .post(`${env}/portfolios`, portfolioData, {
         headers: { Authorization: `Bearer ${getToken()}` },
       })
       .then((response) => {
+        alert("Portfolio Published Successfully! 🎉");
         console.log(response);
       })
       .catch((error) => {
+        alert("Failed to publish portfolio. ❌");
         console.log(error);
       });
   };
@@ -109,11 +126,16 @@ const TemplateSwitch = ({ templateId, data, onClickPrev }) => {
         >
           Previous step
         </button>
-        <button
-          onClick={handleSubmit}
-          className="w-52 h-12 shadow-sm rounded-full bg-indigo-600 hover:bg-indigo-800 transition-all duration-700 text-white text-base font-semibold leading-7"
-        >
-          Publish
+        {isAuthenticated && (
+          <button
+            onClick={handleSubmit}
+            className="w-52 h-12 shadow-sm rounded-full bg-indigo-600 hover:bg-indigo-800 transition-all duration-700 text-white text-base font-semibold leading-7"
+          >
+            Publish
+          </button>
+        )}
+        <button className="w-52 h-12 shadow-sm rounded-full bg-indigo-600 hover:bg-indigo-800 transition-all duration-700 text-white text-base font-semibold leading-7">
+          SignUp / LogIn
         </button>
       </div>
 
