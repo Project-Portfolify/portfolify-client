@@ -12,8 +12,8 @@ import LogInModal from "./logInModal";
 import { useNavigate, useParams } from "react-router-dom";
 const env = import.meta.env.VITE_BASE_API_URL;
 
-const TemplateSwitch = ({ templateId, data, onClickPrev, isEdit=false }) => {
- const {slug} = useParams()
+const TemplateSwitch = ({ templateId, data, onClickPrev, isEdit }) => {
+  const { slug } = useParams();
   const themes = {
     [Templates.AtomTheme]: <AtomTheme data={data} />,
     [Templates.LightTheme]: <LightTheme data={data} />,
@@ -56,53 +56,54 @@ const TemplateSwitch = ({ templateId, data, onClickPrev, isEdit=false }) => {
   console.log(portfolioData);
 
   const handleSubmit = () => {
-    if(!isEdit){
+    if (!isEdit) {
       axios
-      .post(`${env}/portfolios`, portfolioData, {
-        headers: { Authorization: `Bearer ${getToken()}` },
-      })
-      .then((response) => {
-        // alert("Portfolio Published Successfully! 🎉");
-        console.log(response);
-        setPortfolio(response.data);
-        window.open(
-          `/portfolio/${portfolioData.slug}`,
-          "_blank",
-          "noopener,noreferrer"
-        );
-        navigate("/portfolios");
-      })
-      .catch((error) => {
-        alert("Failed to publish portfolio. ❌");
-        console.log(error);
-      });
-    }else{
+        .post(`${env}/portfolios`, portfolioData, {
+          headers: { Authorization: `Bearer ${getToken()}` },
+        })
+        .then((response) => {
+          // alert("Portfolio Published Successfully! 🎉");
+          console.log(response);
+          setPortfolio(response.data);
+          window.open(
+            `/portfolio/${portfolioData.slug}`,
+            "_blank",
+            "noopener,noreferrer"
+          );
+
+          navigate("/portfolios");
+        })
+        .catch((error) => {
+          alert("Failed to publish portfolio. ❌");
+          console.log(error);
+        });
+    } else {
       axios
-      .put(`${env}/portfolios/${slug}`, portfolioData, {
-        headers: { Authorization: `Bearer ${getToken()}` },
-      })
-      .then((response)=>{
-        console.log(response.data)
-        setPortfolio(response.data)
-        window.open(
-          `/portfolio/${portfolioData.slug}`,
-          "_blank",
-          "noopener,noreferrer"
-        );
-        navigate("/portfolios");
-        isEdit=false;
-      })
-      .catch((err)=>{
-        console.log(`error: ${err}`)
-      })
+        .put(`${env}/portfolios/${slug}`, portfolioData, {
+          headers: { Authorization: `Bearer ${getToken()}` },
+        })
+        .then((response) => {
+          console.log(response.data);
+          setPortfolio(response.data);
+          window.open(
+            `/portfolio/${portfolioData.slug}`,
+            "_blank",
+            "noopener,noreferrer"
+          );
+          navigate("/portfolios");
+          isEdit = false;
+        })
+        .catch((err) => {
+          console.log(`error: ${err}`);
+        });
     }
   };
 
   return (
     <div>
-      <div className="flex justify-between items-center mb-20 w-full">
+      <div className="flex flex-col md:flex-row justify-between items-center mb-20 w-full">
         {/* Left-aligned Previous Step button */}
-        <div className="flex-1">
+        <div className="flex-1 mb-4 md:mb-0">
           <button
             className="w-52 h-12 shadow-sm rounded-full bg-indigo-600 hover:bg-indigo-800 transition-all duration-700 text-white text-base font-semibold leading-7"
             onClick={onClickPrev}

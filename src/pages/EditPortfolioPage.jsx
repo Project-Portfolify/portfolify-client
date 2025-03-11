@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import PortfolioStepper from "../components/PortfolioStepper";
 import axios from "axios";
 import { useParams } from "react-router-dom";
-import { useState } from "react";
 const env = import.meta.env.VITE_BASE_API_URL;
 
 const EditPortfolioPage = () => {
@@ -21,7 +20,9 @@ const EditPortfolioPage = () => {
       });
   }, [slug]);
 
-  return <div>{formData && <PortfolioStepper formData={formData} />}</div>;
+  return (
+    <div>{formData && <PortfolioStepper formData={formData} isEdit />}</div>
+  );
 };
 
 export default EditPortfolioPage;
