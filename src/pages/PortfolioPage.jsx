@@ -72,9 +72,31 @@ const PortfolioPage = () => {
                 </Link>
                 <Link
                   to={`/portfolio/${portfolio.slug}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="mt-4 inline-block bg-blue-500 text-white px-4 py-2 rounded-lg"
                 >
                   Portfolio
+                </Link>
+                <Link
+                  onClick={() => {
+                    axios
+                      .delete(`${env}/portfolios/${portfolio._id}`, {
+                        headers: { Authorization: `Bearer ${getToken()}` },
+                      })
+                      .then((response) => {
+                        console.log(response.data);
+                        setPortfolios(
+                          portfolios.filter((p) => p._id !== portfolio._id)
+                        );
+                      })
+                      .catch((error) => {
+                        console.error("Error deleting portfolio:", error);
+                      });
+                  }}
+                  className="mt-4 w-20 text-center inline-block bg-blue-500 text-white px-4 py-2 rounded-lg"
+                >
+                  Delete
                 </Link>
               </div>
             </div>

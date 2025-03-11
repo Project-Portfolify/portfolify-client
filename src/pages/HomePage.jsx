@@ -24,19 +24,22 @@ const HomePage = () => {
 
         <section
           id="home"
-          className="relative z-10 flex flex-col items-center justify-center h-full text-center px-4"
+          className="relative z-10 flex flex-col items-center justify-center h-full text-center px-10"
         >
           <h1 className="text-5xl md:text-6xl font-extrabold text-white drop-shadow-lg animate-fadeIn">
-            
+            Welcome to Portfolify
           </h1>
-          <p className="mt-4 text-xl md:text-2xl text-gray-200 max-w-2xl drop-shadow-sm animate-fadeInDelay">
-            
+          <p className=" text-xl md:text-2xl text-gray-200 max-w-2xl drop-shadow-sm animate-fadeInDelay">
+            Showcase your projects and skills with ease.
           </p>
         </section>
       </div>
 
       {/* Content sections below the hero */}
       <div>
+        <h2 className="text-3xl md:text-4xl font-bold text-center mt-10">
+          Our Portfolios
+        </h2>
         <PortfolioList />
       </div>
       <div>

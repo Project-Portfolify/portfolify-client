@@ -6,7 +6,7 @@ import AtomTheme from "../templates/AtomTheme";
 import BoldTheme from "../templates/BoldTheme";
 import LightTheme from "../templates/LightTheme";
 import GreyTheme from "../templates/GreyTheme";
-import DarkTheme from "../templates/GreyTheme";
+import DarkTheme from "../templates/DarkTheme";
 
 const env = import.meta.env.VITE_BASE_API_URL;
 
