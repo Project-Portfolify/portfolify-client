@@ -1,28 +1,18 @@
-import React from 'react'
-import { createContext, useState, useEffect } from "react";
+import React, { createContext, useState, useEffect } from "react";
 
-const themes = {
-    light: {
-        background: "#F9FAFB",
-        color: "#1F2937", 
-    },
-    dark: {
-        background: "#1F2937",
-        color: "#F9FAFB",
-    },
-    
-};
 const ThemeContext = createContext();
 
 export const ThemeProvider = ({ children }) => {
-
     const [theme, setTheme] = useState(() => {
-
         return localStorage.getItem("theme") || "light";
     });
 
-
     useEffect(() => {
+        if (theme === "dark") {
+            document.documentElement.classList.add("dark");
+        } else {
+            document.documentElement.classList.remove("dark");
+        }
         localStorage.setItem("theme", theme);
     }, [theme]);
 
@@ -31,21 +21,12 @@ export const ThemeProvider = ({ children }) => {
     };
 
     return (
-        <ThemeContext.Provider value={{ theme, themes, toggleTheme }}>
-            <div
-                style={{
-                    backgroundColor: themes[theme].background,
-                    color: themes[theme].color,
-                    minHeight: "100vh",
-                    transition: "background-color 0.3s ease, color 0.3s ease",
-                }}
-            >
+        <ThemeContext.Provider value={{ theme, toggleTheme }}>
+            <div className={`min-h-screen transition-colors duration-300 ${theme === "dark" ? "bg-gray-900 text-white" : "bg-gray-50 text-gray-800"}`}>
                 {children}
             </div>
         </ThemeContext.Provider>
     );
 };
 
-export const useTheme = () => {
-    return React.useContext(ThemeContext);
-};
+export const useTheme = () => React.useContext(ThemeContext);

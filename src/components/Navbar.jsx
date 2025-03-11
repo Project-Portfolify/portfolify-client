@@ -47,14 +47,7 @@ function Navbar() {
                   About
                 </Link>
               </li>
-              <li>
-                <Link
-                  to="/contact"
-                  className="text-gray-700 hover:text-blue-600 transition duration-300"
-                >
-                  Contact
-                </Link>
-              </li>
+              
               {isAuthenticated ? (
                 <>
                   <li>
@@ -123,15 +116,7 @@ function Navbar() {
                   About
                 </Link>
               </li>
-              <li>
-                <Link
-                  to="/contact"
-                  onClick={() => setMenuOpen(false)}
-                  className="text-gray-700 hover:text-blue-600 transition duration-300"
-                >
-                  Contact
-                </Link>
-              </li>
+              
               {isAuthenticated ? (
                 <>
                   <li>
