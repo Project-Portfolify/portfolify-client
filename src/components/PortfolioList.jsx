@@ -77,7 +77,7 @@ const PortfolioList = () => {
             return (
               <div
                 key={i}
-                className="flex-shrink-0 m-4 relative overflow-hidden bg-white rounded-lg max-w-xs shadow-lg h-auto"
+                className="flex-shrink-0 m-4 relative overflow-hidden bg-white dark:bg-gray-800 rounded-lg max-w-xs shadow-lg h-auto"
               >
                 {/* Image on Top */}
                 <img

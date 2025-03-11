@@ -10,8 +10,6 @@ import GreyTheme from "../templates/GreyTheme";
 import DarkTheme from "../templates/DarkTheme";
 import { Templates } from "../constants";
 
-const env = import.meta.env.VITE_BASE_API_URL;
-
 const PortfolioPage = () => {
   const [portfolios, setPortfolios] = useState([]);
   const { getToken } = useContext(AuthContext);

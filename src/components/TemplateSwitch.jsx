@@ -27,18 +27,25 @@ const TemplateSwitch = ({ templateId, data, onClickPrev }) => {
   const currentTheme = themes[templateId] || <h1>Template not found</h1>;
 
   const generateSlug = (name) => {
+    if (!name || typeof name !== "string") {
+      return slugify("default-name", {
+        lower: true,
+        strict: true,
+        trim: true,
+      });
+    }
     return slugify(name, {
-      lower: true, // Convert to lowercase
-      strict: true, // Remove special characters
-      trim: true, // Trim whitespace
+      lower: true,
+      strict: true,
+      trim: true,
     });
   };
 
-  // Generate unique slug with random ID to avoid duplicates
   const generateUniqueSlug = (name) => {
-    const baseSlug = generateSlug(name);
+    const baseSlug = generateSlug(name || "default-name");
     const randomId = Math.random().toString(36).substring(2, 6);
-    return `${baseSlug}-${randomId}-${templateId}`;
+    // Use a fallback for templateId if it's undefined.
+    return `${baseSlug}-${randomId}-${templateId || "defaultTemplate"}`;
   };
 
   const portfolioData = {
@@ -70,7 +77,6 @@ const TemplateSwitch = ({ templateId, data, onClickPrev }) => {
         console.log(error);
       });
   };
-
   return (
     <div>
       <div className="flex justify-between items-center mb-20 w-full">

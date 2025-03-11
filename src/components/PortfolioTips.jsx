@@ -34,7 +34,7 @@ const PortfolioTips = () => {
 
             {/*<!-- Component: Testimonial carousel --> */}
             <div className="glide-08 relative w-full overflow-hidden">
-            <h2 className="text-4xl font-extrabold text-gray-800 mb-6 text-center">
+            <h2 className="text-4xl font-extrabold text-gray-400 mb-6 text-center">
                         Tips for Creating a Great Portfolio
                     </h2>
                 {/*    <!-- Slides --> */}
