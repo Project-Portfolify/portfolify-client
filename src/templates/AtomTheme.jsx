@@ -1,4 +1,8 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import profileImage from "../assets/profileimage.png";
+import projectImage from "../assets/projectImage.png";
+import project1 from "../assets/project1.png";
+import project2 from "../assets/project2.png";
 
 import {
   Menu,
@@ -22,6 +26,8 @@ import {
   Layers,
   GitBranch,
 } from "lucide-react";
+
+const imageArray = [projectImage, project1, project2];
 
 // Components
 const Navbar = ({ data }) => {
@@ -161,18 +167,55 @@ const ProjectCard = ({ title, description, image, tags, link }) => {
       <div className="p-6">
         <h3 className="text-xl font-bold text-white mb-2">{title}</h3>
         <p className="text-gray-400 mb-4">{description}</p>
-        <div className="flex flex-wrap gap-2">
-          {tags.map((tag, index) => (
-            <span
-              key={index}
-              className="px-3 py-1 text-xs font-medium bg-purple-500/10 text-purple-400 rounded-full"
-            >
-              {tag}
-            </span>
-          ))}
-        </div>
       </div>
     </div>
+  );
+};
+
+const Experience = ({ data }) => {
+  return (
+    <section id="experience" className="py-16 ">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="text-center mb-12">
+          <h2 className="text-3xl font-bold text-white">
+            Experience & Education
+            <div className="mt-2 h-1 w-20 bg-purple-600 mx-auto"></div>
+          </h2>
+          <div className="w-16 h-1 bg-v mx-auto mt-4 mb-6"></div>
+          <p className="text-lg text-gray-300 max-w-3xl mx-auto">
+            My professional journey. I've had the pleasure of working with some
+            great companies and teams.
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+          <div>
+            <h3 className="text-2xl font-semibold text-white mb-6">
+              Work Experience
+            </h3>
+            <div className="space-y-8">
+              {data.experience.map((exp, index) => (
+                <div
+                  key={index}
+                  className="relative pl-8 border-l-2 border-blue-200 pb-8"
+                >
+                  <div className="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-purple-600"></div>
+                  <h4 className="text-xl font-medium text-gray-900">
+                    {exp.role}
+                  </h4>
+                  <div className="flex justify-between items-center mb-2">
+                    <p className="text-blue-600 font-medium">{exp.company}</p>
+                    <p className="text-sm text-gray-500">{exp.duration.from}</p>
+                    <p className="text-sm text-gray-500">{exp.duration.from}</p>
+                  </div>
+                  <p className="text-gray-600">{exp.description}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
   );
 };
 
@@ -193,6 +236,16 @@ function AtomTheme({ data }) {
   // const frontEndSkills = data?.skills?.find(skill => skill.skillType === "FrontEnd")?.skills || [];
   // const backEndSkills = data?.skills?.find(skill => skill.skillType === "BackEnd")?.skills || [];
   // const otherTools = data?.skills?.find(skill => skill.skillType === "OtherTools")?.skills || [];
+  const [randomImage, setRandomImage] = useState("");
+
+  useEffect(() => {
+    const pickRandomImage = () => {
+      const randomIndex = Math.floor(Math.random() * imageArray.length);
+      setRandomImage(imageArray[randomIndex]);
+    };
+
+    pickRandomImage();
+  }, []);
 
   return (
     <div className="min-h-screen bg-gray-900">
@@ -202,39 +255,51 @@ function AtomTheme({ data }) {
       <section id="home" className="pt-32 pb-20 relative overflow-hidden">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_30%,rgba(147,51,234,0.1),transparent_60%)]"></div>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
-          <div className="text-center max-w-3xl mx-auto">
-            <h1 className="text-4xl md:text-6xl font-bold text-white mb-6">
-              Crafting Digital
-              <span className="text-purple-400">Experiences</span>
-            </h1>
-            <p className="text-xl text-gray-400 mb-8">{data.title}</p>
-            <div className="flex flex-wrap justify-center gap-4">
-              <a
-                href="#projects"
-                className="px-6 py-3 rounded-md bg-purple-600 text-white font-medium hover:bg-purple-700 transition-colors inline-flex items-center"
-              >
-                View My Work <ChevronRight size={18} className="ml-1" />
-              </a>
+          <div className="flex flex-col md:flex-row items-center max-w-3xl mx-auto text-center md:text-left">
+            {/* Left Side - Text Content */}
+            <div className="md:w-1/2">
+              <h1 className="text-4xl md:text-6xl font-bold text-white mb-6">
+                Crafting Digital{" "}
+                <span className="text-purple-400">Experiences</span>
+              </h1>
+              <p className="text-xl text-gray-400 mb-8">{data.title}</p>
+              <div className="flex flex-wrap justify-center md:justify-start gap-4">
+                <a
+                  href="#projects"
+                  className="px-6 py-3 rounded-md bg-purple-600 text-white font-medium hover:bg-purple-700 transition-colors inline-flex items-center"
+                >
+                  View My Work <ChevronRight size={18} className="ml-1" />
+                </a>
+              </div>
+              <div className="mt-12 flex justify-center md:justify-start space-x-6">
+                <a
+                  href={data.gitHub}
+                  className="text-gray-400 hover:text-purple-400 transition-colors"
+                >
+                  <Github size={30} />
+                </a>
+                <a
+                  href={data.linkedIn}
+                  className="text-gray-400 hover:text-purple-400 transition-colors"
+                >
+                  <Linkedin size={30} />
+                </a>
+                <a
+                  href="#"
+                  className="text-gray-400 hover:text-purple-400 transition-colors"
+                >
+                  <Mail size={30} />
+                </a>
+              </div>
             </div>
-            <div className="mt-12 flex justify-center space-x-6">
-              <a
-                href={data.gitHub}
-                className="text-gray-400 hover:text-purple-400 transition-colors"
-              >
-                <Github size={30} />
-              </a>
-              <a
-                href={data.linkedIn}
-                className="text-gray-400 hover:text-purple-400 transition-colors"
-              >
-                <Linkedin size={30} />
-              </a>
-              <a
-                href="#"
-                className="text-gray-400 hover:text-purple-400 transition-colors"
-              >
-                <Mail size={30} />
-              </a>
+
+            {/* Right Side - Profile Image */}
+            <div className="md:w-1/2 flex justify-center mt-8 md:mt-0">
+              <img
+                src={data.imageUrl || profileImage}
+                alt="Profile"
+                className="w-full max-w-xs rounded-lg shadow-lg"
+              />
             </div>
           </div>
         </div>
@@ -250,7 +315,7 @@ function AtomTheme({ data }) {
               About Me
             </h2>
             <div className="mt-2 h-1 w-20 bg-purple-600 mx-auto"></div>
-            <p className="mt-4 text-xl text-gray-400">{data.aboutMe}</p>
+            <p className="mt-4 text-xl text-gray-400">{data.about}</p>
           </div>
         </div>
       </section>
@@ -305,6 +370,10 @@ function AtomTheme({ data }) {
         </div>
       </section>
 
+      <section>
+        <Experience data={data} />
+      </section>
+
       {/* Services Section */}
       <section className="py-20 bg-gray-850">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -344,27 +413,20 @@ function AtomTheme({ data }) {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <ProjectCard
-              title="Crypto Dashboard"
-              description="Real-time cryptocurrency tracking dashboard with advanced analytics and portfolio management."
-              image="https://images.unsplash.com/photo-1605792657660-596af9009e82?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1802&q=80"
-              tags={["React", "TypeScript", "TailwindCSS"]}
-              link="#"
-            />
-            <ProjectCard
-              title="AI Content Platform"
-              description="Content generation platform powered by AI, helping creators produce high-quality content efficiently."
-              image="https://images.unsplash.com/photo-1677442136019-21780ecad995?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1932&q=80"
-              tags={["Next.js", "OpenAI", "MongoDB"]}
-              link="#"
-            />
-            <ProjectCard
-              title="Social Analytics"
-              description="Social media analytics dashboard providing insights and performance metrics for content creators."
-              image="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80"
-              tags={["Vue.js", "D3.js", "Firebase"]}
-              link="#"
-            />
+            {data.projects.map((projectObj) => {
+              return (
+                <ProjectCard
+                  title={projectObj.title || "Crypto Dashboard"}
+                  description={
+                    projectObj.description ||
+                    "Real-time cryptocurrency tracking dashboard with advanced analytics and portfolio management."
+                  }
+                  image={randomImage}
+                  link={projectObj.link || "#"}
+                />
+              );
+            })}
+            {console.log(data)}
           </div>
         </div>
       </section>
@@ -383,19 +445,19 @@ function AtomTheme({ data }) {
             </div>
             <div className="flex space-x-6">
               <a
-                href="#"
+                href={data.gitHub}
                 className="text-gray-400 hover:text-purple-400 transition-colors"
               >
                 <Github size={20} />
               </a>
               <a
-                href="#"
+                href={data.linkedIn}
                 className="text-gray-400 hover:text-purple-400 transition-colors"
               >
                 <Linkedin size={20} />
               </a>
               <a
-                href="#"
+                href={data.email}
                 className="text-gray-400 hover:text-purple-400 transition-colors"
               >
                 <Mail size={20} />

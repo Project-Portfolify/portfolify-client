@@ -1,4 +1,8 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import profileImage from "../assets/profileimage.png";
+import projectImage from "../assets/projectImage.png";
+import project1 from "../assets/project1.png";
+import project2 from "../assets/project2.png";
 import {
   Menu,
   X,
@@ -22,16 +26,17 @@ import {
   GitBranch,
 } from "lucide-react";
 
+const imageArray = [projectImage, project1, project2];
+
 // Components
 const Navbar = ({ data }) => {
   const [isOpen, setIsOpen] = useState(false);
-  const { personalInfo, professionalSummary, projects, skills } = data;
 
   return (
     <nav className="w-full bg-white/90 backdrop-blur-sm z-50 border-b border-gray-100">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-16">
-          <div className="flex items-center">{personalInfo.name}</div>
+          <div className="flex items-center">{data.name}</div>
 
           {/* Desktop menu */}
           <div className="hidden md:flex items-center space-x-8">
@@ -125,13 +130,69 @@ const Navbar = ({ data }) => {
   );
 };
 
+const Experience = ({ data }) => {
+  return (
+    <section id="experience" className="py-16">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="text-center mb-12">
+          <h2 className="text-3xl font-bold text-gray-900">
+            Experience & Education
+          </h2>
+          <div className="w-16 h-1 bg-indigo-600 mx-auto mt-4 mb-6"></div>
+          <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+            My professional journey. I've had the pleasure of working with some
+            great companies and teams.
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+          <div>
+            <h3 className="text-2xl font-semibold text-gray-900 mb-6">
+              Work Experience
+            </h3>
+            <div className="space-y-8">
+              {data.experience.map((exp, index) => (
+                <div
+                  key={index}
+                  className="relative pl-8 border-l-2 border-blue-200 pb-8"
+                >
+                  <div className="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-indigo-600"></div>
+                  <h4 className="text-xl font-medium text-gray-900">
+                    {exp.role}
+                  </h4>
+                  <div className="flex justify-between items-center mb-2">
+                    <p className="text-indigo-600 font-medium">{exp.company}</p>
+                    <p className="text-sm text-gray-500">{exp.duration.from}</p>
+                    <p className="text-sm text-gray-500">{exp.duration.from}</p>
+                  </div>
+                  <p className="text-gray-600">{exp.description}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+};
+
 // Project Card Component
 const ProjectCard = ({ title, description, image, tags, link }) => {
+  const [randomImage, setRandomImage] = useState("");
+
+  useEffect(() => {
+    const pickRandomImage = () => {
+      const randomIndex = Math.floor(Math.random() * imageArray.length);
+      setRandomImage(imageArray[randomIndex]);
+    };
+
+    pickRandomImage();
+  }, []);
   return (
     <div className="group bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 flex flex-col h-full transform hover:-translate-y-1">
       <div className="relative overflow-hidden">
         <img
-          src={image}
+          src={randomImage}
           alt={title}
           className="w-full h-64 object-cover object-center transition-transform duration-500 group-hover:scale-105"
         />
@@ -151,16 +212,6 @@ const ProjectCard = ({ title, description, image, tags, link }) => {
       <div className="p-6 flex-1 flex flex-col">
         <h3 className="text-xl font-bold text-gray-900 mb-2">{title}</h3>
         <p className="text-gray-600 mb-4 flex-1">{description}</p>
-        <div className="flex flex-wrap gap-2 mt-auto">
-          {tags.map((tag, index) => (
-            <span
-              key={index}
-              className="px-3 py-1 text-xs font-medium bg-indigo-100 text-indigo-800 rounded-full"
-            >
-              {tag}
-            </span>
-          ))}
-        </div>
       </div>
     </div>
   );
@@ -180,9 +231,16 @@ const SkillBadge = ({ icon: Icon, name }) => {
 };
 
 function LightThemeTemplate({ data }) {
-  const { personalInfo, professionalSummary, projects, skills, imageUrl } =
-    data;
+  const [randomImage, setRandomImage] = useState("");
 
+  useEffect(() => {
+    const pickRandomImage = () => {
+      const randomIndex = Math.floor(Math.random() * imageArray.length);
+      setRandomImage(imageArray[randomIndex]);
+    };
+
+    pickRandomImage();
+  }, []);
   return (
     <div className="min-h-screen bg-gray-50">
       <Navbar data={data} />
@@ -193,12 +251,10 @@ function LightThemeTemplate({ data }) {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
             <div className="order-2 md:order-1">
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight">
-                Creative{" "}
-                <span className="text-indigo-600">{personalInfo.title}</span> &{" "}
-                <span className="text-indigo-600">Developer</span>
+                Creative &<span className="text-indigo-600">Developer</span>
               </h1>
               <p className="mt-6 text-xl text-gray-600 max-w-2xl">
-                {personalInfo.aboutMe}
+                {data.about}
               </p>
               <div className="mt-8 flex flex-wrap gap-4">
                 <a
@@ -216,19 +272,19 @@ function LightThemeTemplate({ data }) {
               </div>
               <div className="mt-8 flex items-center space-x-4">
                 <a
-                  href={personalInfo.gitHub}
+                  href={data.gitHub}
                   className="text-gray-600 hover:text-indigo-600 transition-colors"
                 >
                   <Github size={24} />
                 </a>
                 <a
-                  href={personalInfo.linkedIn}
+                  href={data.linkedIn}
                   className="text-gray-600 hover:text-indigo-600 transition-colors"
                 >
                   <Linkedin size={24} />
                 </a>
                 <a
-                  href={personalInfo.email}
+                  href={data.email}
                   className="text-gray-600 hover:text-indigo-600 transition-colors"
                 >
                   <Mail size={24} />
@@ -240,7 +296,7 @@ function LightThemeTemplate({ data }) {
                 <div className="absolute -inset-1 bg-gradient-to-r from-indigo-600 to-purple-600 rounded-sm blur opacity-25"></div>
                 <div className="relative bg-white rounded-sm overflow-hidden shadow-xl">
                   <img
-                    src={imageUrl}
+                    src={data.imageUrl || profileImage}
                     alt="Portfolio Owner"
                     className="w-full h-auto"
                   />
@@ -273,7 +329,7 @@ function LightThemeTemplate({ data }) {
               <h3 className="text-2xl font-bold text-gray-900 mb-4">
                 My Journey
               </h3>
-              <p className="text-gray-600 mb-6">{personalInfo.aboutMe}</p>
+              <p className="text-gray-600 mb-6">{data.aboutMe}</p>
               <p className="text-gray-600 mb-6">
                 I specialize in responsive web design, user experience, and
                 front-end development, with a focus on creating accessible and
@@ -286,10 +342,8 @@ function LightThemeTemplate({ data }) {
                     Frontend Development
                   </h4>
                   <ul className="space-y-2 text-gray-600">
-                    {skills.frontEnd.map((skill, i) => {
-                      return (
-                        <SkillBadge key={i} icon={Code} name={skill.label} />
-                      );
+                    {data.skills[0].skills.map((skill, i) => {
+                      return <SkillBadge key={i} icon={Code} name={skill} />;
                     })}
                   </ul>
                 </div>
@@ -298,10 +352,8 @@ function LightThemeTemplate({ data }) {
                     Backend Development
                   </h4>
                   <ul className="space-y-2 text-gray-600">
-                    {skills.backEnd.map((skill, i) => {
-                      return (
-                        <SkillBadge key={i} icon={Server} name={skill.label} />
-                      );
+                    {data.skills[1].skills.map((skill, i) => {
+                      return <SkillBadge key={i} icon={Server} name={skill} />;
                     })}
                   </ul>
                 </div>
@@ -310,13 +362,9 @@ function LightThemeTemplate({ data }) {
                     Tools & Others
                   </h4>
                   <ul className="space-y-2 text-gray-600">
-                    {skills.otherTools.map((skill, i) => {
+                    {data.skills[2].skills.map((skill, i) => {
                       return (
-                        <SkillBadge
-                          key={i}
-                          icon={Terminal}
-                          name={skill.label}
-                        />
+                        <SkillBadge key={i} icon={Terminal} name={skill} />
                       );
                     })}
                   </ul>
@@ -334,6 +382,10 @@ function LightThemeTemplate({ data }) {
         </div>
       </section>
 
+      <section>
+        <Experience data={data} />
+      </section>
+
       {/* Projects Section */}
       <section id="projects" className="py-16 md:py-24 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -349,18 +401,19 @@ function LightThemeTemplate({ data }) {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {console.log()}
-            {/* {ProjectDetailsForm.map((project) => {
+            {data.projects.map((projectObj) => {
               return (
                 <ProjectCard
-                  title={project.title}
-                  description={project.description}
-                  image="https://images.unsplash.com/photo-1523289333742-be1143f6b766?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80"
-                  tags={["React", "Next.js", "Tailwind CSS"]}
-                  link={project.link}
+                  title={projectObj.title || "Crypto Dashboard"}
+                  description={
+                    projectObj.description ||
+                    "Real-time cryptocurrency tracking dashboard with advanced analytics and portfolio management."
+                  }
+                  image={randomImage}
+                  link={projectObj.link || "#"}
                 />
               );
-            })} */}
+            })}
           </div>
 
           <div className="text-center mt-12">
@@ -399,10 +452,10 @@ function LightThemeTemplate({ data }) {
                   <div>
                     <p className="font-medium text-gray-900">Email</p>
                     <a
-                      href="mailto:hello@example.com"
+                      href={data.email}
                       className="text-gray-600 hover:text-indigo-600"
                     >
-                      hello@example.com
+                      {data.email}
                     </a>
                   </div>
                 </div>
@@ -410,8 +463,11 @@ function LightThemeTemplate({ data }) {
                   <Linkedin className="text-indigo-600 mt-1 mr-3" size={20} />
                   <div>
                     <p className="font-medium text-gray-900">LinkedIn</p>
-                    <a href="#" className="text-gray-600 hover:text-indigo-600">
-                      linkedin.com/in/yourprofile
+                    <a
+                      href={data.linkedIn}
+                      className="text-gray-600 hover:text-indigo-600"
+                    >
+                      {data.linkedIn}
                     </a>
                   </div>
                 </div>
@@ -419,8 +475,11 @@ function LightThemeTemplate({ data }) {
                   <Github className="text-indigo-600 mt-1 mr-3" size={20} />
                   <div>
                     <p className="font-medium text-gray-900">GitHub</p>
-                    <a href="#" className="text-gray-600 hover:text-indigo-600">
-                      github.com/yourusername
+                    <a
+                      href={data.gitHub}
+                      className="text-gray-600 hover:text-indigo-600"
+                    >
+                      {data.gitHub}
                     </a>
                   </div>
                 </div>

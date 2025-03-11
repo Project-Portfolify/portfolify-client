@@ -1,45 +1,15 @@
 import React, { useState } from "react";
 import { Github, Linkedin, Mail } from "lucide-react";
 
-const GreyTheme = () => {
+const GreyTheme = ({ data }) => {
   const [activeTab, setActiveTab] = useState("home");
-
-  const projects = [
-    {
-      title: "Digital Marketplace",
-      description:
-        "Full-stack e-commerce platform with real-time inventory management",
-      technologies: ["React", "Node.js", "GraphQL", "MongoDB"],
-      link: "#",
-    },
-    {
-      title: "AI Sentiment Analyzer",
-      description: "Machine learning tool for analyzing social media sentiment",
-      technologies: ["Python", "TensorFlow", "React", "Flask"],
-      link: "#",
-    },
-    {
-      title: "Smart Home Dashboard",
-      description: "IoT application for home automation and energy monitoring",
-      technologies: ["React Native", "Firebase", "Arduino"],
-      link: "#",
-    },
-  ];
-
-  const skills = [
-    { name: "Frontend", techs: ["React", "Vue.js", "Tailwind CSS"] },
-    { name: "Backend", techs: ["Node.js", "Python", "GraphQL"] },
-    { name: "Tools", techs: ["Git", "Docker", "CI/CD"] },
-  ];
 
   return (
     <div className="bg-white text-gray-900 min-h-screen font-sans">
       {/* Header */}
-      <header className="fixed top-0 left-0 w-full bg-white shadow-sm z-50">
+      <header className=" top-0 left-0 w-full bg-white shadow-sm z-50">
         <div className="container mx-auto px-4 py-4 flex justify-between items-center">
-          <div className="text-2xl font-bold tracking-tight">
-            Alex Rodriguez
-          </div>
+          <div className="text-2xl font-bold tracking-tight">{data.name}</div>
           <nav className="space-x-6">
             {["Home", "Projects", "Skills", "Contact"].map((section) => (
               <a
@@ -72,11 +42,7 @@ const GreyTheme = () => {
             Crafting Digital Solutions <br />
             with Innovative Technology
           </div>
-          <p className="text-xl text-gray-600 mb-8 max-w-2xl">
-            Full-stack developer passionate about building scalable web
-            applications that solve real-world problems through clean, efficient
-            code.
-          </p>
+          <p className="text-xl text-gray-600 mb-8 max-w-2xl">{data.about}</p>
           <div className="flex space-x-4">
             <a
               href="#projects"
@@ -101,23 +67,13 @@ const GreyTheme = () => {
             Featured Projects
           </h2>
           <div className="grid md:grid-cols-3 gap-8">
-            {projects.map((project, index) => (
+            {data.projects.map((project, index) => (
               <div
                 key={index}
                 className="bg-white border rounded-sm p-6 hover:shadow-lg transition-shadow"
               >
                 <h3 className="text-2xl font-semibold mb-4">{project.title}</h3>
                 <p className="text-gray-600 mb-4">{project.description}</p>
-                <div className="flex flex-wrap gap-2 mb-4">
-                  {project.technologies.map((tech, techIndex) => (
-                    <span
-                      key={techIndex}
-                      className="bg-gray-100 text-gray-800 px-3 py-1 rounded-full text-sm"
-                    >
-                      {tech}
-                    </span>
-                  ))}
-                </div>
                 <a
                   href={project.link}
                   className="text-black font-medium hover:text-gray-600 transition"
@@ -137,7 +93,7 @@ const GreyTheme = () => {
             Technical Skills
           </h2>
           <div className="grid md:grid-cols-3 gap-8">
-            {skills.map((skillGroup, index) => (
+            {data.skills[0].skills.map((skillGroup, index) => (
               <div
                 key={index}
                 className="bg-gray-50 rounded-sm p-6 text-center"
@@ -145,13 +101,6 @@ const GreyTheme = () => {
                 <h3 className="text-2xl font-semibold mb-6">
                   {skillGroup.name}
                 </h3>
-                <div className="space-y-2">
-                  {skillGroup.techs.map((tech, techIndex) => (
-                    <div key={techIndex} className="text-gray-700 text-lg">
-                      {tech}
-                    </div>
-                  ))}
-                </div>
               </div>
             ))}
           </div>

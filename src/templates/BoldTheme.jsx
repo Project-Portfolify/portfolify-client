@@ -1,4 +1,8 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import profileImage from "../assets/profileimage.png";
+import projectImage from "../assets/projectImage.png";
+import project1 from "../assets/project1.png";
+import project2 from "../assets/project2.png";
 import {
   Menu,
   X,
@@ -9,9 +13,10 @@ import {
   ChevronRight,
   Download,
 } from "lucide-react";
+const imageArray = [projectImage, project1, project2];
 
 // Components
-const Navbar = () => {
+const Navbar = ({ data }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
@@ -129,22 +134,18 @@ const Navbar = () => {
   );
 };
 
-const Hero = () => {
+const Hero = ({ data }) => {
   return (
     <section id="hero" className="pt-24 pb-16 md:pt-32 md:pb-24">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
           <div>
             <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-              Hi, I'm <span className="text-blue-600">John Doe</span>
+              Hi, I'm <span className="text-blue-600">{data.name}</span>
             </h1>
             <h2 className="text-2xl md:text-3xl font-medium text-gray-700 mb-6">
-              Full Stack Developer
+              {data.title}
             </h2>
-            <p className="text-lg text-gray-600 mb-8">
-              I build exceptional digital experiences that are fast, accessible,
-              visually appealing, and responsive.
-            </p>
             <div className="flex flex-wrap gap-4">
               <a
                 href="#contact"
@@ -161,7 +162,7 @@ const Hero = () => {
             </div>
             <div className="flex mt-8 space-x-4">
               <a
-                href="https://github.com"
+                href={data.gitHub}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-gray-600 hover:text-gray-900"
@@ -169,7 +170,7 @@ const Hero = () => {
                 <GitHub size={24} />
               </a>
               <a
-                href="https://linkedin.com"
+                href={data.linkedIn}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-gray-600 hover:text-gray-900"
@@ -177,7 +178,7 @@ const Hero = () => {
                 <Linkedin size={24} />
               </a>
               <a
-                href="mailto:contact@example.com"
+                href={data.email}
                 className="text-gray-600 hover:text-gray-900"
               >
                 <Mail size={24} />
@@ -186,7 +187,7 @@ const Hero = () => {
           </div>
           <div className="hidden md:block">
             <img
-              src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80"
+              src={data.imageUrl || profileImage}
               alt="Professional portrait"
               className="w-full h-auto rounded-sm shadow-lg object-cover"
             />
@@ -197,7 +198,7 @@ const Hero = () => {
   );
 };
 
-const About = () => {
+const About = ({ data }) => {
   return (
     <section id="about" className="py-16 bg-gray-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -206,94 +207,28 @@ const About = () => {
           <div className="w-16 h-1 bg-blue-600 mx-auto mt-4 mb-6"></div>
           <p className="text-lg text-gray-600 max-w-3xl mx-auto">
             Here's a bit about my background and what I do.
+            <p className="text-lg text-gray-600 mb-8">{data.about}</p>
           </p>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-          <div className="hidden md:block">
-            <img
-              src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1772&q=80"
-              alt="Working on laptop"
-              className="w-full h-auto rounded-sm shadow-lg object-cover"
-            />
-          </div>
-          <div>
-            <h3 className="text-2xl font-semibold text-gray-900 mb-4">
-              My Journey
-            </h3>
-            <p className="text-gray-600 mb-6">
-              With over 5 years of experience in web development, I've worked on
-              a variety of projects from small business websites to large
-              enterprise applications. My passion lies in creating clean,
-              efficient, and user-friendly solutions that solve real-world
-              problems.
-            </p>
-            <p className="text-gray-600 mb-6">
-              I graduated with a degree in Computer Science from University of
-              Technology and have since been continuously learning and adapting
-              to new technologies and methodologies in the ever-evolving tech
-              landscape.
-            </p>
-            <p className="text-gray-600 mb-6">
-              When I'm not coding, you can find me hiking, reading, or
-              experimenting with new recipes in the kitchen.
-            </p>
-            <div className="flex flex-wrap gap-4">
-              <a
-                href="#"
-                className="flex items-center px-6 py-3 rounded-md bg-blue-600 text-white hover:bg-blue-700 transition-colors"
-              >
-                <Download size={18} className="mr-2" /> Download Resume
-              </a>
-            </div>
-          </div>
         </div>
       </div>
     </section>
   );
 };
 
-const Skills = () => {
+const Skills = ({ data }) => {
   const skillCategories = [
     {
-      title: "Frontend",
-      skills: [
-        "HTML5",
-        "CSS3",
-        "JavaScript",
-        "React",
-        "Vue.js",
-        "Tailwind CSS",
-        "SASS",
-      ],
+      title: data.skills[0].skillType,
+      skills: data.skills[0].skills,
     },
     {
-      title: "Backend",
-      skills: [
-        "Node.js",
-        "Express",
-        "Python",
-        "Django",
-        "PHP",
-        "Laravel",
-        "RESTful APIs",
-      ],
+      title: data.skills[1].skillType,
+      skills: data.skills[1].skills,
     },
+
     {
-      title: "Database",
-      skills: ["MongoDB", "MySQL", "PostgreSQL", "Firebase", "Redis"],
-    },
-    {
-      title: "Tools & Others",
-      skills: [
-        "Git",
-        "Docker",
-        "AWS",
-        "CI/CD",
-        "Figma",
-        "Agile/Scrum",
-        "Testing",
-      ],
+      title: data.skills[2].skillType,
+      skills: data.skills[2].skills,
     },
   ];
 
@@ -333,46 +268,17 @@ const Skills = () => {
   );
 };
 
-const Projects = () => {
-  const projects = [
-    {
-      title: "E-Commerce Platform",
-      description:
-        "A full-featured online store with product management, cart functionality, and payment processing.",
-      image:
-        "https://images.unsplash.com/photo-1563013544-824ae1b704d3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80",
-      technologies: ["React", "Node.js", "MongoDB", "Stripe"],
-      link: "#",
-    },
-    {
-      title: "Task Management App",
-      description:
-        "A productivity application for managing tasks, projects, and team collaboration.",
-      image:
-        "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80",
-      technologies: ["Vue.js", "Express", "PostgreSQL", "Socket.io"],
-      link: "#",
-    },
-    {
-      title: "Health & Fitness Tracker",
-      description:
-        "An application for tracking workouts, nutrition, and health metrics with data visualization.",
-      image:
-        "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80",
-      technologies: ["React Native", "Firebase", "Chart.js", "REST API"],
-      link: "#",
-    },
-    {
-      title: "Real Estate Platform",
-      description:
-        "A property listing and management system with search, filtering, and user accounts.",
-      image:
-        "https://images.unsplash.com/photo-1560518883-ce09059eeffa?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1773&q=80",
-      technologies: ["Next.js", "Django", "PostgreSQL", "AWS"],
-      link: "#",
-    },
-  ];
+const Projects = ({ data }) => {
+  const [randomImage, setRandomImage] = useState("");
 
+  useEffect(() => {
+    const pickRandomImage = () => {
+      const randomIndex = Math.floor(Math.random() * imageArray.length);
+      setRandomImage(imageArray[randomIndex]);
+    };
+
+    pickRandomImage();
+  }, []);
   return (
     <section id="projects" className="py-16 bg-gray-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -388,14 +294,14 @@ const Projects = () => {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {projects.map((project, index) => (
+          {data.projects?.map((project, index) => (
             <div
               key={index}
               className="bg-white rounded-sm overflow-hidden shadow-md transition-transform hover:shadow-lg hover:-translate-y-1"
             >
               <div className="h-48 overflow-hidden">
                 <img
-                  src={project.image}
+                  src={randomImage}
                   alt={project.title}
                   className="w-full h-full object-cover"
                 />
@@ -405,16 +311,7 @@ const Projects = () => {
                   {project.title}
                 </h3>
                 <p className="text-gray-600 mb-4">{project.description}</p>
-                <div className="flex flex-wrap gap-2 mb-4">
-                  {project.technologies.map((tech, techIndex) => (
-                    <span
-                      key={techIndex}
-                      className="px-3 py-1 bg-blue-100 text-blue-800 text-sm rounded-full"
-                    >
-                      {tech}
-                    </span>
-                  ))}
-                </div>
+
                 <a
                   href={project.link}
                   className="flex items-center text-blue-600 hover:text-blue-800"
@@ -441,48 +338,7 @@ const Projects = () => {
   );
 };
 
-const Experience = () => {
-  const experiences = [
-    {
-      company: "Tech Innovations Inc.",
-      position: "Senior Full Stack Developer",
-      period: "2021 - Present",
-      description:
-        "Lead development of enterprise web applications, mentored junior developers, and implemented CI/CD pipelines that reduced deployment time by 40%.",
-    },
-    {
-      company: "Digital Solutions LLC",
-      position: "Frontend Developer",
-      period: "2019 - 2021",
-      description:
-        "Developed responsive user interfaces for client projects, collaborated with UX designers, and optimized application performance.",
-    },
-    {
-      company: "WebCraft Studios",
-      position: "Web Developer",
-      period: "2017 - 2019",
-      description:
-        "Built custom websites for small businesses, implemented e-commerce solutions, and maintained existing client websites.",
-    },
-  ];
-
-  const education = [
-    {
-      institution: "University of Technology",
-      degree: "Bachelor of Science in Computer Science",
-      period: "2013 - 2017",
-      description:
-        "Focused on software engineering, web development, and database systems. Graduated with honors.",
-    },
-    {
-      institution: "Tech Academy",
-      degree: "Full Stack Web Development Bootcamp",
-      period: "2017",
-      description:
-        "Intensive 12-week program covering modern web development technologies and practices.",
-    },
-  ];
-
+const Experience = ({ data }) => {
   return (
     <section id="experience" className="py-16">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -492,7 +348,8 @@ const Experience = () => {
           </h2>
           <div className="w-16 h-1 bg-blue-600 mx-auto mt-4 mb-6"></div>
           <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-            My professional journey and educational background.
+            My professional journey. I've had the pleasure of working with some
+            great companies and teams.
           </p>
         </div>
 
@@ -502,46 +359,21 @@ const Experience = () => {
               Work Experience
             </h3>
             <div className="space-y-8">
-              {experiences.map((exp, index) => (
+              {data.experience.map((exp, index) => (
                 <div
                   key={index}
                   className="relative pl-8 border-l-2 border-blue-200 pb-8"
                 >
                   <div className="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-blue-600"></div>
                   <h4 className="text-xl font-medium text-gray-900">
-                    {exp.position}
+                    {exp.role}
                   </h4>
                   <div className="flex justify-between items-center mb-2">
                     <p className="text-blue-600 font-medium">{exp.company}</p>
-                    <p className="text-sm text-gray-500">{exp.period}</p>
+                    <p className="text-sm text-gray-500">{exp.duration.from}</p>
+                    <p className="text-sm text-gray-500">{exp.duration.from}</p>
                   </div>
                   <p className="text-gray-600">{exp.description}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          <div>
-            <h3 className="text-2xl font-semibold text-gray-900 mb-6">
-              Education
-            </h3>
-            <div className="space-y-8">
-              {education.map((edu, index) => (
-                <div
-                  key={index}
-                  className="relative pl-8 border-l-2 border-blue-200 pb-8"
-                >
-                  <div className="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-blue-600"></div>
-                  <h4 className="text-xl font-medium text-gray-900">
-                    {edu.degree}
-                  </h4>
-                  <div className="flex justify-between items-center mb-2">
-                    <p className="text-blue-600 font-medium">
-                      {edu.institution}
-                    </p>
-                    <p className="text-sm text-gray-500">{edu.period}</p>
-                  </div>
-                  <p className="text-gray-600">{edu.description}</p>
                 </div>
               ))}
             </div>
@@ -552,7 +384,7 @@ const Experience = () => {
   );
 };
 
-const Contact = () => {
+const Contact = ({ data }) => {
   return (
     <section id="contact" className="py-16 bg-gray-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -576,7 +408,7 @@ const Contact = () => {
                 <div>
                   <p className="font-medium text-gray-900">Email</p>
                   <a
-                    href="mailto:contact@example.com"
+                    href={data.email}
                     className="text-gray-600 hover:text-blue-600"
                   >
                     contact@example.com
@@ -588,7 +420,7 @@ const Contact = () => {
                 <div>
                   <p className="font-medium text-gray-900">LinkedIn</p>
                   <a
-                    href="https://linkedin.com"
+                    href={data.linkedIn}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-gray-600 hover:text-blue-600"
@@ -602,7 +434,7 @@ const Contact = () => {
                 <div>
                   <p className="font-medium text-gray-900">GitHub</p>
                   <a
-                    href="https://github.com"
+                    href={data.gitHub}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-gray-600 hover:text-blue-600"
@@ -625,7 +457,7 @@ const Contact = () => {
             </p>
             <div className="flex space-x-4">
               <a
-                href="https://github.com"
+                href={data.gitHub}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="p-3 bg-gray-100 rounded-full text-gray-700 hover:bg-gray-200 transition-colors"
@@ -633,7 +465,7 @@ const Contact = () => {
                 <GitHub size={24} />
               </a>
               <a
-                href="https://linkedin.com"
+                href={data.linkedIn}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="p-3 bg-gray-100 rounded-full text-gray-700 hover:bg-gray-200 transition-colors"
@@ -641,7 +473,7 @@ const Contact = () => {
                 <Linkedin size={24} />
               </a>
               <a
-                href="mailto:contact@example.com"
+                href={`mailto:${data.email}`}
                 className="p-3 bg-gray-100 rounded-full text-gray-700 hover:bg-gray-200 transition-colors"
               >
                 <Mail size={24} />
@@ -654,7 +486,7 @@ const Contact = () => {
   );
 };
 
-const Footer = () => {
+const Footer = ({ data }) => {
   return (
     <footer className="bg-gray-900 text-white py-12">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -667,7 +499,7 @@ const Footer = () => {
             </p>
             <div className="flex space-x-4">
               <a
-                href="https://github.com"
+                href={data.gitHub}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-gray-400 hover:text-white"
@@ -675,17 +507,14 @@ const Footer = () => {
                 <GitHub size={20} />
               </a>
               <a
-                href="https://linkedin.com"
+                href={data.linkedIn}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-gray-400 hover:text-white"
               >
                 <Linkedin size={20} />
               </a>
-              <a
-                href="mailto:contact@example.com"
-                className="text-gray-400 hover:text-white"
-              >
+              <a href={data.email} className="text-gray-400 hover:text-white">
                 <Mail size={20} />
               </a>
             </div>
@@ -727,8 +556,8 @@ const Footer = () => {
 
           <div>
             <h3 className="text-xl font-bold mb-4">Get In Touch</h3>
-            <p className="text-gray-400 mb-2">Email: contact@example.com</p>
-            <p className="text-gray-400 mb-4">Location: New York, NY</p>
+            <p className="text-gray-400 mb-2">{data.email}</p>
+            <p className="text-gray-400 mb-4">Location: {data.country}</p>
             <a
               href="#contact"
               className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors inline-block"
@@ -740,7 +569,7 @@ const Footer = () => {
 
         <div className="border-t border-gray-800 mt-12 pt-8 text-center text-gray-400">
           <p>
-            &copy; {new Date().getFullYear()} John Doe. All rights reserved.
+            &copy; {new Date().getFullYear()} {data.name}. All rights reserved.
           </p>
         </div>
       </div>
@@ -748,17 +577,17 @@ const Footer = () => {
   );
 };
 
-function BoldTheme() {
+function BoldTheme({ data }) {
   return (
     <div className="min-h-screen bg-white">
-      <Navbar />
-      <Hero />
-      <About />
-      <Skills />
-      <Projects />
-      <Experience />
-      <Contact />
-      <Footer />
+      <Navbar data={data} />
+      <Hero data={data} />
+      <About data={data} />
+      <Skills data={data} />
+      <Projects data={data} />
+      <Experience data={data} />
+      <Contact data={data} />
+      <Footer data={data} />
     </div>
   );
 }
