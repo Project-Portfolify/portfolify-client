@@ -77,26 +77,65 @@ const PortfolioStepper = () => {
     },
   });
   const projectForm = useForm({
-    defaultValues: {
-      description:
-        "A productivity tool that helps users track and manage daily tasks efficiently.",
-      link: "https://taskify.example.com",
-      title: "Taskify - Task Management App",
-    },
+    description:
+      "A productivity tool that helps users track and manage daily tasks efficiently.",
+    link: "https://taskify.example.com",
+    title: "Taskify - Task Management App",
   });
 
   const handleSubmit = () => {
     const personalInfo = personalInfoForm.getValues();
     const professionalSummary = professionalSummaryForm.getValues();
     const skills = skillsForm.getValues();
-    const projects = projectForm.getValues();
+    const projectsFormValues = projectForm.getValues();
 
     const combinedData = {
-      personalInfo,
-      professionalSummary,
-      skills,
-      projects,
-      imageUrl,
+      name: personalInfo.name,
+      gitHub: personalInfo.gitHub,
+      linkedIn: personalInfo.linkedIn,
+      email: personalInfo.email,
+      country: personalInfo.country.value,
+      title: personalInfo.jobTitle,
+      about: personalInfo.aboutMe,
+      experience: [
+        {
+          role: professionalSummary.role,
+          company: professionalSummary.company,
+          duration: {
+            from: professionalSummary.yearFrom,
+            to: professionalSummary.yearTo,
+          },
+          description: professionalSummary.roleDescription,
+        },
+      ],
+      projects: projectsFormValues.projects.map((project, index) => ({
+        title: project?.title || `Project ${index + 1}`,
+        description: project?.description || "No description provided",
+        link: project?.link || "",
+      })),
+      skills: [
+        {
+          skillType: "FrontEnd",
+          skills: skills.frontEnd.map((skill) => {
+            return skill.value;
+          }),
+        },
+        {
+          skillType: "BackEnd",
+          skills: skills.backEnd.map((skill) => {
+            return skill.value;
+          }),
+        },
+        {
+          skillType: "OtherTools",
+          skills: skills.otherTools.map((skill) => {
+            return skill.value;
+          }),
+        },
+      ],
+      template: templateId,
+      imageUrl: imageUrl,
+      published: true,
     };
 
     setCombinedData(combinedData);
