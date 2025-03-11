@@ -26,16 +26,6 @@ const TemplateSwitch = ({ templateId, data, onClickPrev }) => {
   const navigate = useNavigate();
   const currentTheme = themes[templateId] || <h1>Template not found</h1>;
 
-  const { aboutMe, country, email, gitHub, linkedIn, name, jobTitle } =
-    data.personalInfo;
-
-  const { company, role, roleDescription, yearFrom, yearTo } =
-    data.professionalSummary;
-
-  const { description, link, title } = data.projects;
-
-  const { backEnd, frontEnd, otherTools } = data.skills;
-
   const generateSlug = (name) => {
     return slugify(name, {
       lower: true, // Convert to lowercase
@@ -51,58 +41,9 @@ const TemplateSwitch = ({ templateId, data, onClickPrev }) => {
     return `${baseSlug}-${randomId}-${templateId}`;
   };
 
-  console.log(generateUniqueSlug(name));
-
   const portfolioData = {
-    slug: generateUniqueSlug(name),
-    name,
-    gitHub,
-    linkedIn,
-    email,
-    country: country.label,
-    title: jobTitle,
-    about: aboutMe,
-    experience: [
-      {
-        role,
-        company,
-        duration: {
-          from: yearFrom,
-          to: yearTo,
-        },
-        description: roleDescription,
-      },
-    ],
-    projects: [
-      {
-        title,
-        description,
-        link,
-      },
-    ],
-    skills: [
-      {
-        skillType: "FrontEnd",
-        skills: frontEnd.map((skill) => {
-          return skill.value;
-        }),
-      },
-      {
-        skillType: "BackEnd",
-        skills: backEnd.map((skill) => {
-          return skill.value;
-        }),
-      },
-      {
-        skillType: "OtherTools",
-        skills: otherTools.map((skill) => {
-          return skill.value;
-        }),
-      },
-    ],
-    template: templateId,
-    imageUrl: data.imageUrl,
-    published: true,
+    slug: generateUniqueSlug(data.name),
+    ...data,
   };
 
   console.log(portfolioData);
@@ -116,6 +57,12 @@ const TemplateSwitch = ({ templateId, data, onClickPrev }) => {
         // alert("Portfolio Published Successfully! 🎉");
         console.log(response);
         setPortfolio(response.data);
+        window.open(
+          `/portfolio/${portfolioData.slug}`,
+          "_blank",
+          "noopener,noreferrer"
+        );
+
         navigate("/portfolios");
       })
       .catch((error) => {
