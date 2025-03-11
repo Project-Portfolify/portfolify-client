@@ -9,7 +9,7 @@ import ProjectDetailsForm from "./ProjectDetailsForm";
 import TemplateSwitch from "./TemplateSwitch";
 import ImageUpload from "./ImageUpload";
 
-const PortfolioStepper = ({formData, isEdit}) => {
+const PortfolioStepper = ({ formData, isEdit }) => {
   const [imageUrl, setImageUrl] = useState(null);
 
   const [combinedData, setCombinedData] = useState();
@@ -33,7 +33,7 @@ const PortfolioStepper = ({formData, isEdit}) => {
       country: formData?.country,
       email: formData?.email,
       gitHub: formData?.gitHub,
-      linkedIn:formData?.linkedIn,
+      linkedIn: formData?.linkedIn,
       name: formData?.name,
       jobTitle: formData?.title,
     },
@@ -50,27 +50,26 @@ const PortfolioStepper = ({formData, isEdit}) => {
   const skillsForm = useForm({
     defaultValues: {
       frontEnd:
-        formData?.skills?.find((s) => s.skillType === "FrontEnd")?.skills?.map(
-          (skill) => ({ value: skill, label: skill })
-        ) || [],
+        formData?.skills
+          ?.find((s) => s.skillType === "FrontEnd")
+          ?.skills?.map((skill) => ({ value: skill, label: skill })) || [],
       backEnd:
-        formData?.skills?.find((s) => s.skillType === "BackEnd")?.skills?.map(
-          (skill) => ({ value: skill, label: skill })
-        ) || [],
+        formData?.skills
+          ?.find((s) => s.skillType === "BackEnd")
+          ?.skills?.map((skill) => ({ value: skill, label: skill })) || [],
       otherTools:
-        formData?.skills?.find((s) => s.skillType === "OtherTools")?.skills?.map(
-          (skill) => ({ value: skill, label: skill })
-        ) || [],
+        formData?.skills
+          ?.find((s) => s.skillType === "OtherTools")
+          ?.skills?.map((skill) => ({ value: skill, label: skill })) || [],
     },
   });
   const projectForm = useForm({
     defaultValues: {
       projects: formData?.projects || [
         {
-          title: "Taskify - Task Management App",
-          description:
-            "A productivity tool that helps users track and manage daily tasks efficiently.",
-          link: "https://taskify.example.com",
+          title: "",
+          description: "",
+          link: "",
         },
       ],
     },
@@ -137,7 +136,7 @@ const PortfolioStepper = ({formData, isEdit}) => {
     nextStep();
   };
   return (
-    <div className="m-30">
+    <div className="m-10 md:m-20 lg:m-30">
       <StepperComponent step={step} />
       {/* Full Form */}
 
@@ -192,7 +191,7 @@ const PortfolioStepper = ({formData, isEdit}) => {
           templateId={templateId}
           data={combinedData}
           onClickPrev={prevStep}
-          isEdit
+          isEdit={isEdit}
         />
       )}
     </div>

@@ -8,6 +8,7 @@ const ProjectDetailsForm = ({ form, onClickNext, onClickPrev }) => {
     control,
     register,
     handleSubmit,
+
     formState: { errors },
   } = form;
 
@@ -52,9 +53,9 @@ const ProjectDetailsForm = ({ form, onClickNext, onClickPrev }) => {
           </div>
           <div className="text-md ml-2">Add Project</div>
         </div>
-        <div className="flex justify-between w-full mt-6">
+        <div className="flex flex-col md:flex-row justify-between w-full mt-6">
           <button
-            className="w-52 h-12 shadow-sm rounded-full bg-indigo-600 hover:bg-indigo-800 transition-all duration-700 text-white text-base font-semibold leading-7"
+            className="w-52 h-12 shadow-sm rounded-full bg-indigo-600 hover:bg-indigo-800 transition-all duration-700 text-white text-base font-semibold leading-7 mb-4 md:mb-0"
             onClick={onClickPrev}
           >
             Previous step

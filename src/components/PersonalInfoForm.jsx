@@ -22,9 +22,9 @@ const PersonalInfoForm = ({ onClickNext, form }) => {
   return (
     <form onSubmit={handleSubmit(handleOnSubmit)}>
       <div className="flex flex-col">
-        <div className="flex gap-x-6 mb-6">
+        <div className="flex flex-col md:flex-row gap-x-6 mb-6">
           <div className="w-full relative">
-            <label className="flex  items-center mb-2 text-gray-600 text-sm font-medium">
+            <label className="flex items-center mb-2 text-gray-600 text-sm font-medium">
               Name
               <Asterisk size={10} color="red" />
             </label>
@@ -39,8 +39,8 @@ const PersonalInfoForm = ({ onClickNext, form }) => {
               </span>
             )}
           </div>
-          <div className="w-full relative">
-            <label className="flex  items-center mb-2 text-gray-600 text-sm font-medium">
+          <div className="w-full relative mt-4 md:mt-0">
+            <label className="flex items-center mb-2 text-gray-600 text-sm font-medium">
               Professional Title
               <Asterisk size={10} color="red" />
             </label>
@@ -56,9 +56,9 @@ const PersonalInfoForm = ({ onClickNext, form }) => {
             )}
           </div>
         </div>
-        <div className="flex gap-x-6 mb-6">
+        <div className="flex flex-col md:flex-row gap-x-6 mb-6">
           <div className="w-full relative">
-            <label className="flex  items-center mb-2 text-gray-600 text-sm font-medium">
+            <label className="flex items-center mb-2 text-gray-600 text-sm font-medium">
               GitHub
               <Asterisk size={10} color="red" />
             </label>
@@ -73,8 +73,8 @@ const PersonalInfoForm = ({ onClickNext, form }) => {
               </span>
             )}
           </div>
-          <div className="w-full relative">
-            <label className="flex  items-center mb-2 text-gray-600 text-sm font-medium">
+          <div className="w-full relative mt-4 md:mt-0">
+            <label className="flex items-center mb-2 text-gray-600 text-sm font-medium">
               LinkedIn
               <Asterisk size={10} color="red" />
             </label>
@@ -90,9 +90,9 @@ const PersonalInfoForm = ({ onClickNext, form }) => {
             )}
           </div>
         </div>
-        <div className="flex gap-x-6 mb-6">
+        <div className="flex flex-col md:flex-row gap-x-6 mb-6">
           <div className="w-full relative">
-            <label className="flex  items-center mb-2 text-gray-600 text-sm font-medium">
+            <label className="flex items-center mb-2 text-gray-600 text-sm font-medium">
               Email
               <Asterisk size={10} color="red" />
             </label>
@@ -107,7 +107,7 @@ const PersonalInfoForm = ({ onClickNext, form }) => {
               </span>
             )}
           </div>
-          <div className="w-full relative">
+          <div className="w-full relative mt-4 md:mt-0">
             <label className="flex items-center mb-2 text-gray-600 text-sm font-medium">
               Country
               <Asterisk size={10} color="red" />

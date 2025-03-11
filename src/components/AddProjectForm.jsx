@@ -42,7 +42,7 @@ const AddProjectForm = ({ register, index, remove, error }) => {
       </div>
       <div className="flex flex-row gap-x-6 mb-6">
         <div className="w-100 relative">
-          <label className="flex items-center mb-2 text-gray-600 text-sm font-medium">
+          <label className="flex mt-8 items-center mb-2 text-gray-600 text-sm font-medium">
             Project Link
             <Asterisk size={10} color="red" />
           </label>
@@ -53,7 +53,7 @@ const AddProjectForm = ({ register, index, remove, error }) => {
           />
         </div>
         {index > 0 && (
-          <div className="mt-10 text-red-600 hover:cursor-pointer hover:scale-110">
+          <div className="mt-18 text-red-600 hover:cursor-pointer hover:scale-110">
             <Trash2
               onClick={(e) => {
                 e.preventDefault();

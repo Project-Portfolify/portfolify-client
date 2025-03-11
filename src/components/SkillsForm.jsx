@@ -50,7 +50,7 @@ const SkillsForm = ({ onClickNext, onClickPrev, form }) => {
     <form onSubmit={handleSubmit(handleOnSubmit)}>
       <div className="flex flex-col">
         {/* Front-End Skills */}
-        <div className="flex flex-row gap-x-6 mb-6">
+        <div className="flex flex-col md:flex-row gap-x-6 mb-6">
           <div className="w-full relative">
             <label className="flex items-center mb-2 text-gray-600 text-sm font-medium">
               Front-end
@@ -58,7 +58,6 @@ const SkillsForm = ({ onClickNext, onClickPrev, form }) => {
             <Controller
               name="frontEnd"
               control={control}
-              
               render={({ field }) => (
                 <Select
                   {...field}
@@ -73,13 +72,15 @@ const SkillsForm = ({ onClickNext, onClickPrev, form }) => {
               )}
             />
             {errors.frontEnd && (
-              <span className="text-red-600 text-xs">This field is required</span>
+              <span className="text-red-600 text-xs">
+                This field is required
+              </span>
             )}
           </div>
         </div>
 
         {/* Back-End Skills */}
-        <div className="flex flex-row gap-x-6 mb-6">
+        <div className="flex flex-col md:flex-row gap-x-6 mb-6">
           <div className="w-full relative">
             <label className="flex items-center mb-2 text-gray-600 text-sm font-medium">
               Back-end
@@ -101,13 +102,15 @@ const SkillsForm = ({ onClickNext, onClickPrev, form }) => {
               )}
             />
             {errors.backEnd && (
-              <span className="text-red-600 text-xs">This field is required</span>
+              <span className="text-red-600 text-xs">
+                This field is required
+              </span>
             )}
           </div>
         </div>
 
         {/* Other Tools */}
-        <div className="flex flex-row gap-x-6 mb-6">
+        <div className="flex flex-col md:flex-row gap-x-6 mb-6">
           <div className="w-full relative">
             <label className="flex items-center mb-2 text-gray-600 text-sm font-medium">
               Other Tools
@@ -129,14 +132,16 @@ const SkillsForm = ({ onClickNext, onClickPrev, form }) => {
               )}
             />
             {errors.otherTools && (
-              <span className="text-red-600 text-xs">This field is required</span>
+              <span className="text-red-600 text-xs">
+                This field is required
+              </span>
             )}
           </div>
         </div>
 
-        <div className="flex justify-between w-full mt-6">
+        <div className="flex flex-col md:flex-row justify-between w-full mt-6">
           <button
-            className="w-52 h-12 shadow-sm rounded-full bg-indigo-600 hover:bg-indigo-800 transition-all duration-700 text-white text-base font-semibold leading-7"
+            className="w-52 h-12 shadow-sm rounded-full bg-indigo-600 hover:bg-indigo-800 transition-all duration-700 text-white text-base font-semibold leading-7 mb-4 md:mb-0"
             onClick={onClickPrev}
           >
             Previous step

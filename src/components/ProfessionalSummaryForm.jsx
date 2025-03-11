@@ -15,7 +15,7 @@ const ProfessionalSummaryForm = ({ onClickNext, onClickPrev, form }) => {
     <form onSubmit={handleSubmit(handleOnSubmit)}>
       <div className="flex flex-col">
         <div className="flex flex-col">
-          <div className="flex flex-row gap-x-6 mb-6">
+          <div className="flex flex-col md:flex-row gap-x-6 mb-6">
             <div className="w-full relative">
               <label className="flex items-center mb-2 text-gray-600 text-sm font-medium">
                 Role
@@ -32,7 +32,7 @@ const ProfessionalSummaryForm = ({ onClickNext, onClickPrev, form }) => {
                 </span>
               )}
             </div>
-            <div className="w-full relative">
+            <div className="w-full relative mt-4 md:mt-0">
               <label className="flex items-center mb-2 text-gray-600 text-sm font-medium">
                 Company
                 <Asterisk size={10} color="red" />
@@ -50,7 +50,7 @@ const ProfessionalSummaryForm = ({ onClickNext, onClickPrev, form }) => {
               )}
             </div>
           </div>
-          <div className="flex flex-row gap-x-6 mb-6">
+          <div className="flex flex-col md:flex-row gap-x-6 mb-6">
             <div className="w-full relative">
               <label className="flex items-center mb-2 text-gray-600 text-sm font-medium">
                 Describe your role
@@ -69,7 +69,7 @@ const ProfessionalSummaryForm = ({ onClickNext, onClickPrev, form }) => {
                 </span>
               )}
             </div>
-            <div className="w-full relative">
+            <div className="w-full relative mt-4 md:mt-0">
               <label className="flex items-center mb-2 text-gray-600 text-sm font-medium">
                 Duration
                 <Asterisk size={10} color="red" />
@@ -105,9 +105,9 @@ const ProfessionalSummaryForm = ({ onClickNext, onClickPrev, form }) => {
             </div>
           </div>
 
-          <div className="flex justify-between w-full mt-6">
+          <div className="flex flex-col md:flex-row justify-between w-full mt-6">
             <button
-              className="w-52 h-12 shadow-sm rounded-full bg-indigo-600 hover:bg-indigo-800 transition-all duration-700 text-white text-base font-semibold leading-7"
+              className="w-52 h-12 shadow-sm rounded-full bg-indigo-600 hover:bg-indigo-800 transition-all duration-700 text-white text-base font-semibold leading-7 mb-4 md:mb-0"
               onClick={onClickPrev}
             >
               Previous step
