@@ -74,7 +74,7 @@ function App() {
           }
         />
         <Route
-          path="/portfolio/:slug/edit"
+          path="/portfolio/:templateId/:slug/edit"
           element={
             <PrivateRoute>
               <EditPortfolioPage />

@@ -9,7 +9,7 @@ import ProjectDetailsForm from "./ProjectDetailsForm";
 import TemplateSwitch from "./TemplateSwitch";
 import ImageUpload from "./ImageUpload";
 
-const PortfolioStepper = () => {
+const PortfolioStepper = ({formData, isEdit}) => {
   const [imageUrl, setImageUrl] = useState(null);
 
   const [combinedData, setCombinedData] = useState();
@@ -29,58 +29,51 @@ const PortfolioStepper = () => {
 
   const personalInfoForm = useForm({
     defaultValues: {
-      aboutMe:
-        "Passionate developer with expertise in building scalable web applications and user-friendly experiences.",
-      country: { value: "US", label: "United States" },
-      email: "alex.johnson@example.com",
-      gitHub: "https://github.com/alexjohnson",
-      linkedIn: "https://linkedin.com/in/alexjohnson",
-      name: "Alex Johnson",
-      jobTitle: "Full Stack Developer",
+      aboutMe: formData?.about,
+      country: formData?.country,
+      email: formData?.email,
+      gitHub: formData?.gitHub,
+      linkedIn:formData?.linkedIn,
+      name: formData?.name,
+      jobTitle: formData?.title,
     },
   });
   const professionalSummaryForm = useForm({
     defaultValues: {
-      company: "TechNova Solutions",
-      role: "Senior Full Stack Developer",
-      roleDescription:
-        "Developing scalable web applications and leading a team of developers to build innovative solutions.",
-      yearFrom: "2018",
-      yearTo: "2024",
+      company: formData?.experience?.[0]?.company,
+      role: formData?.experience?.[0]?.role,
+      roleDescription: formData?.experience?.[0]?.description,
+      yearFrom: formData?.experience?.[0]?.duration?.from,
+      yearTo: formData?.experience?.[0]?.duration?.to,
     },
   });
   const skillsForm = useForm({
-    skills: {
-      frontEnd: [
-        { value: "react", label: "React" },
-        { value: "vue", label: "Vue.js" },
-        { value: "angular", label: "Angular" },
-        { value: "nextjs", label: "Next.js" },
-        { value: "nuxtjs", label: "Nuxt.js" },
-        { value: "htmlcss", label: "HTML & CSS" },
-      ],
-      backEnd: [
-        { value: "nodejs", label: "Node.js" },
-        { value: "express", label: "Express.js" },
-        { value: "django", label: "Django" },
-        { value: "flask", label: "Flask" },
-        { value: "spring", label: "Spring Boot" },
-      ],
-      otherTools: [
-        { value: "git", label: "Git" },
-        { value: "github", label: "GitHub" },
-        { value: "docker", label: "Docker" },
-        { value: "kubernetes", label: "Kubernetes" },
-        { value: "jenkins", label: "Jenkins" },
-        { value: "aws", label: "AWS" },
-      ],
+    defaultValues: {
+      frontEnd:
+        formData?.skills?.find((s) => s.skillType === "FrontEnd")?.skills?.map(
+          (skill) => ({ value: skill, label: skill })
+        ) || [],
+      backEnd:
+        formData?.skills?.find((s) => s.skillType === "BackEnd")?.skills?.map(
+          (skill) => ({ value: skill, label: skill })
+        ) || [],
+      otherTools:
+        formData?.skills?.find((s) => s.skillType === "OtherTools")?.skills?.map(
+          (skill) => ({ value: skill, label: skill })
+        ) || [],
     },
   });
   const projectForm = useForm({
-    description:
-      "A productivity tool that helps users track and manage daily tasks efficiently.",
-    link: "https://taskify.example.com",
-    title: "Taskify - Task Management App",
+    defaultValues: {
+      projects: formData?.projects || [
+        {
+          title: "Taskify - Task Management App",
+          description:
+            "A productivity tool that helps users track and manage daily tasks efficiently.",
+          link: "https://taskify.example.com",
+        },
+      ],
+    },
   });
 
   const handleSubmit = () => {
@@ -199,6 +192,7 @@ const PortfolioStepper = () => {
           templateId={templateId}
           data={combinedData}
           onClickPrev={prevStep}
+          isEdit
         />
       )}
     </div>

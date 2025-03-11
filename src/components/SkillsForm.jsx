@@ -58,7 +58,7 @@ const SkillsForm = ({ onClickNext, onClickPrev, form }) => {
             <Controller
               name="frontEnd"
               control={control}
-              defaultValue={[frontEndOptions[0]]} // Hardcoded default we can modify here
+              
               render={({ field }) => (
                 <Select
                   {...field}
@@ -66,7 +66,9 @@ const SkillsForm = ({ onClickNext, onClickPrev, form }) => {
                   isMulti
                   className="basic-multi-select"
                   classNamePrefix="select"
-                  required
+                  placeholder="Select your front-end skills"
+                  value={field.value || []}
+                  onChange={(selected) => field.onChange(selected)}
                 />
               )}
             />
@@ -85,7 +87,6 @@ const SkillsForm = ({ onClickNext, onClickPrev, form }) => {
             <Controller
               name="backEnd"
               control={control}
-              defaultValue={[backendOptions[0]]} // Hardcoded default we can modify here
               render={({ field }) => (
                 <Select
                   {...field}
@@ -93,7 +94,9 @@ const SkillsForm = ({ onClickNext, onClickPrev, form }) => {
                   isMulti
                   className="basic-multi-select"
                   classNamePrefix="select"
-                  required
+                  placeholder="Select your back-end skills"
+                  value={field.value || []}
+                  onChange={(selected) => field.onChange(selected)}
                 />
               )}
             />
@@ -112,7 +115,6 @@ const SkillsForm = ({ onClickNext, onClickPrev, form }) => {
             <Controller
               name="otherTools"
               control={control}
-              defaultValue={[toolOptions[0]]} // Hardcoded default we can modify here
               render={({ field }) => (
                 <Select
                   {...field}
@@ -120,7 +122,9 @@ const SkillsForm = ({ onClickNext, onClickPrev, form }) => {
                   isMulti
                   className="basic-multi-select"
                   classNamePrefix="select"
-                  required
+                  placeholder="Select your tools"
+                  value={field.value || []}
+                  onChange={(selected) => field.onChange(selected)}
                 />
               )}
             />

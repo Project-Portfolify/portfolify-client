@@ -9,11 +9,11 @@ import { useContext, useState } from "react";
 import { AuthContext } from "../context/AuthContext";
 import slugify from "slugify";
 import LogInModal from "./logInModal";
-import { useNavigate } from "react-router-dom";
-
+import { useNavigate, useParams } from "react-router-dom";
 const env = import.meta.env.VITE_BASE_API_URL;
 
-const TemplateSwitch = ({ templateId, data, onClickPrev }) => {
+const TemplateSwitch = ({ templateId, data, onClickPrev, isEdit=false }) => {
+ const {slug} = useParams()
   const themes = {
     [Templates.AtomTheme]: <AtomTheme data={data} />,
     [Templates.LightTheme]: <LightTheme data={data} />,
@@ -56,7 +56,8 @@ const TemplateSwitch = ({ templateId, data, onClickPrev }) => {
   console.log(portfolioData);
 
   const handleSubmit = () => {
-    axios
+    if(!isEdit){
+      axios
       .post(`${env}/portfolios`, portfolioData, {
         headers: { Authorization: `Bearer ${getToken()}` },
       })
@@ -69,14 +70,34 @@ const TemplateSwitch = ({ templateId, data, onClickPrev }) => {
           "_blank",
           "noopener,noreferrer"
         );
-
         navigate("/portfolios");
       })
       .catch((error) => {
         alert("Failed to publish portfolio. ❌");
         console.log(error);
       });
+    }else{
+      axios
+      .put(`${env}/portfolios/${slug}`, portfolioData, {
+        headers: { Authorization: `Bearer ${getToken()}` },
+      })
+      .then((response)=>{
+        console.log(response.data)
+        setPortfolio(response.data)
+        window.open(
+          `/portfolio/${portfolioData.slug}`,
+          "_blank",
+          "noopener,noreferrer"
+        );
+        navigate("/portfolios");
+        isEdit=false;
+      })
+      .catch((err)=>{
+        console.log(`error: ${err}`)
+      })
+    }
   };
+
   return (
     <div>
       <div className="flex justify-between items-center mb-20 w-full">

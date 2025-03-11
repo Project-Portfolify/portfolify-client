@@ -65,7 +65,7 @@ const PortfolioPage = () => {
               </div>
               <div className="flex gap-5">
                 <Link
-                  to={`/portfolio/${portfolio.slug}/edit`}
+                  to={`/portfolio/${portfolio.template}/${portfolio.slug}/edit`}
                   className="mt-4 w-20 text-center inline-block bg-blue-500 text-white px-4 py-2 rounded-lg"
                 >
                   Edit
