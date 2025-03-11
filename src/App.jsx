@@ -7,7 +7,7 @@ import HomePage from "./pages/HomePage";
 import ErrorPage from "./pages/ErrorPage";
 import SignUp from "./pages/SignUp";
 import Login from "./pages/Login";
-
+import Footer from "./components/Footer";
 import PortfolioPage from "./pages/PortfolioPage";
 import CreatePortfolio from "./pages/CreatePortfolio";
 import PreviewPage from "./pages/PreviewPage";
@@ -29,6 +29,7 @@ function App() {
           <Route path="/portfolios" element={<PortfolioPage />} />
           <Route path="*" element={<ErrorPage />} />
         </Routes>
+        <Footer/>
       </AuthProvider>
     </>
   );
