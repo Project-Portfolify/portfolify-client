@@ -1,9 +1,14 @@
 import React, { useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
 
 function Navbar() {
   const { isAuthenticated, logout } = useContext(AuthContext);
+  const navigate = useNavigate();
+  const handleLogout = () => {
+    logout();
+    navigate("/");
+  };
 
   return (
     <div className="sticky top-0 z-50">
@@ -11,12 +16,8 @@ function Navbar() {
         <div className="container mx-auto px-6 py-4 flex justify-between items-center">
           {/* Logo */}
           <h1 className="text-3xl font-bold text-gray-800">
-            <Link
-            to="/">
-            Portfolify
-            </Link>
-            
-            </h1>
+            <Link to="/">Portfolify</Link>
+          </h1>
 
           {/* Navegación */}
           <nav>
@@ -58,7 +59,7 @@ function Navbar() {
                   </li>
                   <li>
                     <button
-                      onClick={logout}
+                      onClick={handleLogout}
                       className="cursor-pointer text-gray-600 border border-gray-500 px-4 py-1 rounded-lg hover:bg-gray-600 hover:text-white transition duration-300"
                     >
                       LogOut
