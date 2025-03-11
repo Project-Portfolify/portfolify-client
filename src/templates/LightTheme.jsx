@@ -180,7 +180,8 @@ const SkillBadge = ({ icon: Icon, name }) => {
 };
 
 function LightThemeTemplate({ data }) {
-  const { personalInfo, professionalSummary, projects, skills } = data;
+  const { personalInfo, professionalSummary, projects, skills, imageUrl } =
+    data;
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -197,8 +198,7 @@ function LightThemeTemplate({ data }) {
                 <span className="text-indigo-600">Developer</span>
               </h1>
               <p className="mt-6 text-xl text-gray-600 max-w-2xl">
-                I craft beautiful, functional digital experiences that help
-                businesses grow and succeed in the digital world.
+                {personalInfo.aboutMe}
               </p>
               <div className="mt-8 flex flex-wrap gap-4">
                 <a
@@ -216,19 +216,19 @@ function LightThemeTemplate({ data }) {
               </div>
               <div className="mt-8 flex items-center space-x-4">
                 <a
-                  href="#"
+                  href={personalInfo.gitHub}
                   className="text-gray-600 hover:text-indigo-600 transition-colors"
                 >
                   <Github size={24} />
                 </a>
                 <a
-                  href="#"
+                  href={personalInfo.linkedIn}
                   className="text-gray-600 hover:text-indigo-600 transition-colors"
                 >
                   <Linkedin size={24} />
                 </a>
                 <a
-                  href="#"
+                  href={personalInfo.email}
                   className="text-gray-600 hover:text-indigo-600 transition-colors"
                 >
                   <Mail size={24} />
@@ -240,7 +240,7 @@ function LightThemeTemplate({ data }) {
                 <div className="absolute -inset-1 bg-gradient-to-r from-indigo-600 to-purple-600 rounded-sm blur opacity-25"></div>
                 <div className="relative bg-white rounded-sm overflow-hidden shadow-xl">
                   <img
-                    src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80"
+                    src={imageUrl}
                     alt="Portfolio Owner"
                     className="w-full h-auto"
                   />
@@ -323,12 +323,12 @@ function LightThemeTemplate({ data }) {
                 </div>
               </div>
 
-              <a
+              {/* <a
                 href="#"
                 className="inline-flex items-center text-indigo-600 font-medium hover:text-indigo-700"
               >
                 Download Resume <ArrowRight size={18} className="ml-1" />
-              </a>
+              </a> */}
             </div>
           </div>
         </div>
@@ -349,27 +349,18 @@ function LightThemeTemplate({ data }) {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <ProjectCard
-              title="E-commerce Redesign"
-              description="A complete redesign of an e-commerce platform, focusing on improving user experience and conversion rates."
-              image="https://images.unsplash.com/photo-1523289333742-be1143f6b766?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80"
-              tags={["React", "Next.js", "Tailwind CSS"]}
-              link="#"
-            />
-            <ProjectCard
-              title="Finance Dashboard"
-              description="An interactive dashboard for financial data visualization, helping users track investments and expenses."
-              image="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80"
-              tags={["TypeScript", "D3.js", "Firebase"]}
-              link="#"
-            />
-            <ProjectCard
-              title="Travel Blog"
-              description="A responsive blog platform for travel enthusiasts, featuring rich media content and social sharing capabilities."
-              image="https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80"
-              tags={["React", "GraphQL", "Tailwind CSS"]}
-              link="#"
-            />
+            {console.log()}
+            {/* {ProjectDetailsForm.map((project) => {
+              return (
+                <ProjectCard
+                  title={project.title}
+                  description={project.description}
+                  image="https://images.unsplash.com/photo-1523289333742-be1143f6b766?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80"
+                  tags={["React", "Next.js", "Tailwind CSS"]}
+                  link={project.link}
+                />
+              );
+            })} */}
           </div>
 
           <div className="text-center mt-12">
