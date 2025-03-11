@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
 import ThemeToggleButton from "./ThemeToggleButton";
 import { Menu, X } from "lucide-react";
+import logo from "../assets/logo.png";
 
 function Navbar() {
   const { isAuthenticated, logout } = useContext(AuthContext);
@@ -18,9 +19,14 @@ function Navbar() {
       <header className="bg-white/80 backdrop-blur-md shadow-lg">
         <div className="container mx-auto px-6 py-4 flex justify-between items-center">
           {/* Logo */}
-          <h1 className="text-3xl font-bold text-gray-800">
-            <Link to="/">Portfolify</Link>
-          </h1>
+          <div className="flex">
+            <img src={logo} alt="logo" className="w-10" />
+            <h1 className="text-3xl font-bold text-gray-800">
+              <Link to="/" className="ml-2">
+                Portfolify
+              </Link>
+            </h1>
+          </div>
 
           {/* mobile button*/}
           <div className="sm:hidden ml-4">

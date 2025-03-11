@@ -10,6 +10,8 @@ import GreyTheme from "../templates/GreyTheme";
 import DarkTheme from "../templates/DarkTheme";
 import { Templates } from "../constants";
 
+const env = import.meta.env.VITE_BASE_API_URL;
+
 const PortfolioPage = () => {
   const [portfolios, setPortfolios] = useState([]);
   const { getToken } = useContext(AuthContext);
@@ -54,17 +56,29 @@ const PortfolioPage = () => {
         portfolios.map((portfolio) => (
           <div
             key={portfolio._id}
-            className="border p-4 rounded-lg shadow-lg mb-6"
+            className=" border p-4 rounded-lg shadow-lg mb-6"
           >
-            <h2 className="text-xl font-semibold">{portfolio.name}</h2>
-            <p className="text-gray-600">{portfolio.title}</p>
+            <div className="flex justify-between">
+              <div>
+                <h2 className="text-xl font-semibold">{portfolio.name}</h2>
+                <p className="text-gray-600">{portfolio.title}</p>
+              </div>
+              <div className="flex gap-5">
+                <Link
+                  to={`/portfolio/${portfolio.slug}/edit`}
+                  className="mt-4 w-20 text-center inline-block bg-blue-500 text-white px-4 py-2 rounded-lg"
+                >
+                  Edit
+                </Link>
+                <Link
+                  to={`/portfolio/${portfolio.slug}`}
+                  className="mt-4 inline-block bg-blue-500 text-white px-4 py-2 rounded-lg"
+                >
+                  Portfolio
+                </Link>
+              </div>
+            </div>
             <div className="mt-4">{renderTemplate(portfolio)}</div>
-            <Link
-              to={`/portfolio/${portfolio.slug}`}
-              className="mt-4 inline-block bg-blue-500 text-white px-4 py-2 rounded-lg"
-            >
-              Portfolio
-            </Link>
           </div>
         ))
       )}

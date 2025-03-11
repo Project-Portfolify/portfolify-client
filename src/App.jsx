@@ -11,6 +11,7 @@ import PortfolioPage from "./pages/PortfolioPage";
 import CreatePortfolio from "./pages/CreatePortfolio";
 import PreviewPage from "./pages/PreviewPage";
 import PublishedPortfolioPage from "./pages/PublishedPortfolioPage";
+import EditPortfolioPage from "./pages/EditPortfolioPage";
 
 function App() {
   return (
@@ -72,8 +73,16 @@ function App() {
             </PrivateRoute>
           }
         />
-
+        <Route
+          path="/portfolio/:slug/edit"
+          element={
+            <PrivateRoute>
+              <EditPortfolioPage />
+            </PrivateRoute>
+          }
+        />
         <Route path="/portfolio/:slug" element={<PublishedPortfolioPage />} />
+
         <Route path="*" element={<ErrorPage />} />
       </Routes>
     </>
