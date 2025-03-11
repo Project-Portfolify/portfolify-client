@@ -56,7 +56,7 @@ const PortfolioList = () => {
   return (
     <section
       id="portfolios"
-      className="w-full h-auto px-4 py-2 overflow-hidden bg-gradient-to-r"
+      className="w-full h-auto px-4 overflow-hidden bg-gradient-to-r"
     >
       <div className="relative">
         {/* Scroll to the Left Button */}
@@ -77,27 +77,27 @@ const PortfolioList = () => {
             return (
               <div
                 key={i}
-                className="flex-shrink-0 m-4 relative overflow-hidden bg-white dark:bg-gray-800 rounded-lg max-w-xs shadow-lg h-auto"
+                className="flex-shrink-0 m-4 relative overflow-hidden bg-white dark:bg-gray-800 rounded-lg max-w-xs shadow-lg h-auto transform transition-transform hover:scale-105"
               >
                 {/* Image on Top */}
                 <img
-                  className="w-100 h-90 object-cover"
+                  className="w-full h-48 object-cover rounded-t-lg"
                   src={obj.image}
-                  alt="darkTheme"
+                  alt="template"
                 />
 
                 {/* Content & Buttons at Bottom */}
                 <div className="relative text-black px-4 pb-4 mt-2 flex flex-col items-center">
-                  <div className="flex justify-between w-full">
+                  <div className="flex justify-between w-full mt-2 gap-5">
                     <button
                       onClick={() => handlePreview(obj.templateId)}
-                      className="w-20 h-8 shadow-sm rounded-lg bg-indigo-600 hover:bg-indigo-800 transition-all duration-300 text-white text-sm"
+                      className="w-20 h-8 shadow-sm rounded-lg bg-white hover:bg-gray-300  transition-all duration-300 text-black text-sm"
                     >
                       Preview
                     </button>
                     <button
                       onClick={() => handleCreate(obj.templateId)}
-                      className="w-20 h-8 shadow-sm rounded-lg bg-indigo-600 hover:bg-indigo-800 transition-all duration-300 text-white text-sm"
+                      className="w-20 h-8 shadow-sm rounded-lg bg-white hover:bg-gray-300 transition-all duration-300 text-black text-sm"
                     >
                       Create
                     </button>
