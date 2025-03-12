@@ -64,10 +64,7 @@ const dummyData = {
         "Developing user-friendly interfaces and collaborating with designers to build responsive web applications.",
     },
   ],
-  // roleDescription:
-  //   "Developing scalable web applications and leading a team of developers to build innovative solutions.",
-  // yearFrom: "2018",
-  // yearTo: "2024",
+
   skills: [
     {
       skillType: "FrontEnd",
@@ -104,20 +101,23 @@ const dummyData = {
 
 const PreviewPage = () => {
   const { templateId } = useParams();
-
-  switch (templateId) {
-    case Templates.AtomTheme:
-      return <AtomTheme data={dummyData} />;
-    case Templates.LightTheme:
-      return <LightTheme data={dummyData} />;
-    case Templates.BoldTheme:
-      return <BoldTheme data={dummyData} />;
-    case Templates.GreyTheme:
-      return <GreyTheme data={dummyData} />;
-    case Templates.DarkTheme:
-      return <DarkTheme data={dummyData} />;
-    default:
-      return <h1>Preview not found</h1>;
-  }
+  const selectTemplate = () => {
+    switch (templateId) {
+      case Templates.AtomTheme:
+        return <AtomTheme data={dummyData} />;
+      case Templates.LightTheme:
+        return <LightTheme data={dummyData} />;
+      case Templates.BoldTheme:
+        return <BoldTheme data={dummyData} />;
+      case Templates.GreyTheme:
+        return <GreyTheme data={dummyData} />;
+      case Templates.DarkTheme:
+        return <DarkTheme data={dummyData} />;
+      default:
+        return <h1>Preview not found</h1>;
+    }
+  };
+  const template = selectTemplate();
+  return <div className="m-20 border-1">{template}</div>;
 };
 export default PreviewPage;

@@ -29,7 +29,7 @@ const PortfolioTips = () => {
           </button>
           <div
             ref={scrollRef}
-            className="mt-10 whitespace-nowrap flex space-x-4 overflow-x-auto p-0 pb-12"
+            className="mt-10 whitespace-nowrap flex space-x-4 overflow-x-auto p-0 pb-12 list-none"
           >
             {/*                    <!-- Start Tip --> */}
             <li>

@@ -72,6 +72,14 @@ const GreyTheme = ({ data }) => {
                 {section}
               </a>
             ))}
+            <a
+              href={data.resumeUrl}
+              download
+              target="_blank"
+              className="text-gray-600 hover:text-black transition-colors hover:cursor-pointer"
+            >
+              Resume
+            </a>
           </nav>
         </div>
       </header>

@@ -64,11 +64,16 @@ export default function DarkTheme({ data }) {
               Contact
             </button>
           </div>
-          {/* <div className="flex items-center space-x-4">
-            <button className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors">
+          <div className="flex items-center space-x-4">
+            <a
+              href={data.resumeUrl}
+              download
+              target="_blank"
+              className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 cursor-pointer transition-colors"
+            >
               Resume
-            </button>
-          </div> */}
+            </a>
+          </div>
         </nav>
       </header>
 
