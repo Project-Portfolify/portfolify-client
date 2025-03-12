@@ -40,9 +40,9 @@ const PortfolioTips = () => {
           <ul className="mt-10 whitespace-no-wrap flex-no-wrap [backface-visibility: hidden] [transform-style: preserve-3d] [touch-action: pan-Y] [will-change: transform] relative flex w-full overflow-hidden p-0 pb-12">
             {/*                    <!-- Start Tip --> */}
             <li>
-              <div className="min-w-[300px] flex-shrink-0 bg-white rounded-lg shadow-lg p-4">
+              <div className="min-w-[400px] flex-shrink-0 bg-white rounded-lg shadow-lg p-4">
                 <iframe
-                  width="300"
+                  width="400"
                   height="225"
                   src="https://www.youtube.com/embed/MsuXGvgWogQ?si=_T5bNX64d86D1KOc"
                   title="YouTube video player"
