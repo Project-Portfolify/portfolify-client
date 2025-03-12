@@ -2,10 +2,13 @@ import { Link } from "react-router-dom";
 import React, { useContext, useState } from "react";
 import { AuthContext } from "../context/AuthContext";
 import axios from "axios";
+import ErrorAlert from "./ErrorAlert";
 const env = import.meta.env.VITE_BASE_API_URL;
 
 const LogInModal = () => {
   const [open, setOpen] = useState(false);
+  const [error, setError] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
 
   const { login, isAuthenticated } = useContext(AuthContext);
 
@@ -21,15 +24,13 @@ const LogInModal = () => {
       password: password.value,
     };
 
-    console.log(newUser);
-
     try {
       const response = await axios.post(`${env}/auth/login`, newUser);
-      console.log("success", response);
       login(response.data.authToken);
       setOpen(!open);
     } catch (error) {
-      console.log("Error", error);
+      setError(true);
+      setErrorMessage("Invalid credentials");
     }
   };
 
@@ -40,7 +41,7 @@ const LogInModal = () => {
       {!isAuthenticated && (
         <button
           onClick={toggleModal}
-          className="w-52 h-12 shadow-sm rounded-full bg-indigo-600 hover:bg-indigo-800 transition-all duration-700 text-white text-base font-semibold leading-7"
+          className="w-35 h-10 shadow-sm rounded-full bg-blue-950 hover:bg-blue-800 hover:cursor-pointer transition-all duration-700 text-white text-base font-semibold leading-7"
         >
           LogIn / SignUp
         </button>
@@ -52,7 +53,7 @@ const LogInModal = () => {
              bg-white/10 backdrop-blur-md border border-white/20"
           aria-hidden="true"
         >
-          <div className="relative w-full max-w-md bg-white rounded-lg shadow-lg dark:bg-black">
+          <div className="relative w-full max-w-md bg-white rounded-lg shadow-lg">
             {/* Close button */}
             <div className="flex justify-end p-2">
               <button
@@ -76,15 +77,15 @@ const LogInModal = () => {
 
             {/* Login Form */}
             <form onSubmit={handleLogIn} className="space-y-6 px-6 pb-6">
-              <h3 className="text-xl font-medium text-gray-900 dark:text-white">
-                Sign in to our platform
+              <h3 className="text-xl font-medium text-gray-900 ">
+                Log in to our platform
               </h3>
 
               {/* Email Input */}
               <div>
                 <label
                   htmlFor="email"
-                  className="text-sm font-medium text-gray-900 dark:text-gray-300"
+                  className="text-sm font-medium text-gray-900"
                 >
                   Your email
                 </label>
@@ -102,7 +103,7 @@ const LogInModal = () => {
               <div>
                 <label
                   htmlFor="password"
-                  className="text-sm font-medium text-gray-900 dark:text-gray-300"
+                  className="text-sm font-medium text-gray-900 "
                 >
                   Your password
                 </label>
@@ -119,7 +120,7 @@ const LogInModal = () => {
               {/* Login Button */}
               <button
                 type="submit"
-                className="w-full text-black bg-white hover:bg-gray-200 focus:ring-4 focus:ring-black font-medium rounded-lg text-sm px-5 py-2.5"
+                className="w-full text-white bg-blue-950 hover:bg-blue-800 focus:ring-4 focus:ring-black font-medium rounded-lg text-sm px-5 py-2.5"
               >
                 Login to your account
               </button>
@@ -130,11 +131,19 @@ const LogInModal = () => {
                 <Link
                   to="/signup"
                   target="blank"
-                  className="text-white ml-4 hover:cursor-pointer"
+                  className="text-black ml-4 hover:cursor-pointer"
                 >
                   Create account
                 </Link>
               </div>
+              {error && (
+                <ErrorAlert
+                  message={errorMessage}
+                  onClose={() => {
+                    setError(false);
+                  }}
+                />
+              )}
             </form>
           </div>
         </div>

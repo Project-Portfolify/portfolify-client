@@ -10,9 +10,12 @@ import { AuthContext } from "../context/AuthContext";
 import slugify from "slugify";
 import LogInModal from "../components/LogInModal";
 import { useNavigate, useParams } from "react-router-dom";
+import ErrorAlert from "./ErrorAlert";
 const env = import.meta.env.VITE_BASE_API_URL;
 
 const TemplateSwitch = ({ templateId, data, onClickPrev, isEdit }) => {
+  const [error, setError] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
   const { slug } = useParams();
   const themes = {
     [Templates.AtomTheme]: <AtomTheme data={data} />,
@@ -53,8 +56,6 @@ const TemplateSwitch = ({ templateId, data, onClickPrev, isEdit }) => {
     ...data,
   };
 
-  console.log(portfolioData);
-
   const handleSubmit = () => {
     if (!isEdit) {
       axios
@@ -63,7 +64,12 @@ const TemplateSwitch = ({ templateId, data, onClickPrev, isEdit }) => {
         })
         .then((response) => {
           // alert("Portfolio Published Successfully! 🎉");
-          console.log(response);
+          <div
+            class="p-4 mb-4 text-sm text-green-800 rounded-lg bg-green-50 dark:bg-gray-800 dark:text-green-400"
+            role="alert"
+          >
+            <span class="font-medium">Publish successful!</span>
+          </div>;
           setPortfolio(response.data);
           window.open(
             `/portfolio/${portfolioData.slug}`,
@@ -74,8 +80,8 @@ const TemplateSwitch = ({ templateId, data, onClickPrev, isEdit }) => {
           navigate("/portfolios");
         })
         .catch((error) => {
-          alert("Failed to publish portfolio. ❌");
-          console.log(error);
+          setErrorMessage("Failed to publish portfolio. ❌");
+          setError(true);
         });
     } else {
       axios
@@ -83,7 +89,12 @@ const TemplateSwitch = ({ templateId, data, onClickPrev, isEdit }) => {
           headers: { Authorization: `Bearer ${getToken()}` },
         })
         .then((response) => {
-          console.log(response.data);
+          <div
+            class="p-4 mb-4 text-sm text-green-800 rounded-lg bg-green-50 dark:bg-gray-800 dark:text-green-400"
+            role="alert"
+          >
+            <span class="font-medium">Edit successful!</span>
+          </div>;
           setPortfolio(response.data);
           window.open(
             `/portfolio/${portfolioData.slug}`,
@@ -94,7 +105,8 @@ const TemplateSwitch = ({ templateId, data, onClickPrev, isEdit }) => {
           isEdit = false;
         })
         .catch((err) => {
-          console.log(`error: ${err}`);
+          setErrorMessage("Failed to edit portfolio. ❌");
+          setError(true);
         });
     }
   };
@@ -105,7 +117,7 @@ const TemplateSwitch = ({ templateId, data, onClickPrev, isEdit }) => {
         {/* Left-aligned Previous Step button */}
         <div className="flex-1 mb-4 md:mb-0">
           <button
-            className="w-52 h-12 shadow-sm rounded-full bg-indigo-600 hover:bg-indigo-800 transition-all duration-700 text-white text-base font-semibold leading-7"
+            className="w-35 h-10 shadow-sm rounded-full bg-blue-950 hover:bg-blue-800 hover:cursor-pointer transition-all duration-700 text-white text-base font-semibold leading-7"
             onClick={onClickPrev}
           >
             Previous step
@@ -113,11 +125,11 @@ const TemplateSwitch = ({ templateId, data, onClickPrev, isEdit }) => {
         </div>
 
         {/* Right-aligned: Either Publish button or Login Modal */}
-        <div className="flex-1 flex justify-end">
+        <div className=" flex justify-end">
           {isAuthenticated ? (
             <button
               onClick={handleSubmit}
-              className="w-52 h-12 shadow-sm rounded-full bg-indigo-600 hover:bg-indigo-800 transition-all duration-700 text-white text-base font-semibold leading-7"
+              className="w-35 h-10 shadow-sm rounded-full bg-blue-950 hover:bg-blue-800 hover:cursor-pointer transition-all duration-700 text-white text-base font-semibold leading-7"
             >
               Publish
             </button>
@@ -128,6 +140,9 @@ const TemplateSwitch = ({ templateId, data, onClickPrev, isEdit }) => {
       </div>
 
       {currentTheme}
+      {error && (
+        <ErrorAlert message={errorMessage} onClose={() => setError(false)} />
+      )}
     </div>
   );
 };

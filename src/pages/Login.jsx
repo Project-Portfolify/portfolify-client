@@ -1,13 +1,15 @@
 import React, { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
+import ErrorAlert from "../components/ErrorAlert";
 
 const env = import.meta.env.VITE_BASE_API_URL;
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState(null);
+  const [error, setError] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
   const navigate = useNavigate();
   const { login } = useContext(AuthContext);
 
@@ -24,15 +26,14 @@ const Login = () => {
 
       const data = await response.json();
       if (response.ok) {
-        console.log("Success:", data.authToken);
         login(data.authToken);
         navigate("/");
       } else {
-        setError(data.message || "Login failed, please try again.");
+        setErrorMessage("Login failed, please try again.");
       }
     } catch (error) {
-      setError("Server error, please try later.");
-      console.error("Error:", error);
+      setErrorMessage("Login failed, please try again.");
+      setError(true);
     }
   };
 
@@ -92,7 +93,12 @@ const Login = () => {
                 Cancel
               </button>
 
-              {error && <p className="text-red-500 text-sm">{error}</p>}
+              {error && (
+                <ErrorAlert
+                  message={errorMessage}
+                  onClose={() => setError(false)}
+                />
+              )}
             </form>
           </div>
         </div>

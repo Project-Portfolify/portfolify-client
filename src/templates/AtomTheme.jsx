@@ -426,7 +426,6 @@ function AtomTheme({ data }) {
                 />
               );
             })}
-            {console.log(data)}
           </div>
         </div>
       </section>

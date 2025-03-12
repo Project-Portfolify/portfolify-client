@@ -9,11 +9,15 @@ import BoldTheme from "../templates/BoldTheme";
 import GreyTheme from "../templates/GreyTheme";
 import DarkTheme from "../templates/DarkTheme";
 import { Templates } from "../constants";
+import ErrorAlert from "../components/ErrorAlert";
+import { set } from "react-hook-form";
 
 const env = import.meta.env.VITE_BASE_API_URL;
 
 const PortfolioPage = () => {
   const [portfolios, setPortfolios] = useState([]);
+  const [error, setError] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
   const { getToken } = useContext(AuthContext);
 
   useEffect(() => {
@@ -22,11 +26,11 @@ const PortfolioPage = () => {
         headers: { Authorization: `Bearer ${getToken()}` },
       })
       .then((response) => {
-        console.log(response.data);
         setPortfolios(response.data);
       })
       .catch((error) => {
-        console.error("Error al obtener portfolios:", error);
+        setErrorMessage("Error al obtener portfolios:");
+        setError(true);
       });
   }, []);
 
@@ -85,13 +89,13 @@ const PortfolioPage = () => {
                         headers: { Authorization: `Bearer ${getToken()}` },
                       })
                       .then((response) => {
-                        console.log(response.data);
                         setPortfolios(
                           portfolios.filter((p) => p._id !== portfolio._id)
                         );
                       })
                       .catch((error) => {
-                        console.error("Error deleting portfolio:", error);
+                        setErrorMessage("Error deleting portfolio:");
+                        setError(true);
                       });
                   }}
                   className="mt-4 w-20 text-center inline-block bg-blue-500 text-white px-4 py-2 rounded-lg"
@@ -101,6 +105,12 @@ const PortfolioPage = () => {
               </div>
             </div>
             <div className="mt-4">{renderTemplate(portfolio)}</div>
+            {error && (
+              <ErrorAlert
+                message={errorMessage}
+                onClose={() => setError(false)}
+              />
+            )}
           </div>
         ))
       )}
