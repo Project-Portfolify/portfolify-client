@@ -70,9 +70,9 @@ const SignUp = () => {
   return (
     <form onSubmit={handleSubmit}>
       <div className="min-h-screen bg-gray-100 py-6 flex flex-col justify-center sm:py-12">
-        <div className="relative py-3 m-8 lg:ml-auto lg:mr-auto">
-          <div className="absolute w-70 lg:w-auto rounded-xl inset-0 bg-gradient-to-r from-blue-400 to-blue-950 shadow-lg transform -skew-y-6 sm:skew-y-0 sm:-rotate-6 sm:rounded-3xl"></div>
-          <div className="relative w-80 lg:w-150 px-10 py-10 bg-white shadow-lg rounded-xl">
+        <div className="relative py-3 m-8 md:ml-auto md:mr-auto lg:ml-auto lg:mr-auto">
+          <div className="absolute w-70 md:w-150 lg:w-auto rounded-xl inset-0 bg-gradient-to-r from-blue-400 to-blue-950 shadow-lg transform -skew-y-6 sm:skew-y-0 sm:-rotate-6 sm:rounded-3xl"></div>
+          <div className="relative w-80 md:w-150 lg:w-150 px-10 py-10 bg-white shadow-lg rounded-xl">
             <div className="max-w-md mx-auto">
               <div>
                 <h1 className="text-2xl font-semibold">Sign Up</h1>
