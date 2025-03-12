@@ -4,7 +4,7 @@ import AtomTheme from "../templates/AtomTheme";
 import BoldTheme from "../templates/BoldTheme";
 import LightTheme from "../templates/LightTheme";
 import GreyTheme from "../templates/GreyTheme";
-import DarkTheme from "../templates/GreyTheme";
+import DarkTheme from "../templates/DarkTheme";
 
 const skills = {
   frontEnd: [
@@ -40,9 +40,30 @@ const dummyData = {
   gitHub: "https://github.com/alexjohnson",
   linkedIn: "https://linkedin.com/in/alexjohnson",
   name: "Alex Johnson",
-  title: "Full Stack Developer",
-  company: "TechNova Solutions",
-  role: "Senior Full Stack Developer",
+  experience: [
+    {
+      title: "Full Stack Developer",
+      company: "TechNova Solutions",
+      role: "Senior Full Stack Developer",
+      duration: {
+        from: "2018",
+        to: "2024",
+      },
+      description:
+        "Developing scalable web applications and leading a team of developers to build innovative solutions.",
+    },
+    {
+      title: "Frontend Developer",
+      company: "TechNova Solutions",
+      role: "Frontend Developer",
+      duration: {
+        from: "2016",
+        to: "2018",
+      },
+      description:
+        "Developing user-friendly interfaces and collaborating with designers to build responsive web applications.",
+    },
+  ],
   roleDescription:
     "Developing scalable web applications and leading a team of developers to build innovative solutions.",
   yearFrom: "2018",
@@ -65,6 +86,18 @@ const dummyData = {
       skills: skills.otherTools.map((skill) => {
         return skill.value;
       }),
+    },
+  ],
+  projects: [
+    {
+      title: "Project 1",
+      description: "Developed an e-commerce platform using React and Node.js",
+      link: "https://example.com/project1",
+    },
+    {
+      title: "Project 2",
+      description: "Built a social media platform using Django and React",
+      link: "https://example.com/project2",
     },
   ],
 };
