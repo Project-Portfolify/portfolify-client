@@ -46,7 +46,7 @@ const HomePage = () => {
         <PortfolioTips />
       </div>
 
-      <Footer />
+      
     </>
   );
 };

@@ -1,7 +1,6 @@
 import React, { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
-import ThemeToggleButton from "./ThemeToggleButton";
 import { Menu, X } from "lucide-react";
 import logo from "../assets/logo.png";
 
@@ -32,7 +31,7 @@ function Navbar() {
           <div className="sm:hidden ml-4">
             <button
               onClick={() => setMenuOpen(!menuOpen)}
-              className="text-gray-700 hover:text-blue-600 focus:outline-none"
+              className="text-gray-700 hover:text-blue-950 focus:outline-none"
               aria-label="Toggle menu"
             >
               {menuOpen ? <X size={24} /> : <Menu size={24} />}
@@ -45,7 +44,7 @@ function Navbar() {
               <li>
                 <Link
                   to="/"
-                  className="text-gray-700 hover:text-blue-600 transition duration-300"
+                  className="text-gray-700 hover:text-blue-950 transition duration-300"
                 >
                   Home
                 </Link>
@@ -53,7 +52,7 @@ function Navbar() {
               <li>
                 <Link
                   to="/about"
-                  className="text-gray-700 hover:text-blue-600 transition duration-300"
+                  className="text-gray-700 hover:text-blue-950 transition duration-300"
                 >
                   About
                 </Link>
@@ -64,7 +63,7 @@ function Navbar() {
                   <li>
                     <Link
                       to="/portfolios"
-                      className="text-gray-700 hover:text-blue-600 transition duration-300"
+                      className="text-gray-700 hover:text-blue-950 transition duration-300"
                     >
                       Portfolio
                     </Link>
@@ -83,7 +82,7 @@ function Navbar() {
                   <li>
                     <Link
                       to="/login"
-                      className="text-gray-700 hover:text-blue-600 transition duration-300"
+                      className="text-gray-700 hover:text-blue-950 transition duration-300"
                     >
                       Login
                     </Link>
@@ -98,9 +97,6 @@ function Navbar() {
                   </li>
                 </>
               )}
-              <li>
-                <ThemeToggleButton />
-              </li>
             </ul>
           </nav>
         </div>
@@ -113,7 +109,7 @@ function Navbar() {
                 <Link
                   to="/"
                   onClick={() => setMenuOpen(false)}
-                  className="text-gray-700 hover:text-blue-600 transition duration-300"
+                  className="text-gray-700 hover:text-blue-950 transition duration-300"
                 >
                   Home
                 </Link>
@@ -122,7 +118,7 @@ function Navbar() {
                 <Link
                   to="/about"
                   onClick={() => setMenuOpen(false)}
-                  className="text-gray-700 hover:text-blue-600 transition duration-300"
+                  className="text-gray-700 hover:text-blue-950 transition duration-300"
                 >
                   About
                 </Link>
@@ -134,7 +130,7 @@ function Navbar() {
                     <Link
                       to="/portfolios"
                       onClick={() => setMenuOpen(false)}
-                      className="text-gray-700 hover:text-blue-600 transition duration-300"
+                      className="text-gray-700 hover:text-blue-950 transition duration-300"
                     >
                       Portfolio
                     </Link>
@@ -145,7 +141,7 @@ function Navbar() {
                         logout();
                         setMenuOpen(false);
                       }}
-                      className="cursor-pointer text-gray-600 border border-gray-500 px-4 py-1 rounded-lg hover:bg-gray-600 hover:text-white transition duration-300"
+                      className="cursor-pointer text-gray-600 border border-gray-500 px-4 py-1 rounded-lg hover:bg-blue-950 hover:text-white transition duration-300"
                     >
                       LogOut
                     </button>
@@ -157,7 +153,7 @@ function Navbar() {
                     <Link
                       to="/login"
                       onClick={() => setMenuOpen(false)}
-                      className="text-gray-700 hover:text-blue-600 transition duration-300"
+                      className="text-gray-700 hover:text-blue-950 transition duration-300"
                     >
                       Login
                     </Link>
@@ -173,9 +169,6 @@ function Navbar() {
                   </li>
                 </>
               )}
-              <li>
-                <ThemeToggleButton />
-              </li>
             </ul>
           </nav>
         )}

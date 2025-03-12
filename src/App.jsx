@@ -17,7 +17,7 @@ import Footer from "./components/Footer";
 
 function App() {
   return (
-    <>
+    <div div className="flex flex-col min-h-screen">
       <Routes>
         <Route
           path="/"
@@ -87,7 +87,7 @@ function App() {
 
         <Route path="*" element={<ErrorPage />} />
       </Routes>
-    </>
+    </div>
   );
 }
 

@@ -2,7 +2,7 @@ import React, { useEffect, useState, useContext } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
-
+import { Pencil, Eye, Trash2 } from "lucide-react";
 import AtomTheme from "../templates/AtomTheme";
 import LightTheme from "../templates/LightTheme";
 import BoldTheme from "../templates/BoldTheme";
@@ -57,51 +57,52 @@ const PortfolioPage = () => {
       {portfolios.length === 0 ? (
         <p>There are no portfolios yet</p>
       ) : (
-        portfolios.map((portfolio) => (
-          <div
-            key={portfolio._id}
-            className=" border p-4 rounded-lg shadow-lg mb-6"
-          >
-            <div className="flex justify-between">
-              <div>
-                <h2 className="text-xl font-semibold">{portfolio.name}</h2>
-                <p className="text-gray-600">{portfolio.title}</p>
-              </div>
-              <div className="flex gap-5">
-                <Link
-                  to={`/portfolio/${portfolio.template}/${portfolio.slug}/edit`}
-                  className="mt-4 w-20 text-center inline-block bg-blue-500 text-white px-4 py-2 rounded-lg"
-                >
-                  Edit
-                </Link>
-                <Link
-                  to={`/portfolio/${portfolio.slug}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="mt-4 inline-block bg-blue-500 text-white px-4 py-2 rounded-lg"
-                >
-                  Portfolio
-                </Link>
-                <Link
-                  onClick={() => {
-                    axios
-                      .delete(`${env}/portfolios/${portfolio._id}`, {
-                        headers: { Authorization: `Bearer ${getToken()}` },
-                      })
-                      .then((response) => {
-                        setPortfolios(
-                          portfolios.filter((p) => p._id !== portfolio._id)
-                        );
-                      })
-                      .catch((error) => {
-                        setErrorMessage("Error deleting portfolio:");
-                        setError(true);
-                      });
-                  }}
-                  className="mt-4 w-20 text-center inline-block bg-blue-500 text-white px-4 py-2 rounded-lg"
-                >
-                  Delete
-                </Link>
+        <div className="flex flex-wrap gap-4">
+          {portfolios.map((portfolio) => (
+            <div
+              key={portfolio._id}
+              className="w-[240px] h-[360px] border border-gray-300 rounded-xl shadow-md bg-white dark:bg-gray-800 overflow-hidden transition-transform duration-200 hover:scale-105 hover:shadow-xl"
+            >
+              <div className="flex flex-col justify-between h-full p-3">
+                <div>
+                  <h2 className="text-md text-white font-semibold truncate">{portfolio.name}</h2>
+                  <p className="text-white dark:text-gray-400 text-sm truncate">
+                    {portfolio.title}
+                  </p>
+                </div>
+
+
+                <div className="flex justify-between gap-1 mt-4">
+                  <Link
+                    to={`/portfolio/${portfolio.template}/${portfolio.slug}/edit`}
+                    className="text-xs bg-blue-800 hover:bg-blue-700 text-white px-2 py-1 rounded"
+                  >
+                    <Pencil className="w-4 h-4" />
+                  </Link>
+                  <Link
+                    to={`/portfolio/${portfolio.slug}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-xs bg-green-800 hover:bg-green-700 text-white px-2 py-1 rounded"
+                  >
+                    <Eye className="w-4 h-4" />
+                  </Link>
+                  <button
+                    onClick={() => {
+                      axios
+                        .delete(`${env}/portfolios/${portfolio._id}`, {
+                          headers: { Authorization: `Bearer ${getToken()}` },
+                        })
+                        .then(() => {
+                          setPortfolios(portfolios.filter((p) => p._id !== portfolio._id));
+                        })
+                        .catch((error) => console.error("Error deleting portfolio:", error));
+                    }}
+                    className="text-xs bg-red-800 hover:bg-red-700 text-white px-2 py-1 rounded"
+                  >
+                    <Trash2 className="w-4 h-4" />
+                  </button>
+                </div>
               </div>
             </div>
             <div className="mt-4">{renderTemplate(portfolio)}</div>
