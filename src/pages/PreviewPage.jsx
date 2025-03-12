@@ -72,19 +72,19 @@ const dummyData = {
     {
       skillType: "FrontEnd",
       skills: skills.frontEnd.map((skill) => {
-        return skill.value;
+        return skill.label;
       }),
     },
     {
       skillType: "BackEnd",
       skills: skills.backEnd.map((skill) => {
-        return skill.value;
+        return skill.label;
       }),
     },
     {
       skillType: "OtherTools",
       skills: skills.otherTools.map((skill) => {
-        return skill.value;
+        return skill.label;
       }),
     },
   ],

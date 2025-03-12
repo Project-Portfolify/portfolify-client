@@ -189,7 +189,7 @@ const Hero = ({ data }) => {
             <img
               src={data.imageUrl || profileImage}
               alt="Professional portrait"
-              className="w-full h-auto rounded-sm shadow-lg object-cover"
+              className="w-full h-auto rounded-full shadow-lg object-cover"
             />
           </div>
         </div>
@@ -491,10 +491,7 @@ const Footer = ({ data }) => {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           <div>
             <h3 className="text-xl font-bold mb-4">{data.name}</h3>
-            <p className="text-gray-400 mb-4">
-              Full Stack Developer specializing in creating beautiful,
-              functional, and user-friendly websites and applications.
-            </p>
+
             <div className="flex space-x-4">
               <a
                 href={data.gitHub}
@@ -555,7 +552,7 @@ const Footer = ({ data }) => {
           <div>
             <h3 className="text-xl font-bold mb-4">Get In Touch</h3>
             <p className="text-gray-400 mb-2">{data.email}</p>
-            <p className="text-gray-400 mb-4">Location: {data.country}</p>
+            <p className="text-gray-400 mb-4">Location: {data.country.label}</p>
             <a
               href="#contact"
               className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors inline-block"

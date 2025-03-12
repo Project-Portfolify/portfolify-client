@@ -291,12 +291,12 @@ function LightThemeTemplate({ data }) {
             </div>
             <div className="order-1 md:order-2">
               <div className="relative">
-                <div className="absolute -inset-1 bg-gradient-to-r from-indigo-400  rounded-sm blur opacity-25"></div>
-                <div className="relative w-80 bg-white rounded-sm overflow-hidden">
+                <div className="absolute -inset-1 rounded-sm blur opacity-25"></div>
+                <div className="relative w-80 bg-white overflow-hidden rounded-full">
                   <img
                     src={data.imageUrl || profileImage}
                     alt="Portfolio Owner"
-                    className="w-full h-auto"
+                    className="w-full max-w-xs "
                   />
                 </div>
               </div>

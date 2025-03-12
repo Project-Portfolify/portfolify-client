@@ -298,7 +298,7 @@ function AtomTheme({ data }) {
               <img
                 src={data.imageUrl || profileImage}
                 alt="Profile"
-                className="w-full max-w-xs rounded-lg shadow-lg"
+                className="w-full max-w-xs shadow-lg rounded-full"
               />
             </div>
           </div>
