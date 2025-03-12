@@ -1,7 +1,8 @@
 import React from 'react';
-import uzma from '../assets/uzma.jpeg'
-import luis from '../assets/luis.jpg'
-import david from '../assets/david.jpg'
+import { Github, Linkedin } from 'lucide-react';
+import uzma from '../assets/uzma.jpeg';
+import luis from '../assets/luis.jpg';
+import david from '../assets/david.jpg';
 
 const AboutPage = () => {
     return (
@@ -27,6 +28,24 @@ const AboutPage = () => {
                         />
                         <h3 className="mt-4 text-xl font-semibold">Uzma</h3>
                         <p className="text-sm text-gray-700 dark:text-gray-300">Founder & Developer</p>
+                        <div className="flex gap-3 mt-2">
+                            <a 
+                                href="https://www.linkedin.com/in/shaik-uzma/" 
+                                target="_blank" 
+                                rel="noopener noreferrer" 
+                                className="text-blue-600 hover:text-blue-400 transition-colors"
+                            >
+                                <Linkedin size={20} />
+                            </a>
+                            <a 
+                                href="https://github.com/Uzmashaik93" 
+                                target="_blank" 
+                                rel="noopener noreferrer" 
+                                className="text-gray-800 dark:text-gray-100 hover:text-gray-500 transition-colors"
+                            >
+                                <Github size={20} />
+                            </a>
+                        </div>
                     </div>
 
                     {/* David */}
@@ -38,6 +57,24 @@ const AboutPage = () => {
                         />
                         <h3 className="mt-4 text-xl font-semibold">David</h3>
                         <p className="text-sm text-gray-700 dark:text-gray-300">Co-Founder & Developer</p>
+                        <div className="flex gap-3 mt-2">
+                            <a 
+                                href="https://www.linkedin.com/in/davidrepetto1/" 
+                                target="_blank" 
+                                rel="noopener noreferrer" 
+                                className="text-blue-600 hover:text-blue-400 transition-colors"
+                            >
+                                <Linkedin size={20} />
+                            </a>
+                            <a 
+                                href="https://github.com/Dvdrepetto" 
+                                target="_blank" 
+                                rel="noopener noreferrer" 
+                                className="text-gray-800 dark:text-gray-100 hover:text-gray-500 transition-colors"
+                            >
+                                <Github size={20} />
+                            </a>
+                        </div>
                     </div>
 
                     {/* Luis */}
@@ -49,6 +86,24 @@ const AboutPage = () => {
                         />
                         <h3 className="mt-4 text-xl font-semibold">Luis</h3>
                         <p className="text-sm text-gray-700 dark:text-gray-300">Professor & Mentor</p>
+                        <div className="flex gap-3 mt-2">
+                            <a 
+                                href="https://www.linkedin.com/in/luisjunco/" 
+                                target="_blank" 
+                                rel="noopener noreferrer" 
+                                className="text-blue-600 hover:text-blue-400 transition-colors"
+                            >
+                                <Linkedin size={20} />
+                            </a>
+                            <a 
+                                href="https://github.com/luisjunco" 
+                                target="_blank" 
+                                rel="noopener noreferrer" 
+                                className="text-gray-800 dark:text-gray-100 hover:text-gray-500 transition-colors"
+                            >
+                                <Github size={20} />
+                            </a>
+                        </div>
                     </div>
                 </div>
 
