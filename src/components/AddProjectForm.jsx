@@ -14,7 +14,7 @@ const AddProjectForm = ({ register, index, remove, error }) => {
           </label>
           <input
             type="text"
-            className="block w-full px-5 py-2.5 bg-white leading-7 text-base font-normal shadow-xs text-gray-900 border border-gray-300 rounded-sm placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+            className="block w-full px-5 py-2.5 bg-white leading-7 text-base font-normal shadow-xs text-gray-900 border border-gray-300 rounded-sm placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-950"
             {...register(`projects.${index}.title`, {
               required: "Title is required",
             })}
@@ -32,7 +32,7 @@ const AddProjectForm = ({ register, index, remove, error }) => {
           </label>
           <input
             type="text"
-            className="block w-full px-5 py-2.5 bg-white leading-7 text-base font-normal shadow-xs text-gray-900 border border-gray-300 rounded-sm placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+            className="block w-full px-5 py-2.5 bg-white leading-7 text-base font-normal shadow-xs text-gray-900 border border-gray-300 rounded-sm placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-950"
             {...register(`projects.${index}.description`)}
           />
           {error?.description && (
@@ -48,7 +48,7 @@ const AddProjectForm = ({ register, index, remove, error }) => {
           </label>
           <input
             type="text"
-            className="block w-full px-5 py-2.5 bg-white leading-7 text-base font-normal shadow-xs text-gray-900 border border-gray-300 rounded-sm placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+            className="block w-full px-5 py-2.5 bg-white leading-7 text-base font-normal shadow-xs text-gray-900 border border-gray-300 rounded-sm placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-950"
             {...register(`projects.${index}.link`)}
           />
         </div>

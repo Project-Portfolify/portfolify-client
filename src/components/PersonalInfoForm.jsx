@@ -140,7 +140,7 @@ const PersonalInfoForm = ({ onClickNext, form }) => {
             </label>
             <textarea
               rows="4"
-              className="block w-full px-5 py-2.5 bg-white leading-7 text-base font-normal shadow-xs text-gray-900 border border-gray-300 rounded-sm placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+              className="block w-full px-5 py-2.5 bg-white leading-7 text-base font-normal shadow-xs text-gray-900 border border-gray-300 rounded-sm placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-950 focus:border-transparent"
               placeholder="Tell us about yourself..."
               {...register("aboutMe", { required: true })}
             />

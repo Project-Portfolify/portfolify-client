@@ -8,14 +8,14 @@ const StepperComponent = ({ step }) => {
         <li
           className={clsx(
             "flex items-center w-full md:w-auto",
-            step >= 1 ? "text-indigo-600 " : "text-gray-600 ",
+            step >= 1 ? "text-blue-950 " : "text-gray-600 ",
             step >= 2
               ? "after:border-indigo-600 after:border-solid"
               : "after:border-gray-200"
           )}
         >
           <div className="flex items-center whitespace-nowrap ">
-            <span className="w-6 h-6 bg-indigo-600 border border-indigo-200 rounded-full flex justify-center items-center mr-3 text-sm text-white lg:w-10 lg:h-10">
+            <span className="w-6 h-6 bg-blue-950 border border-indigo-200 rounded-full flex justify-center items-center mr-3 text-sm text-white lg:w-10 lg:h-10">
               1
             </span>
             Personal Info
@@ -24,7 +24,7 @@ const StepperComponent = ({ step }) => {
         <li
           className={clsx(
             "flex items-center w-full md:w-auto",
-            step >= 2 ? "text-indigo-600 " : "text-gray-600 ",
+            step >= 2 ? "text-blue-950 " : "text-gray-600 ",
             step >= 3 ? "after:border-indigo-600" : "after:border-gray-200"
           )}
         >
@@ -33,7 +33,7 @@ const StepperComponent = ({ step }) => {
               className={clsx(
                 "w-6 h-6   border rounded-full flex justify-center items-center mr-3 lg:w-10 lg:h-10",
                 step >= 2
-                  ? "bg-indigo-600 border-indigo-200 text-white"
+                  ? "bg-blue-950 border-blue-950 text-white"
                   : "bg-gray-100 border-gray-200"
               )}
             >
@@ -45,7 +45,7 @@ const StepperComponent = ({ step }) => {
         <li
           className={clsx(
             "flex items-center w-full md:w-auto",
-            step >= 3 ? "text-indigo-600 " : "text-gray-600 ",
+            step >= 3 ? "text-blue-950 " : "text-gray-600 ",
             step >= 4 ? "after:border-indigo-600" : "after:border-gray-200"
           )}
         >
@@ -54,7 +54,7 @@ const StepperComponent = ({ step }) => {
               className={clsx(
                 "w-6 h-6   border rounded-full flex justify-center items-center mr-3 lg:w-10 lg:h-10",
                 step >= 3
-                  ? "bg-indigo-600 border-indigo-200 text-white"
+                  ? "bg-blue-950 border-blue-950 text-white"
                   : "bg-gray-100 border-gray-200"
               )}
             >
@@ -66,7 +66,7 @@ const StepperComponent = ({ step }) => {
         <li
           className={clsx(
             "flex items-center w-full md:w-auto",
-            step >= 4 ? "text-indigo-600 " : "text-gray-600 ",
+            step >= 4 ? "text-blue-950 " : "text-gray-600 ",
             step >= 5 ? "after:border-indigo-600" : "after:border-gray-200"
           )}
         >
@@ -75,7 +75,7 @@ const StepperComponent = ({ step }) => {
               className={clsx(
                 "w-6 h-6   border rounded-full flex justify-center items-center mr-3 lg:w-10 lg:h-10",
                 step >= 4
-                  ? "bg-indigo-600 border-indigo-200 text-white"
+                  ? "bg-blue-950 border-blue-950 text-white"
                   : "bg-gray-100 border-gray-200"
               )}
             >
@@ -87,7 +87,7 @@ const StepperComponent = ({ step }) => {
         <li
           className={clsx(
             "flex items-center w-full md:w-auto",
-            step >= 5 ? "text-indigo-600 " : "text-gray-600 ",
+            step >= 5 ? "text-blue-950 " : "text-gray-600 ",
             step >= 6 ? "after:border-indigo-600" : "after:border-gray-200"
           )}
         >
@@ -96,7 +96,7 @@ const StepperComponent = ({ step }) => {
               className={clsx(
                 "w-6 h-6   border rounded-full flex justify-center items-center mr-3 lg:w-10 lg:h-10",
                 step >= 5
-                  ? "bg-indigo-600 border-indigo-200 text-white"
+                  ? "bg-blue-950 border-blue-950 text-white"
                   : "bg-gray-100 border-gray-200"
               )}
             >
@@ -108,7 +108,7 @@ const StepperComponent = ({ step }) => {
         <li
           className={clsx(
             "flex items-center w-full md:w-auto",
-            step >= 6 ? "text-indigo-600 " : "text-gray-600 ",
+            step >= 6 ? "text-blue-950 " : "text-gray-600 ",
             step >= 7 ? "after:border-indigo-600" : "after:border-gray-200"
           )}
         >
@@ -117,7 +117,7 @@ const StepperComponent = ({ step }) => {
               className={clsx(
                 "w-6 h-6   border rounded-full flex justify-center items-center mr-3 lg:w-10 lg:h-10",
                 step >= 6
-                  ? "bg-indigo-600 border-indigo-200 text-white"
+                  ? "bg-blue-950 border-blue-950 text-white"
                   : "bg-gray-100 border-gray-200"
               )}
             >
