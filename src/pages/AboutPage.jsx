@@ -33,7 +33,7 @@ const AboutPage = () => {
                                 href="https://www.linkedin.com/in/shaik-uzma/" 
                                 target="_blank" 
                                 rel="noopener noreferrer" 
-                                className="text-blue-600 hover:text-blue-400 transition-colors"
+                                className="text-white hover:text-gray-500 transition-colors"
                             >
                                 <Linkedin size={20} />
                             </a>
@@ -62,7 +62,7 @@ const AboutPage = () => {
                                 href="https://www.linkedin.com/in/davidrepetto1/" 
                                 target="_blank" 
                                 rel="noopener noreferrer" 
-                                className="text-blue-600 hover:text-blue-400 transition-colors"
+                                className="text-white hover:text-gray-500 transition-colors"
                             >
                                 <Linkedin size={20} />
                             </a>
@@ -91,7 +91,7 @@ const AboutPage = () => {
                                 href="https://www.linkedin.com/in/luisjunco/" 
                                 target="_blank" 
                                 rel="noopener noreferrer" 
-                                className="text-blue-600 hover:text-blue-400 transition-colors"
+                                className="text-white hover:text-gray-500 transition-colors"
                             >
                                 <Linkedin size={20} />
                             </a>
