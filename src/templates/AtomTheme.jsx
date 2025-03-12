@@ -178,7 +178,7 @@ const Experience = ({ data }) => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
           <h2 className="text-3xl font-bold text-white">
-            Experience & Education
+            Experience
             <div className="mt-2 h-1 w-20 bg-purple-600 mx-auto"></div>
           </h2>
           <div className="w-16 h-1 bg-v mx-auto mt-4 mb-6"></div>
@@ -206,7 +206,7 @@ const Experience = ({ data }) => {
                   <div className="flex justify-between items-center mb-2">
                     <p className="text-blue-600 font-medium">{exp.company}</p>
                     <p className="text-sm text-gray-500">{exp.duration.from}</p>
-                    <p className="text-sm text-gray-500">{exp.duration.from}</p>
+                    <p className="text-sm text-gray-500">{exp.duration.to}</p>
                   </div>
                   <p className="text-gray-600">{exp.description}</p>
                 </div>
@@ -255,7 +255,7 @@ function AtomTheme({ data }) {
       <section id="home" className="pt-32 pb-20 relative overflow-hidden">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_30%,rgba(147,51,234,0.1),transparent_60%)]"></div>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
-          <div className="flex flex-col md:flex-row items-center max-w-3xl mx-auto text-center md:text-left">
+          <div className="flex flex-col gap-7 md:flex-row items-center max-w-3xl mx-auto text-center md:text-left">
             {/* Left Side - Text Content */}
             <div className="md:w-1/2">
               <h1 className="text-4xl md:text-6xl font-bold text-white mb-6">
@@ -298,7 +298,7 @@ function AtomTheme({ data }) {
               <img
                 src={data.imageUrl || profileImage}
                 alt="Profile"
-                className="w-full max-w-xs rounded-lg shadow-lg"
+                className="w-full h-80 max-w-xs shadow-lg rounded-full object-cover"
               />
             </div>
           </div>
@@ -315,7 +315,7 @@ function AtomTheme({ data }) {
               About Me
             </h2>
             <div className="mt-2 h-1 w-20 bg-purple-600 mx-auto"></div>
-            <p className="mt-4 text-xl text-gray-400">{data.about}</p>
+            <p className="mt-4 text-xl text-gray-400">{data.aboutMe}</p>
           </div>
         </div>
       </section>

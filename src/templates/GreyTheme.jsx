@@ -32,7 +32,7 @@ const Experience = ({ data }) => {
                   <div className="flex justify-between items-center mb-2">
                     <p className="text-gray-600 font-medium">{exp.company}</p>
                     <p className="text-sm text-gray-500">{exp.duration.from}</p>
-                    <p className="text-sm text-gray-500">{exp.duration.from}</p>
+                    <p className="text-sm text-gray-500">{exp.duration.to}</p>
                   </div>
                   <p className="text-gray-600">{exp.description}</p>
                 </div>
@@ -79,10 +79,10 @@ const GreyTheme = ({ data }) => {
       {/* Home Section */}
       <section
         id="home"
-        className="min-h-screen flex items-center pt-16 container mx-auto px-4"
+        className="m-10 flex items-center pt-16 container mx-auto px-4"
       >
         <div className="max-w-4xl grid grid-cols-1 md:grid-cols-2 gap-8 mx-auto">
-          <div>
+          <div className="rounded-full overflow-hidden w-90 h-90 mx-auto md:ml-0 md:mr-auto">
             <img src={data.imageUrl || profileImage} alt="" srcset="" />
           </div>
           <div>
@@ -91,7 +91,7 @@ const GreyTheme = ({ data }) => {
               with Innovative Technology
             </div>
             <p className="text-xl text-gray-600 mb-8 max-w-2xl break-words">
-              {data.about}
+              {data.aboutMe}
             </p>
             <div className="flex space-x-4">
               <a

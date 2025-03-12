@@ -6,8 +6,8 @@ const env = import.meta.env.VITE_BASE_API_URL;
 
 const SignUp = () => {
   const navigate = useNavigate();
-const { login } = useContext(AuthContext);
-const [error, setError] = useState(null);
+  const { login } = useContext(AuthContext);
+  const [error, setError] = useState(null);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -19,7 +19,7 @@ const [error, setError] = useState(null);
       name: name.value,
       password: password.value,
     };
-    
+
     console.log({ email: newUser.email, name: newUser.name });
 
     try {
@@ -29,30 +29,33 @@ const [error, setError] = useState(null);
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(newUser),
       });
-  
+
       const signUpData = await signUpResponse.json();
-  
+
       if (!signUpResponse.ok) {
         throw new Error(signUpData.message || "Sign up failed");
       }
-  
+
       console.log("Sign up successful:", signUpData);
-  
+
       // Después de signUp, automáticamente hace el login para obtener el token
       const loginResponse = await fetch(`${env}/auth/login`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email: newUser.email, password: newUser.password }),
+        body: JSON.stringify({
+          email: newUser.email,
+          password: newUser.password,
+        }),
       });
-  
+
       const loginData = await loginResponse.json();
-  
+
       if (loginResponse.ok) {
         console.log("Login successful:", loginData.authToken);
-  
+
         // Guarda el token en el contexto para mantener la sesión activa
         login(loginData.authToken);
-  
+
         // Redirige al dashboard o homepage después del login
         navigate("/");
       } else {
@@ -63,14 +66,13 @@ const [error, setError] = useState(null);
       console.error("Error:", error);
     }
   };
-  
 
   return (
     <form onSubmit={handleSubmit}>
       <div className="min-h-screen bg-gray-100 py-6 flex flex-col justify-center sm:py-12">
-        <div className="relative py-3 sm:max-w-xl sm:mx-auto">
-          <div className="absolute inset-0 bg-gradient-to-r from-blue-300 to-blue-600 shadow-lg transform -skew-y-6 sm:skew-y-0 sm:-rotate-6 sm:rounded-3xl"></div>
-          <div className="relative px-4 py-10 w-150 bg-white shadow-lg sm:rounded-3xl sm:p-20">
+        <div className="relative py-3 m-8 lg:ml-auto lg:mr-auto">
+          <div className="absolute w-70 lg:w-auto rounded-xl inset-0 bg-gradient-to-r from-blue-400 to-blue-950 shadow-lg transform -skew-y-6 sm:skew-y-0 sm:-rotate-6 sm:rounded-3xl"></div>
+          <div className="relative w-80 lg:w-150 px-10 py-10 bg-white shadow-lg rounded-xl">
             <div className="max-w-md mx-auto">
               <div>
                 <h1 className="text-2xl font-semibold">Sign Up</h1>
@@ -118,10 +120,16 @@ const [error, setError] = useState(null);
                   </div>
                   <div className="relative">
                     <button
-                      className="bg-blue-500 w-full text-white rounded-md px-2 py-1  hover:bg-blue-600 transition"
+                      className="bg-blue-950 mt-3 w-full text-white rounded-md px-2 py-1  hover:bg-blue-800 transition"
                       type="submit"
                     >
                       Submit
+                    </button>
+                    <button
+                      className=" mt-2 text-sm w-full text-black rounded-md px-2 py-1 hover:cursor-pointer hover:scale-105 transition"
+                      onClick={() => navigate("/")}
+                    >
+                      Back to home
                     </button>
                   </div>
                 </div>

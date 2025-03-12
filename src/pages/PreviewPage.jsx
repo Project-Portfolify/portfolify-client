@@ -64,27 +64,27 @@ const dummyData = {
         "Developing user-friendly interfaces and collaborating with designers to build responsive web applications.",
     },
   ],
-  roleDescription:
-    "Developing scalable web applications and leading a team of developers to build innovative solutions.",
-  yearFrom: "2018",
-  yearTo: "2024",
+  // roleDescription:
+  //   "Developing scalable web applications and leading a team of developers to build innovative solutions.",
+  // yearFrom: "2018",
+  // yearTo: "2024",
   skills: [
     {
       skillType: "FrontEnd",
       skills: skills.frontEnd.map((skill) => {
-        return skill.value;
+        return skill.label;
       }),
     },
     {
       skillType: "BackEnd",
       skills: skills.backEnd.map((skill) => {
-        return skill.value;
+        return skill.label;
       }),
     },
     {
       skillType: "OtherTools",
       skills: skills.otherTools.map((skill) => {
-        return skill.value;
+        return skill.label;
       }),
     },
   ],

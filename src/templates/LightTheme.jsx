@@ -161,7 +161,7 @@ const Experience = ({ data }) => {
                   <div className="flex justify-between items-center mb-2">
                     <p className="text-indigo-600 font-medium">{exp.company}</p>
                     <p className="text-sm text-gray-500">{exp.duration.from}</p>
-                    <p className="text-sm text-gray-500">{exp.duration.from}</p>
+                    <p className="text-sm text-gray-500">{exp.duration.to}</p>
                   </div>
                   <p className="text-gray-600">{exp.description}</p>
                 </div>
@@ -252,7 +252,7 @@ function LightThemeTemplate({ data }) {
                 Hi, I'm<span className="text-indigo-600"> {data.name}</span>
               </h1>
               <p className="mt-6 text-xl text-gray-600 max-w-2xl">
-                {data.about}
+                {data.aboutMe}
               </p>
               <div className="mt-8 flex flex-wrap gap-4">
                 <a
@@ -291,12 +291,12 @@ function LightThemeTemplate({ data }) {
             </div>
             <div className="order-1 md:order-2">
               <div className="relative">
-                <div className="absolute -inset-1 bg-gradient-to-r from-indigo-400  rounded-sm blur opacity-25"></div>
-                <div className="relative w-80 bg-white rounded-sm overflow-hidden">
+                <div className="absolute -inset-1 rounded-sm blur opacity-25"></div>
+                <div className="relative w-80 bg-white overflow-hidden rounded-full">
                   <img
                     src={data.imageUrl || profileImage}
                     alt="Portfolio Owner"
-                    className="w-full h-auto"
+                    className="w-full max-w-xs "
                   />
                 </div>
               </div>
@@ -309,20 +309,13 @@ function LightThemeTemplate({ data }) {
       <section id="about" className="py-16 md:py-24 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 text-center mb-16">
               About Me
             </h2>
             <div className="mt-2 h-1 w-20 bg-indigo-600 mx-auto"></div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-            <div>
-              <img
-                src="https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80"
-                alt="Working on projects"
-                className="rounded-sm shadow-lg"
-              />
-            </div>
+          <div className=" gap-12 items-center">
             <div>
               <h3 className="text-2xl font-bold text-gray-900 mb-4">
                 My Journey
@@ -339,7 +332,7 @@ function LightThemeTemplate({ data }) {
                   <h4 className="font-bold text-gray-900 mb-2">
                     Frontend Development
                   </h4>
-                  <ul className="space-y-2 text-gray-600 ">
+                  <ul className="space-y-2 text-gray-600 flex w-full flex-wrap gap-7">
                     {data.skills[0].skills.map((skill, i) => {
                       return <SkillBadge key={i} icon={Code} name={skill} />;
                     })}
@@ -349,7 +342,7 @@ function LightThemeTemplate({ data }) {
                   <h4 className="font-bold text-gray-900 mb-2">
                     Backend Development
                   </h4>
-                  <ul className="space-y-2 text-gray-600">
+                  <ul className="space-y-2 text-gray-600 flex w-full flex-wrap gap-7">
                     {data.skills[1].skills.map((skill, i) => {
                       return <SkillBadge key={i} icon={Server} name={skill} />;
                     })}
@@ -359,7 +352,7 @@ function LightThemeTemplate({ data }) {
                   <h4 className="font-bold text-gray-900 mb-2">
                     Tools & Others
                   </h4>
-                  <ul className="space-y-2 text-gray-600">
+                  <ul className="space-y-2 text-gray-600 flex w-full flex-wrap gap-7">
                     {data.skills[2].skills.map((skill, i) => {
                       return (
                         <SkillBadge key={i} icon={Terminal} name={skill} />

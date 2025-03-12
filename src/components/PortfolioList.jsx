@@ -6,7 +6,7 @@ import AtomTheme from "../assets/AtomTheme.png";
 import BoldTheme from "../assets/BoldTheme.png";
 import { Templates } from "../constants";
 import { useNavigate } from "react-router-dom";
-import { ChevronsLeft, ChevronsRight } from "lucide-react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 
 const templateList = [
   {
@@ -61,16 +61,16 @@ const PortfolioList = () => {
       <div className="relative">
         {/* Scroll to the Left Button */}
         <button
-          className="absolute hover:cursor-pointer hover:scale-110 hover:text-gray-600 left-10 top-1/2 w-10 z-10  text-black p-2 rounded-full"
+          className="absolute left-0 top-1/2 transform -translate-y-1/2 bg-white p-2 rounded-full shadow-md"
           onClick={scrollLeft}
         >
-          <ChevronsLeft size={40} />
+          <ChevronLeft size={24} />
         </button>
 
         {/* Carousel Container */}
         <div
           ref={carouselRef}
-          className="flex flex-nowrap gap-10 overflow-hidden pb-4 m-30"
+          className="flex flex-nowrap gap-10 overflow-hidden pb-4 m-14 lg:m-30"
         >
           {/* Card Template 1 */}
           {templateList.map((obj, i) => {
@@ -110,10 +110,10 @@ const PortfolioList = () => {
 
         {/* Scroll to the Right Button */}
         <button
-          className="absolute hover:cursor-pointer hover:scale-110  hover:text-gray-600 right-10 top-1/2 w-10 z-10  text-black p-2 rounded-full"
+          className="absolute right-0 top-1/2 transform -translate-y-1/2 bg-white p-2 rounded-full shadow-md"
           onClick={scrollRight}
         >
-          <ChevronsRight size={40} />
+          <ChevronRight size={24} />
         </button>
       </div>
     </section>
