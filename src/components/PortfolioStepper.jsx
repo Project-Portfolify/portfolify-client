@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { useParams } from "react-router-dom";
 import StepperComponent from "./StepperComponent";
@@ -10,7 +10,13 @@ import TemplateSwitch from "./TemplateSwitch";
 import ImageUpload from "./ImageUpload";
 
 const PortfolioStepper = ({ formData, isEdit }) => {
-  const [imageUrl, setImageUrl] = useState(null);
+  const [imageUrl, setImageUrl] = useState(formData?.imageUrl || null);
+
+  useEffect(() => {
+    if (formData?.imageUrl) {
+      setImageUrl(formData.imageUrl);
+    }
+  }, [formData]);
 
   const [combinedData, setCombinedData] = useState();
   const { templateId } = useParams();
@@ -30,7 +36,9 @@ const PortfolioStepper = ({ formData, isEdit }) => {
   const personalInfoForm = useForm({
     defaultValues: {
       aboutMe: formData?.about,
-      country: formData?.country,
+      country: formData?.country
+        ? { value: formData.country, label: formData.country }
+        : null,
       email: formData?.email,
       gitHub: formData?.gitHub,
       linkedIn: formData?.linkedIn,
