@@ -1,7 +1,6 @@
 import React, { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
-import ThemeToggleButton from "./ThemeToggleButton";
 import { Menu, X } from "lucide-react";
 import logo from "../assets/logo.png";
 
@@ -98,9 +97,6 @@ function Navbar() {
                   </li>
                 </>
               )}
-              <li>
-                <ThemeToggleButton />
-              </li>
             </ul>
           </nav>
         </div>
@@ -173,9 +169,6 @@ function Navbar() {
                   </li>
                 </>
               )}
-              <li>
-                <ThemeToggleButton />
-              </li>
             </ul>
           </nav>
         )}
