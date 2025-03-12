@@ -1,0 +1,120 @@
+import { useEffect, useState } from "react";
+import { motion } from "framer-motion";
+import { Send, MessageCircle } from "lucide-react";
+import OpenAI from "openai";
+
+const openai = new OpenAI({
+    apiKey: import.meta.env.VITE_OPENAI_API_KEY,
+    dangerouslyAllowBrowser: true,
+});
+
+const PortfolifyChat = () => {
+    const [isOpen, setIsOpen] = useState(false);
+    const [messages, setMessages] = useState([]);
+    const [input, setInput] = useState("");
+    const [isLoading, setIsLoading] = useState(false);
+
+    const toggleChat = () => setIsOpen(!isOpen);
+
+    useEffect(() => {
+        const savedMessages = JSON.parse(localStorage.getItem("chatMessages"));
+        if (savedMessages) {
+            setMessages(savedMessages);
+        }
+    }, []);
+
+    const handleSendMessage = async () => {
+        if (input.trim() === "") return;
+
+        const userMessage = { text: input, sender: "user" };
+        const newMessages = [...messages, userMessage];
+        setMessages(newMessages);
+        localStorage.setItem("chatMessages", JSON.stringify(newMessages)); // Save to localStorage
+
+        setInput("");
+
+        try {
+            const response = await openai.chat.completions.create({
+                messages: newMessages.map((msg) => ({
+                    role: msg.sender === "user" ? "user" : "assistant",
+                    content: msg.text,
+                })),
+                model: "gpt-3.5-turbo",
+            });
+
+            const botMessage = {
+                text: response.choices[0].message.content,
+                sender: "bot",
+            };
+
+            const updatedMessages = [...newMessages, botMessage];
+            setMessages(updatedMessages);
+            localStorage.setItem("chatMessages", JSON.stringify(updatedMessages)); // Save updated messages
+        } catch (error) {
+            console.error("Error with OpenAI:", error);
+        }
+    };
+
+    return (
+        <div className="fixed bottom-4 right-4 z-50">
+            {/* Button to open/close chat */}
+            <motion.button
+                whileTap={{ scale: 0.9 }}
+                onClick={toggleChat}
+                className="w-auto h-14 bg-blue-950 rounded-full flex items-center justify-center gap-2 px-4 shadow-lg text-white hover:bg-blue-950 transition-all"
+            >
+                <MessageCircle size={28} />
+                <span className="text-sm font-medium">Portfolify Chat</span>
+            </motion.button>
+
+            {/* Chat window */}
+            {isOpen && (
+                <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: 20 }}
+                    className="w-80 h-96 bg-white rounded-xl shadow-xl flex flex-col overflow-hidden mt-4"
+                >
+                    {/* Messages */}
+                    <div className="flex-1 p-4 overflow-y-auto space-y-2">
+                        {messages.map((msg, index) => (
+                            <div
+                                key={index}
+                                className={`p-2 rounded-lg max-w-[75%] ${msg.sender === "user"
+                                    ? "bg-blue-950 text-white self-end ml-auto"
+                                    : "bg-gray-200 text-black self-start"
+                                    }`}
+                            >
+                                {msg.text}
+                            </div>
+                        ))}
+                    </div>
+
+                    {/* Input field */}
+                    <div className="p-2 border-t border-gray-200 flex items-center">
+                        <input
+                            type="text"
+                            value={input}
+                            onChange={(e) => setInput(e.target.value)}
+                            className="flex-1 px-3 py-2 border border-gray-300 rounded-lg focus:outline-none"
+                            placeholder={isLoading ? "Generating response..." : "Start building your Portfolio..."}
+                            disabled={isLoading}
+                        />
+                        <button
+                            onClick={handleSendMessage}
+                            className={`ml-2 ${isLoading
+                                ? "bg-gray-400 cursor-not-allowed"
+                                : "bg-blue-950 hover:bg-blue-950"
+                                } text-white px-3 py-2 rounded-lg transition-all`}
+                            disabled={isLoading}
+                        >
+                            <Send size={20} />
+                        </button>
+                    </div>
+                </motion.div>
+            )}
+        </div>
+    );
+};
+
+export default PortfolifyChat;

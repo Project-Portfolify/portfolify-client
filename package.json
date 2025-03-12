@@ -26,6 +26,7 @@
     "fontawesome": "^5.6.3",
     "fortawesome": "^0.0.1-security",
     "lucide-react": "^0.477.0",
+    "openai": "^4.87.3",
     "puppeteer": "^24.3.1",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",

@@ -12,6 +12,7 @@ import CreatePortfolio from "./pages/CreatePortfolio";
 import PreviewPage from "./pages/PreviewPage";
 import PublishedPortfolioPage from "./pages/PublishedPortfolioPage";
 import EditPortfolioPage from "./pages/EditPortfolioPage";
+import PortfolifyChat from "./components/PortfolifyChat";
 
 function App() {
   return (
@@ -96,6 +97,7 @@ function PrivateRoute({ children }) {
     <AuthProvider>
       <Navbar />
       {children}
+      <PortfolifyChat/>
     </AuthProvider>
   );
 }
