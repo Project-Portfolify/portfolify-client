@@ -11,6 +11,7 @@ import ImageUpload from "./ImageUpload";
 
 const PortfolioStepper = ({ formData, isEdit }) => {
   const [imageUrl, setImageUrl] = useState(formData?.imageUrl || null);
+  const [resumeUrl, setResumeUrl] = useState(formData?.resumeUrl || null);
 
   useEffect(() => {
     if (formData?.imageUrl) {
@@ -120,6 +121,7 @@ const PortfolioStepper = ({ formData, isEdit }) => {
       ],
       template: templateId,
       imageUrl: imageUrl,
+      resumeUrl: resumeUrl,
       published: true,
     };
 
@@ -172,7 +174,9 @@ const PortfolioStepper = ({ formData, isEdit }) => {
           onClickPrev={prevStep}
           onClickSubmit={handleSubmit}
           imageUrl={imageUrl}
-          onFileUpload={setImageUrl}
+          onImageUpload={setImageUrl}
+          resumeUrl={resumeUrl}
+          onResumeUpload={setResumeUrl}
         />
       )}
 

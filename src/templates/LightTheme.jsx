@@ -65,8 +65,10 @@ const Navbar = ({ data }) => {
               Contact
             </a>
             <a
-              href="#"
-              className="px-4 py-2 rounded-md bg-indigo-600 text-white hover:bg-indigo-700 transition-colors"
+              href={data.resumeUrl}
+              download
+              target="_blank"
+              className="px-4 py-2 rounded-md bg-indigo-600 text-white hover:bg-indigo-700 hover:cursor-pointer transition-colors"
             >
               Resume
             </a>
