@@ -8,14 +8,12 @@ const env = import.meta.env.VITE_BASE_API_URL;
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
   const navigate = useNavigate();
   const { login } = useContext(AuthContext);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setError(null);
 
     try {
       const response = await fetch(`${env}/auth/login`, {
@@ -33,7 +31,6 @@ const Login = () => {
       }
     } catch (error) {
       setErrorMessage("Login failed, please try again.");
-      setError(true);
     }
   };
 
@@ -93,10 +90,10 @@ const Login = () => {
                 Cancel
               </button>
 
-              {error && (
+              {errorMessage && (
                 <ErrorAlert
                   message={errorMessage}
-                  onClose={() => setError(false)}
+                  onClose={() => setErrorMessage(null)}
                 />
               )}
             </form>

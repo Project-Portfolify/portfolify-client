@@ -65,12 +65,13 @@ const PortfolioPage = () => {
             >
               <div className="flex flex-col justify-between h-full p-3">
                 <div>
-                  <h2 className="text-md text-white font-semibold truncate">{portfolio.name}</h2>
+                  <h2 className="text-md text-white font-semibold truncate">
+                    {portfolio.name}
+                  </h2>
                   <p className="text-white dark:text-gray-400 text-sm truncate">
                     {portfolio.title}
                   </p>
                 </div>
-
 
                 <div className="flex justify-between gap-1 mt-4">
                   <Link
@@ -94,9 +95,13 @@ const PortfolioPage = () => {
                           headers: { Authorization: `Bearer ${getToken()}` },
                         })
                         .then(() => {
-                          setPortfolios(portfolios.filter((p) => p._id !== portfolio._id));
+                          setPortfolios(
+                            portfolios.filter((p) => p._id !== portfolio._id)
+                          );
                         })
-                        .catch((error) => console.error("Error deleting portfolio:", error));
+                        .catch((error) =>
+                          console.error("Error deleting portfolio:", error)
+                        );
                     }}
                     className="text-xs bg-red-800 hover:bg-red-700 text-white px-2 py-1 rounded"
                   >
@@ -104,16 +109,16 @@ const PortfolioPage = () => {
                   </button>
                 </div>
               </div>
+              <div className="mt-4">{renderTemplate(portfolio)}</div>
+              {error && (
+                <ErrorAlert
+                  message={errorMessage}
+                  onClose={() => setError(false)}
+                />
+              )}
             </div>
-            <div className="mt-4">{renderTemplate(portfolio)}</div>
-            {error && (
-              <ErrorAlert
-                message={errorMessage}
-                onClose={() => setError(false)}
-              />
-            )}
-          </div>
-        ))
+          ))}
+        </div>
       )}
     </div>
   );
