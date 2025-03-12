@@ -95,12 +95,13 @@ function ImageUpload({
         >
           Previous step
         </button>
+
         <button
           className="w-35 h-10 shadow-sm rounded-full bg-blue-950 hover:bg-blue-800 hover:cursor-pointer transition-all duration-700 text-white text-base font-semibold leading-7"
           onClick={() => onClickSubmit()}
           type="button"
         >
-          Next
+          {waitingForImageUrl ? "Uploading..." : "Next"}
         </button>
       </div>
     </div>
