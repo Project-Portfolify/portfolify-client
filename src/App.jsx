@@ -13,6 +13,7 @@ import PreviewPage from "./pages/PreviewPage";
 import PublishedPortfolioPage from "./pages/PublishedPortfolioPage";
 import EditPortfolioPage from "./pages/EditPortfolioPage";
 import PortfolifyChat from "./components/PortfolifyChat";
+import Footer from "./components/Footer";
 
 function App() {
   return (
@@ -98,6 +99,7 @@ function PrivateRoute({ children }) {
       <Navbar />
       {children}
       <PortfolifyChat/>
+      <Footer/>
     </AuthProvider>
   );
 }
