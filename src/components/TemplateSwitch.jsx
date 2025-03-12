@@ -8,7 +8,7 @@ import axios from "axios";
 import { useContext, useState } from "react";
 import { AuthContext } from "../context/AuthContext";
 import slugify from "slugify";
-import LogInModal from "./LogInModal";
+import LogInModal from "../components/LogInModal";
 import { useNavigate, useParams } from "react-router-dom";
 const env = import.meta.env.VITE_BASE_API_URL;
 
