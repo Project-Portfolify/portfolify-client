@@ -1,49 +1,43 @@
-import React from "react";
-import { useEffect } from "react";
-import Glide from "@glidejs/glide";
+import React, { useRef } from "react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 
 const PortfolioTips = () => {
-  useEffect(() => {
-    const slider = new Glide(".glide-08", {
-      type: "slider",
-      focusAt: 0,
-      animationDuration: 800,
-      autoplay: 3000,
-      rewind: true,
-      perView: 2,
-      gap: 20,
-      animationTimingFunc: "ease-in-out",
-    }).mount();
+  const scrollRef = useRef(null);
 
-    const carousel = document.querySelector(".glide-08");
+  const scrollLeft = () => {
+    scrollRef.current.scrollBy({ left: -300, behavior: "smooth" });
+  };
 
-    // Pause autoplay when hovering over the carousel
-    carousel.addEventListener("mouseenter", () => slider.pause());
-    carousel.addEventListener("mouseleave", () => slider.play());
+  const scrollRight = () => {
+    scrollRef.current.scrollBy({ left: 300, behavior: "smooth" });
+  };
 
-    return () => {
-      // Cleanup event listeners when component unmounts
-      carousel.removeEventListener("mouseenter", () => slider.pause());
-      carousel.removeEventListener("mouseleave", () => slider.play());
-      slider.destroy();
-    };
-  }, []);
   return (
-    <div className="relative w-full h-auto bg-gradient-to-r ">
+    <div className="relative w-full h-auto bg-gradient-to-r p-10">
       {/*<!-- Component: Testimonial carousel --> */}
-      <div className="glide-08 relative w-full overflow-hidden">
+      <div className="relative w-full overflow-hidden">
         <h2 className="text-4xl font-extrabold text-gray-400 mb-6 text-center">
           Tips for Creating a Great Portfolio
         </h2>
         {/*    <!-- Slides --> */}
-        <div data-glide-el="track">
-          <ul className="mt-10 whitespace-no-wrap flex-no-wrap [backface-visibility: hidden] [transform-style: preserve-3d] [touch-action: pan-Y] [will-change: transform] relative flex w-full overflow-hidden p-0 pb-12">
+        <div className="relative">
+          <button
+            className="absolute left-0 top-1/2 transform -translate-y-1/2 bg-white p-2 rounded-full shadow-md"
+            onClick={scrollLeft}
+          >
+            <ChevronLeft size={24} />
+          </button>
+          <div
+            ref={scrollRef}
+            className="mt-10 whitespace-nowrap flex space-x-4 overflow-x-auto p-0 pb-12"
+          >
             {/*                    <!-- Start Tip --> */}
             <li>
-              <div className="min-w-[400px] flex-shrink-0 bg-white rounded-lg shadow-lg p-4">
+              <div className="min-w-[300px] sm:min-w-[400px] flex-shrink-0 bg-white rounded-lg shadow-lg p-4">
                 <iframe
-                  width="400"
+                  width="300"
                   height="225"
+                  className="sm:w-full sm:h-auto"
                   src="https://www.youtube.com/embed/MsuXGvgWogQ?si=_T5bNX64d86D1KOc"
                   title="YouTube video player"
                   frameBorder="0"
@@ -56,10 +50,11 @@ const PortfolioTips = () => {
 
             {/*                    <!-- Start Tip --> */}
             <li>
-              <div className="min-w-[400px] flex-shrink-0 bg-white rounded-lg shadow-lg p-4">
+              <div className="min-w-[300px] sm:min-w-[400px] flex-shrink-0 bg-white rounded-lg shadow-lg p-4">
                 <iframe
-                  width="400"
+                  width="300"
                   height="225"
+                  className="sm:w-full sm:h-auto"
                   src="https://www.youtube.com/embed/u49dK48Yi44"
                   title="YouTube video player"
                   frameBorder="0"
@@ -71,10 +66,11 @@ const PortfolioTips = () => {
             </li>
             {/*                    <!-- Start Tip --> */}
             <li>
-              <div className="min-w-[400px] flex-shrink-0 bg-white rounded-lg shadow-lg p-4">
+              <div className="min-w-[300px] sm:min-w-[400px] flex-shrink-0 bg-white rounded-lg shadow-lg p-4">
                 <iframe
-                  width="400"
+                  width="300"
                   height="225"
+                  className="sm:w-full sm:h-auto"
                   src="https://www.youtube.com/embed/Gg_ZHHcGUDQ"
                   title="YouTube video player"
                   frameBorder="0"
@@ -86,10 +82,11 @@ const PortfolioTips = () => {
             </li>
             {/*                    <!-- Start Tip --> */}
             <li>
-              <div className="min-w-[400px] flex-shrink-0 bg-white rounded-lg shadow-lg p-4">
+              <div className="min-w-[300px] sm:min-w-[400px] flex-shrink-0 bg-white rounded-lg shadow-lg p-4">
                 <iframe
-                  width="400"
+                  width="300"
                   height="225"
+                  className="sm:w-full sm:h-auto"
                   src="https://www.youtube.com/embed/dWoTu31E5lM"
                   title="YouTube video player"
                   frameBorder="0"
@@ -101,10 +98,11 @@ const PortfolioTips = () => {
             </li>
             {/*                    <!-- Start Tip --> */}
             <li>
-              <div className="min-w-[400px] flex-shrink-0 bg-white rounded-lg shadow-lg p-4">
+              <div className="min-w-[300px] sm:min-w-[400px] flex-shrink-0 bg-white rounded-lg shadow-lg p-4">
                 <iframe
-                  width="400"
+                  width="300"
                   height="225"
+                  className="sm:w-full sm:h-auto"
                   src="https://www.youtube.com/embed/gHrS5X4nKbU"
                   title="YouTube video player"
                   frameBorder="0"
@@ -114,9 +112,14 @@ const PortfolioTips = () => {
                 ></iframe>
               </div>
             </li>
-          </ul>
+          </div>
+          <button
+            className="absolute right-0 top-1/2 transform -translate-y-1/2 bg-white p-2 rounded-full shadow-md"
+            onClick={scrollRight}
+          >
+            <ChevronRight size={24} />
+          </button>
         </div>
-        {/*    <!-- Indicators --> */}
       </div>
       {/*<!-- End Testimonial carousel --> */}
     </div>

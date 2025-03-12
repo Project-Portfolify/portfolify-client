@@ -91,7 +91,7 @@ function Navbar() {
                   <li>
                     <Link
                       to="/signup"
-                      className="bg-blue-600 text-white px-4 py-1 rounded-lg hover:bg-blue-700 transition duration-300"
+                      className="bg-blue-950 font-light text-sm text-white px-4 py-1 rounded-lg hover:bg-blue-700 transition duration-300"
                     >
                       SignUp
                     </Link>
@@ -166,7 +166,7 @@ function Navbar() {
                     <Link
                       to="/signup"
                       onClick={() => setMenuOpen(false)}
-                      className="bg-blue-600 text-white px-4 py-1 rounded-lg hover:bg-blue-700 transition duration-300"
+                      className="bg-blue-950 text-sm text-white px-4 py-1 rounded-lg hover:bg-blue-700 transition duration-300"
                     >
                       SignUp
                     </Link>

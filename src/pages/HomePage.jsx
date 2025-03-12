@@ -36,7 +36,7 @@ const HomePage = () => {
       </div>
 
       {/* Content sections below the hero */}
-      <div>
+      <div className="">
         <h2 className="text-3xl md:text-4xl font-bold text-center mt-10">
           Our Portfolios
         </h2>

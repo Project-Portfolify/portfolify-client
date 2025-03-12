@@ -207,7 +207,7 @@ const About = ({ data }) => {
           <div className="w-16 h-1 bg-blue-600 mx-auto mt-4 mb-6"></div>
           <p className="text-lg text-gray-600 max-w-3xl mx-auto">
             Here's a bit about my background and what I do.
-            <p className="text-lg text-gray-600 mb-8">{data.about}</p>
+            <p className="text-lg text-gray-600 mb-8">{data.aboutMe}</p>
           </p>
         </div>
       </div>
@@ -369,7 +369,7 @@ const Experience = ({ data }) => {
                   <div className="flex justify-between items-center mb-2">
                     <p className="text-blue-600 font-medium">{exp.company}</p>
                     <p className="text-sm text-gray-500">{exp.duration.from}</p>
-                    <p className="text-sm text-gray-500">{exp.duration.from}</p>
+                    <p className="text-sm text-gray-500">{exp.duration.to}</p>
                   </div>
                   <p className="text-gray-600">{exp.description}</p>
                 </div>

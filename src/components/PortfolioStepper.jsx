@@ -48,11 +48,7 @@ const PortfolioStepper = ({ formData, isEdit }) => {
   });
   const professionalSummaryForm = useForm({
     defaultValues: {
-      company: formData?.experience?.[0]?.company,
-      role: formData?.experience?.[0]?.role,
-      roleDescription: formData?.experience?.[0]?.description,
-      yearFrom: formData?.experience?.[0]?.duration?.from,
-      yearTo: formData?.experience?.[0]?.duration?.to,
+      experience: formData?.experience ?? [],
     },
   });
   const skillsForm = useForm({
@@ -97,17 +93,7 @@ const PortfolioStepper = ({ formData, isEdit }) => {
       country: personalInfo.country.value,
       title: personalInfo.jobTitle,
       about: personalInfo.aboutMe,
-      experience: [
-        {
-          role: professionalSummary.role,
-          company: professionalSummary.company,
-          duration: {
-            from: professionalSummary.yearFrom,
-            to: professionalSummary.yearTo,
-          },
-          description: professionalSummary.roleDescription,
-        },
-      ],
+      experience: professionalSummary.experience,
       projects: projectsFormValues.projects.map((project, index) => ({
         title: project?.title || `Project ${index + 1}`,
         description: project?.description || "No description provided",
