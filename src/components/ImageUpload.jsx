@@ -15,7 +15,6 @@ function ImageUpload({
     setWaitingForImageUrl(true);
 
     //check if we receive the file path correctly
-    console.log("The file to be uploaded is: ", e.target.files[0]);
     const url = `https://api.cloudinary.com/v1_1/${
       import.meta.env.VITE_CLOUDINARY_NAME
     }/upload`;
@@ -36,10 +35,7 @@ function ImageUpload({
       if (onFileUpload) {
         onFileUpload(uploadedUrl);
       }
-
-      console.log("Image uploaded successfully:", uploadedUrl);
     } catch (err) {
-      console.error("Upload failed:", err);
       setError("Failed to upload image. Please try again.");
       setWaitingForImageUrl(false);
     }
@@ -54,16 +50,22 @@ function ImageUpload({
         onChange={handleChange}
         className="block w-full h-10 px-4 py-2 bg-white text-base font-normal shadow-xs text-gray-900 border border-gray-300 rounded-md placeholder-gray-400 focus:outline-none cursor-pointer"
       />
-      {imageUrl && <img src={imageUrl} alt="my cloudinary image" className="mt-4 max-w-full h-auto" />}
+      {imageUrl && (
+        <img
+          src={imageUrl}
+          alt="my cloudinary image"
+          className="mt-4 max-w-full h-auto"
+        />
+      )}
       <div className="flex flex-col md:flex-row justify-between w-full mt-6">
         <button
-          className="w-52 h-12 shadow-sm rounded-full bg-indigo-600 hover:bg-indigo-800 transition-all duration-700 text-white text-base font-semibold leading-7 mb-4 md:mb-0"
+          className="w-35 h-10 shadow-sm rounded-full bg-blue-950 hover:bg-blue-800 hover:cursor-pointer transition-all duration-700 text-white text-base font-semibold leading-7 mb-4 md:mb-0"
           onClick={onClickPrev}
         >
           Previous step
         </button>
         <button
-          className="w-52 h-12 shadow-sm rounded-full bg-indigo-600 hover:bg-indigo-800 transition-all duration-700 text-white text-base font-semibold leading-7"
+          className="w-35 h-10 shadow-sm rounded-full bg-blue-950 hover:bg-blue-800 hover:cursor-pointer transition-all duration-700 text-white text-base font-semibold leading-7"
           onClick={() => onClickSubmit()}
           type="button"
         >

@@ -7,22 +7,26 @@ import BoldTheme from "../templates/BoldTheme";
 import LightTheme from "../templates/LightTheme";
 import GreyTheme from "../templates/GreyTheme";
 import DarkTheme from "../templates/DarkTheme";
+import { set } from "react-hook-form";
+import ErrorAlert from "../components/ErrorAlert";
 
 const env = import.meta.env.VITE_BASE_API_URL;
 
 function PublishedPortfolioPage() {
   const [portfolio, setPortfolio] = useState();
   const { slug } = useParams();
+  const [error, setError] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
 
   useEffect(() => {
     axios
       .get(`${env}/portfolios/${slug}`)
       .then((response) => {
-        console.log(response.data);
         setPortfolio(response.data);
       })
       .catch((error) => {
-        console.error("Error to fetch portfolios:", error);
+        setError(true);
+        setErrorMessage(error.message);
       });
   }, [slug]);
 
@@ -46,7 +50,14 @@ function PublishedPortfolioPage() {
   if (!portfolio) {
     return "Loading..";
   }
-  return <div>{renderTemplate()}</div>;
+  return (
+    <div>
+      {renderTemplate()}
+      {error && (
+        <ErrorAlert message={errorMessage} onClose={() => setError(false)} />
+      )}
+    </div>
+  );
 }
 
 export default PublishedPortfolioPage;

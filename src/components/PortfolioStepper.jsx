@@ -20,7 +20,6 @@ const PortfolioStepper = ({ formData, isEdit }) => {
 
   const [combinedData, setCombinedData] = useState();
   const { templateId } = useParams();
-  console.log(templateId);
 
   const [step, setStep] = useState(1);
   const totalSteps = 6;
@@ -125,7 +124,6 @@ const PortfolioStepper = ({ formData, isEdit }) => {
     };
 
     setCombinedData(combinedData);
-    console.log(combinedData);
 
     nextStep();
   };

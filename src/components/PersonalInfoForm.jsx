@@ -15,7 +15,6 @@ const PersonalInfoForm = ({ onClickNext, form }) => {
   } = form;
 
   const handleOnSubmit = (data) => {
-    console.log(data);
     onClickNext();
   };
 
@@ -155,7 +154,7 @@ const PersonalInfoForm = ({ onClickNext, form }) => {
 
         <div className="flex justify-end w-full mt-6">
           <button
-            className="w-52 h-12 shadow-sm rounded-full bg-indigo-600 hover:bg-indigo-800 transition-all duration-700 text-white text-base font-semibold leading-7"
+            className="w-35 h-10 shadow-sm rounded-full bg-blue-950 hover:bg-blue-800 hover:cursor-pointer transition-all duration-700 text-white text-base font-semibold leading-7"
             type="submit"
           >
             Next step

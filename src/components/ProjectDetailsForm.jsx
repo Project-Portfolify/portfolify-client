@@ -18,10 +18,8 @@ const ProjectDetailsForm = ({ form, onClickNext, onClickPrev }) => {
   });
 
   const handleOnSubmit = (data) => {
-    console.log(data);
     onClickNext();
   };
-  console.log(errors);
 
   useEffect(() => {
     if (fields.length === 0) {
@@ -55,13 +53,13 @@ const ProjectDetailsForm = ({ form, onClickNext, onClickPrev }) => {
         </div>
         <div className="flex flex-col md:flex-row justify-between w-full mt-6">
           <button
-            className="w-52 h-12 shadow-sm rounded-full bg-indigo-600 hover:bg-indigo-800 transition-all duration-700 text-white text-base font-semibold leading-7 mb-4 md:mb-0"
+            className="w-35 h-10 shadow-sm rounded-full bg-blue-950 hover:bg-blue-800 hover:cursor-pointer transition-all duration-700 text-white text-base font-semibold leading-7 mb-4 md:mb-0"
             onClick={onClickPrev}
           >
             Previous step
           </button>
           <button
-            className="w-52 h-12 shadow-sm rounded-full bg-indigo-600 hover:bg-indigo-800 transition-all duration-700 text-white text-base font-semibold leading-7"
+            className="w-35 h-10 shadow-sm rounded-full bg-blue-950 hover:bg-blue-800 hover:cursor-pointerw-35 transition-all duration-700 text-white text-base font-semibold leading-7"
             type="submit"
           >
             Next Step

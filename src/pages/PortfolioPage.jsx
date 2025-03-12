@@ -9,11 +9,15 @@ import BoldTheme from "../templates/BoldTheme";
 import GreyTheme from "../templates/GreyTheme";
 import DarkTheme from "../templates/DarkTheme";
 import { Templates } from "../constants";
+import ErrorAlert from "../components/ErrorAlert";
+import { set } from "react-hook-form";
 
 const env = import.meta.env.VITE_BASE_API_URL;
 
 const PortfolioPage = () => {
   const [portfolios, setPortfolios] = useState([]);
+  const [error, setError] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
   const { getToken } = useContext(AuthContext);
 
   useEffect(() => {
@@ -22,11 +26,11 @@ const PortfolioPage = () => {
         headers: { Authorization: `Bearer ${getToken()}` },
       })
       .then((response) => {
-        console.log(response.data);
         setPortfolios(response.data);
       })
       .catch((error) => {
-        console.error("Error al obtener portfolios:", error);
+        setErrorMessage("Error al obtener portfolios:");
+        setError(true);
       });
   }, []);
 
@@ -101,8 +105,15 @@ const PortfolioPage = () => {
                 </div>
               </div>
             </div>
-          ))}
-        </div>
+            <div className="mt-4">{renderTemplate(portfolio)}</div>
+            {error && (
+              <ErrorAlert
+                message={errorMessage}
+                onClose={() => setError(false)}
+              />
+            )}
+          </div>
+        ))
       )}
     </div>
   );
