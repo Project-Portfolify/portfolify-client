@@ -434,7 +434,7 @@ function LightThemeTemplate({ data }) {
             </p>
           </div>
 
-          <div className="grid grid-cols-2 gap-9 ">
+          <div className=" md:grid md:grid-cols-2 gap-8">
             <div className="bg-white rounded-xl shadow-md p-8 mb-8">
               <h3 className="text-2xl font-bold text-gray-900 mb-6">
                 Contact Information
@@ -479,7 +479,7 @@ function LightThemeTemplate({ data }) {
               </div>
             </div>
 
-            <div className="bg-white rounded-xl shadow-md p-8">
+            <div className="bg-white rounded-xl shadow-md p-8 mb-8">
               <h3 className="text-2xl font-bold text-gray-900 mb-6">
                 Availability
               </h3>
@@ -502,7 +502,7 @@ function LightThemeTemplate({ data }) {
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
             <div className="col-span-1 md:col-span-2">
               <h3 className="text-xl font-bold text-indigo-400 mb-4">
-                Portfolio
+                {data.name}
               </h3>
               <p className="text-gray-400 mb-4 max-w-md">
                 Creating beautiful, functional digital experiences that help
@@ -510,19 +510,19 @@ function LightThemeTemplate({ data }) {
               </p>
               <div className="flex space-x-4">
                 <a
-                  href="#"
+                  href={data.gitHub}
                   className="text-gray-400 hover:text-white transition-colors"
                 >
                   <Github size={20} />
                 </a>
                 <a
-                  href="#"
+                  href={data.linkedIn}
                   className="text-gray-400 hover:text-white transition-colors"
                 >
                   <Linkedin size={20} />
                 </a>
                 <a
-                  href="#"
+                  href={`mailto:${data.email}`}
                   className="text-gray-400 hover:text-white transition-colors"
                 >
                   <Mail size={20} />

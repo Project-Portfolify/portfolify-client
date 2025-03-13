@@ -118,6 +118,6 @@ const PreviewPage = () => {
     }
   };
   const template = selectTemplate();
-  return <div className="m-20 border-1">{template}</div>;
+  return <div className=" m-4 md:m-10 lg:m-10 border-1">{template}</div>;
 };
 export default PreviewPage;

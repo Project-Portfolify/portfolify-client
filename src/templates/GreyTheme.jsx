@@ -189,10 +189,10 @@ const GreyTheme = ({ data }) => {
 
       {/* Contact Section */}
       <section id="contact" className="py-20 bg-white">
-        <h2 className="text-4xl font-bold text-center mb-16">
+        <h2 className=" text-3xl md:text-4xl font-bold text-center mb-16">
           Contact Information
         </h2>
-        <div className=" bg-gray-50 rounded-l shadow-md p-8 mb-8 ml-30 mr-30">
+        <div className=" bg-gray-50 rounded-l shadow-md p-8 mb-8 md:ml-20 md:mr-20 lg:ml-40 lg:mr-40">
           <div className="space-y-4">
             <div className="flex items-start">
               <Mail className="text-black mt-1 mr-3" size={20} />

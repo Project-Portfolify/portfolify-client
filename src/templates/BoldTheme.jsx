@@ -141,6 +141,13 @@ const Hero = ({ data }) => {
     <section id="hero" className="pt-24 pb-16 md:pt-32 md:pb-24">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+          <div className="md:block">
+            <img
+              src={data.imageUrl || profileImage}
+              alt="Professional portrait"
+              className="w-full h-auto rounded-full shadow-lg object-cover"
+            />
+          </div>
           <div>
             <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
               Hi, I'm <span className="text-blue-600">{data.name}</span>
@@ -186,13 +193,6 @@ const Hero = ({ data }) => {
                 <Mail size={24} />
               </a>
             </div>
-          </div>
-          <div className="hidden md:block">
-            <img
-              src={data.imageUrl || profileImage}
-              alt="Professional portrait"
-              className="w-full h-auto rounded-full shadow-lg object-cover"
-            />
           </div>
         </div>
       </div>
@@ -411,7 +411,7 @@ const Contact = ({ data }) => {
                     href={data.email}
                     className="text-gray-600 hover:text-blue-600"
                   >
-                    contact@example.com
+                    {data.email}
                   </a>
                 </div>
               </div>
@@ -425,7 +425,7 @@ const Contact = ({ data }) => {
                     rel="noopener noreferrer"
                     className="text-gray-600 hover:text-blue-600"
                   >
-                    linkedin.com/in/johndoe
+                    {data.linkedIn}
                   </a>
                 </div>
               </div>
@@ -439,7 +439,7 @@ const Contact = ({ data }) => {
                     rel="noopener noreferrer"
                     className="text-gray-600 hover:text-blue-600"
                   >
-                    github.com/johndoe
+                    {data.gitHub}
                   </a>
                 </div>
               </div>
