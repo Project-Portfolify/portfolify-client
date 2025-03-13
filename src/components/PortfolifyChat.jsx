@@ -1,6 +1,9 @@
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { Send, MessageCircle } from "lucide-react";
+import { useNavigate } from "react-router-dom";
+import { useContext } from "react";
+import { AuthContext } from "../context/AuthContext";
 import OpenAI from "openai";
 import ErrorAlert from "./ErrorAlert";
 
@@ -17,8 +20,22 @@ const PortfolifyChat = () => {
   const [error, setError] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
 
+  const navigate = useNavigate();
+  const { isAuthenticated } = useContext(AuthContext); // get isAuthenticated from context
+
   const toggleChat = () => setIsOpen(!isOpen);
 
+  // open chat after 5 seconds
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      setIsOpen(true);
+      sendIntroMessages();
+    }, 30000);
+
+    return () => clearTimeout(timeout);
+  }, []);
+
+  // chat messages in local storage
   useEffect(() => {
     const savedMessages = JSON.parse(localStorage.getItem("chatMessages"));
     if (savedMessages) {
@@ -26,17 +43,37 @@ const PortfolifyChat = () => {
     }
   }, []);
 
+  // function to send intro messages
+  const sendIntroMessages = () => {
+    const introMessages = [
+      { text: "👋 Hi there! Need help building your portfolio?", sender: "bot" },
+      { text: "🚀 I can guide you step-by-step to create an awesome portfolio.", sender: "bot" },
+      { text: "💡 Just tell me what you're working on!", sender: "bot" },
+    ];
+
+    setMessages((prevMessages) => {
+      const updatedMessages = [...prevMessages, ...introMessages];
+      localStorage.setItem("chatMessages", JSON.stringify(updatedMessages)); // store in local storage
+      return updatedMessages;
+    });
+  };
+
   const handleSendMessage = async () => {
     if (input.trim() === "") return;
+
+    if (!isAuthenticated) {
+      navigate("/login"); // navigate to login page if user is not authenticated
+      return;
+    }
 
     const userMessage = { text: input, sender: "user" };
     const newMessages = [...messages, userMessage];
     setMessages(newMessages);
-    localStorage.setItem("chatMessages", JSON.stringify(newMessages)); // Save to localStorage
-
+    localStorage.setItem("chatMessages", JSON.stringify(newMessages));
     setInput("");
 
     try {
+      setIsLoading(true);
       const response = await openai.chat.completions.create({
         messages: newMessages.map((msg) => ({
           role: msg.sender === "user" ? "user" : "assistant",
@@ -52,10 +89,12 @@ const PortfolifyChat = () => {
 
       const updatedMessages = [...newMessages, botMessage];
       setMessages(updatedMessages);
-      localStorage.setItem("chatMessages", JSON.stringify(updatedMessages)); // Save updated messages
+      localStorage.setItem("chatMessages", JSON.stringify(updatedMessages));
     } catch (error) {
-      setErrorMessage("Error with OpenAI:");
+      setErrorMessage("Error with OpenAI: " + error.message);
       setError(true);
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -65,7 +104,7 @@ const PortfolifyChat = () => {
       <motion.button
         whileTap={{ scale: 0.9 }}
         onClick={toggleChat}
-        className="w-auto h-14 bg-blue-950 rounded-full flex items-center justify-center gap-2 px-4 shadow-lg text-white hover:bg-blue-950 transition-all"
+        className="w-auto h-14 bg-blue-950 rounded-full flex items-center justify-center gap-2 px-4 shadow-lg text-white hover:bg-blue-900 transition-all"
       >
         <MessageCircle size={28} />
         <span className="text-sm font-medium">Portfolify Chat</span>
@@ -114,7 +153,7 @@ const PortfolifyChat = () => {
               className={`ml-2 ${
                 isLoading
                   ? "bg-gray-400 cursor-not-allowed"
-                  : "bg-blue-950 hover:bg-blue-950"
+                  : "bg-blue-950 hover:bg-blue-900"
               } text-white px-3 py-2 rounded-lg transition-all`}
               disabled={isLoading}
             >
@@ -123,6 +162,8 @@ const PortfolifyChat = () => {
           </div>
         </motion.div>
       )}
+
+      {/* Error Alert */}
       {error && (
         <ErrorAlert message={errorMessage} onClose={() => setError(false)} />
       )}
