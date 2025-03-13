@@ -297,10 +297,11 @@ const GreyTheme = ({ data }) => {
                   href={data.gitHub}
                   className="text-gray-600 hover:text-gray-950"
                 >
-                  {data.gitHub}{" "}
+                  {data.gitHub}
                 </a>
               </div>
             </div>
+            <p className="text-gray-400 mb-4">Location: {data.country}</p>
           </div>
         </div>
       </section>

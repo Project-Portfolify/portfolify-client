@@ -340,6 +340,9 @@ export default function DarkTheme({ data }) {
                   </a>
                 </div>
               </div>
+              <div>
+                <p className="text-gray-400 mb-4">Location: {data.country}</p>
+              </div>
             </div>
           </div>
         </section>

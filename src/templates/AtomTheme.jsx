@@ -460,6 +460,7 @@ function AtomTheme({ data }) {
               >
                 <Mail size={20} />
               </a>
+              <p className="text-gray-400 mb-4">Location: {data.country}</p>
             </div>
           </div>
           <div className="mt-8 pt-8 border-t border-gray-800 text-center text-gray-400">

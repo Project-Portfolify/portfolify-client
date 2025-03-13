@@ -207,9 +207,9 @@ const About = ({ data }) => {
         <div className="text-center mb-12">
           <h2 className="text-3xl font-bold text-gray-900">About Me</h2>
           <div className="w-16 h-1 bg-blue-600 mx-auto mt-4 mb-6"></div>
-          <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+          <p className="text-lg text-gray-400 max-w-3xl mx-auto">
             Here's a bit about my background and what I do.
-            <p className="text-lg text-gray-600 mb-8">{data.about}</p>
+            <p className="text-lg text-gray-600 mb-8 mt-8">{data.about}</p>
           </p>
         </div>
       </div>
@@ -554,7 +554,7 @@ const Footer = ({ data }) => {
           <div>
             <h3 className="text-xl font-bold mb-4">Get In Touch</h3>
             <p className="text-gray-400 mb-2">{data.email}</p>
-            <p className="text-gray-400 mb-4">Location: {data.country.label}</p>
+            <p className="text-gray-400 mb-4">Location: {data.country}</p>
             <a
               href="#contact"
               className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors inline-block"
