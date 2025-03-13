@@ -25,15 +25,6 @@ const PortfolifyChat = () => {
 
   const toggleChat = () => setIsOpen(!isOpen);
 
-  // open chat after 5 seconds
-  useEffect(() => {
-    const timeout = setTimeout(() => {
-      setIsOpen(true);
-      sendIntroMessages();
-    }, 30000);
-
-    return () => clearTimeout(timeout);
-  }, []);
 
   // chat messages in local storage
   useEffect(() => {
@@ -45,6 +36,7 @@ const PortfolifyChat = () => {
 
   // function to send intro messages
   const sendIntroMessages = () => {
+    if (localStorage.getItem("introMessageSent")) return;
     const introMessages = [
       { text: "👋 Hi there! Need help building your portfolio?", sender: "bot" },
       { text: "🚀 I can guide you step-by-step to create an awesome portfolio.", sender: "bot" },
@@ -56,7 +48,19 @@ const PortfolifyChat = () => {
       localStorage.setItem("chatMessages", JSON.stringify(updatedMessages)); // store in local storage
       return updatedMessages;
     });
+    localStorage.setItem("introMessageSent", "true");
   };
+   // open chat after 30 seconds
+  useEffect(() => {
+    if (localStorage.getItem("chatOpenedOnce")) return; // <- verify if chat has been opened once
+    const timeout = setTimeout(() => {
+      setIsOpen(true);
+      sendIntroMessages(); // welcome messages just once
+      localStorage.setItem("chatOpenedOnce", "true");
+    }, 30000);
+  
+    return () => clearTimeout(timeout);
+  }, []);
 
   const handleSendMessage = async () => {
     if (input.trim() === "") return;
