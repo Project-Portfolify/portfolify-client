@@ -90,7 +90,7 @@ const PortfolioStepper = ({ formData, isEdit }) => {
       gitHub: personalInfo.gitHub,
       linkedIn: personalInfo.linkedIn,
       email: personalInfo.email,
-      country: personalInfo.country.value,
+      country: personalInfo.country.label,
       title: personalInfo.jobTitle,
       about: personalInfo.aboutMe,
       experience: professionalSummary.experience,

@@ -2,7 +2,7 @@ import React, { useEffect, useState, useContext } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
-import { Pencil, Eye, Trash2, Phone, Mail, Globe, MapPin } from "lucide-react";
+import { Pencil, Eye, Trash2, Mail, MapPin } from "lucide-react";
 import DeleteAlertBox from "../components/DeleteAlertBox";
 import profileDummy from "../assets/profiledummy.png";
 
@@ -39,7 +39,7 @@ const PortfolioPage = () => {
 
   return (
     <div className="container mx-auto p-6 text-center">
-      <h1 className="text-2xl font-bold mb-8 text-gray-900">Your Portfolios</h1>
+      <h1 className="text-2xl font-bold mb-8 text-gray-900">My Portfolios</h1>
 
       {portfolios.length === 0 ? (
         <p className="text-gray-500 dark:text-gray-400">
@@ -50,7 +50,7 @@ const PortfolioPage = () => {
           {portfolios.map((portfolio) => (
             <div
               key={portfolio._id}
-              className="profile-card w-[300px] rounded-md shadow-xl overflow-hidden relative cursor-pointer snap-start shrink-0 bg-white border-1 border-gray-800 flex flex-col items-center justify-center gap-3 transition-all duration-300 group"
+              className="profile-card w-[300px] rounded-xl shadow-xl overflow-hidden relative cursor-pointer snap-start shrink-0 bg-white border-1 border-white hover:scale-105 flex flex-col items-center justify-center gap-3 transition-all duration-300 p-6 group"
             >
               {/* Avatar Section */}
               <div className="avatar w-full pt-5 flex items-center justify-center flex-col gap-1">
@@ -59,14 +59,14 @@ const PortfolioPage = () => {
                     <img
                       src={portfolio.imageUrl || profileDummy}
                       alt={portfolio.name || "Default Avatar"}
-                      className="size-36 z-40 border-4 border-gray-800 rounded-full group-hover:border-6 group-hover:transition-all group-hover:duration-300 transition-all duration-300"
+                      className="size-36 z-40 border-2 group-hover:border-[#58b0e0] rounded-full group-hover:border-3 group-hover:transition-all group-hover:duration-300 transition-all duration-300"
                     />
                   ) : (
                     //dummy avatar here
                     <img
                       src={profileDummy}
                       alt="Default Avatar"
-                      className="size-36 z-40 border-4 bg-white border-gray-800 rounded-full group-hover:border-6 group-hover:transition-all group-hover:duration-300 transition-all duration-300"
+                      className="size-36 z-40 border-2 bg-white group-hover:border-[#58b0e0] rounded-full group-hover:border-3 group-hover:transition-all group-hover:duration-300 transition-all duration-300"
                     />
                   )}
                   <div className="absolute bg-[#58b0e0] z-10 w-full group-hover:transition-all group-hover:duration-300 transition-all duration-300 delay-700 group-hover:delay-0"></div>
@@ -85,29 +85,18 @@ const PortfolioPage = () => {
 
               {/* Contact details */}
               <div className="w-full flex items-center justify-center">
-                <ul className="flex flex-col items-start gap-2 pb-3 text-xs font-semibold text-[#434955] border-b border-dotted border-b-stone-700">
-                  {portfolio.phone && (
-                    <li className="flex items-center gap-2">
-                      <Phone className="w-4 h-4 fill-stone-700 group-hover:fill-[#58b0e0]" />
-                      <p>{portfolio.phone}</p>
-                    </li>
-                  )}
+                <ul className="flex flex-col items-start gap-2 pb-3 text-xs font-semibold text-[#434955] rounded-lg shadow-sm p-4">
                   {portfolio.email && (
                     <li className="flex items-center gap-2">
-                      <Mail className="w-4 h-4 fill-stone-700 group-hover:fill-[#58b0e0]" />
+                      <Mail className="w-4 h-4 fill-white group-hover:fill-[#58b0e0]" />
                       <p>{portfolio.email}</p>
                     </li>
                   )}
-                  {portfolio.website && (
-                    <li className="flex items-center gap-2">
-                      <Globe className="w-4 h-4 fill-stone-700 group-hover:fill-[#58b0e0]" />
-                      <p>{portfolio.website}</p>
-                    </li>
-                  )}
+
                   {portfolio.template && (
                     <li className="flex items-center gap-2">
-                      <MapPin className="w-4 h-4 fill-stone-700 group-hover:fill-[#58b0e0]" />
-                      <p>{portfolio.template}</p>
+                      <MapPin className="w-4 h-4 fill-white group-hover:fill-[#58b0e0]" />
+                      <p>{portfolio.slug}</p>
                     </li>
                   )}
                 </ul>

@@ -203,44 +203,6 @@ export default function DarkTheme({ data }) {
           </div>
         </section>
 
-        {/* Projects Section */}
-        <section id="projects" className="py-20">
-          <h2 className="text-3xl font-bold mb-12 text-center">My Projects</h2>
-          <div className="flex flex-wrap gap-6 justify-center">
-            {data.projects.map((project, index) => (
-              <div
-                key={index}
-                className="border rounded-sm overflow-hidden shadow-md hover:shadow-xl transition-shadow dark:border-gray-700"
-              >
-                <div className="relative h-48 overflow-hidden">
-                  <img
-                    src={randomImage || "/placeholder.svg"}
-                    alt={project.title}
-                    className="w-full h-full object-cover transition-transform hover:scale-105"
-                  />
-                </div>
-                <div className="p-4">
-                  <h3 className="text-xl font-semibold mb-2">
-                    {project.title}
-                  </h3>
-                  <p className="text-gray-600 dark:text-gray-300 mb-4">
-                    {project.description}
-                  </p>
-
-                  <div className="flex justify-between">
-                    <a
-                      href={project.link}
-                      className="flex items-center gap-1 px-3 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700"
-                    >
-                      <ExternalLinkIcon className="h-4 w-4" /> Demo
-                    </a>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </section>
-
         <section className="py-20">
           <h2 className="text-3xl font-bold mb-12 text-center">Skills</h2>
           <div className="container mx-auto max-w-5xl">
@@ -297,6 +259,44 @@ export default function DarkTheme({ data }) {
           </div>
         </section>
 
+        {/* Projects Section */}
+        <section id="projects" className="py-20">
+          <h2 className="text-3xl font-bold mb-12 text-center">My Projects</h2>
+          <div className="flex flex-wrap gap-6 justify-center">
+            {data.projects.map((project, index) => (
+              <div
+                key={index}
+                className="border rounded-sm overflow-hidden shadow-md hover:shadow-xl transition-shadow dark:border-gray-700"
+              >
+                <div className="relative h-48 overflow-hidden">
+                  <img
+                    src={randomImage || "/placeholder.svg"}
+                    alt={project.title}
+                    className="w-full h-full object-cover transition-transform hover:scale-105"
+                  />
+                </div>
+                <div className="p-4">
+                  <h3 className="text-xl font-semibold mb-2">
+                    {project.title}
+                  </h3>
+                  <p className="text-gray-600 dark:text-gray-300 mb-4">
+                    {project.description}
+                  </p>
+
+                  <div className="flex justify-between">
+                    <a
+                      href={project.link}
+                      className="flex items-center gap-1 px-3 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700"
+                    >
+                      <ExternalLinkIcon className="h-4 w-4" /> Demo
+                    </a>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+
         {/* Contact Section */}
         <section id="contact" className="py-20 bg-gray-900">
           <h2 className="text-4xl font-bold text-center mb-16">
@@ -339,6 +339,9 @@ export default function DarkTheme({ data }) {
                     {data.gitHub}
                   </a>
                 </div>
+              </div>
+              <div>
+                <p className="text-gray-400 mb-4">Location: {data.country}</p>
               </div>
             </div>
           </div>

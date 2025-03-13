@@ -65,7 +65,7 @@ function Navbar() {
                       to="/portfolios"
                       className="text-gray-700 hover:text-blue-950 transition duration-300"
                     >
-                      Portfolio
+                      My Portfolios
                     </Link>
                   </li>
                   <li>

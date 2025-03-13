@@ -35,7 +35,7 @@ const skills = {
 const dummyData = {
   about:
     "Passionate developer with expertise in building scalable web applications and user-friendly experiences.",
-  country: { value: "US", label: "United States" },
+  country: "United States",
   email: "alex.johnson@example.com",
   gitHub: "https://github.com/alexjohnson",
   linkedIn: "https://linkedin.com/in/alexjohnson",

@@ -7,7 +7,6 @@ import BoldTheme from "../templates/BoldTheme";
 import LightTheme from "../templates/LightTheme";
 import GreyTheme from "../templates/GreyTheme";
 import DarkTheme from "../templates/DarkTheme";
-import { set } from "react-hook-form";
 import ErrorAlert from "../components/ErrorAlert";
 
 const env = import.meta.env.VITE_BASE_API_URL;

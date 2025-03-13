@@ -222,35 +222,51 @@ const GreyTheme = ({ data }) => {
           <h2 className="text-4xl font-bold text-center mb-16">
             Technical Skills
           </h2>
-          <div className="grid md:grid-cols-3 gap-8">
-            {data.skills[0].skills.map((skillGroup, index) => (
-              <div
-                key={index}
-                className="bg-gray-50 rounded-sm p-6 text-center"
-              >
-                <h3 className="text-2xl font-semibold mb-6">{skillGroup}</h3>
-              </div>
-            ))}
+          <div className="flex flex-col">
+            <h2 className="text-2xl font-bold text-center mb-10">
+              Front-End Skills
+            </h2>
+
+            <div className="grid md:grid-cols-3 gap-8">
+              {data.skills[0].skills.map((skillGroup, index) => (
+                <div
+                  key={index}
+                  className="bg-gray-50 rounded-sm p-6 text-center"
+                >
+                  <h3 className="text-2xl font-semibold mb-6">{skillGroup}</h3>
+                </div>
+              ))}
+            </div>
           </div>
-          <div className="grid md:grid-cols-3 gap-8 mt-10">
-            {data.skills[1].skills.map((skillGroup, index) => (
-              <div
-                key={index}
-                className="bg-gray-50 rounded-sm p-6 text-center"
-              >
-                <h3 className="text-2xl font-semibold mb-6">{skillGroup}</h3>
-              </div>
-            ))}
+          <div className="flex flex-col">
+            <h2 className="text-2xl font-bold text-center mb-5 mt-15">
+              Back-End Skills
+            </h2>
+            <div className="grid md:grid-cols-3 gap-8 mt-10">
+              {data.skills[1].skills.map((skillGroup, index) => (
+                <div
+                  key={index}
+                  className="bg-gray-50 rounded-sm p-6 text-center"
+                >
+                  <h3 className="text-2xl font-semibold mb-6">{skillGroup}</h3>
+                </div>
+              ))}
+            </div>
           </div>
-          <div className="grid md:grid-cols-3 gap-8 mt-10">
-            {data.skills[2].skills.map((skillGroup, index) => (
-              <div
-                key={index}
-                className="bg-gray-50 rounded-sm p-6 text-center"
-              >
-                <h3 className="text-2xl font-semibold mb-6">{skillGroup}</h3>
-              </div>
-            ))}
+          <div className="flex flex-col">
+            <h2 className="text-2xl font-bold text-center mb-5 mt-15">
+              Other Tools
+            </h2>
+            <div className="grid md:grid-cols-3 gap-8 mt-10">
+              {data.skills[2].skills.map((skillGroup, index) => (
+                <div
+                  key={index}
+                  className="bg-gray-50 rounded-sm p-6 text-center"
+                >
+                  <h3 className="text-2xl font-semibold mb-6">{skillGroup}</h3>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </section>
@@ -297,10 +313,11 @@ const GreyTheme = ({ data }) => {
                   href={data.gitHub}
                   className="text-gray-600 hover:text-gray-950"
                 >
-                  {data.gitHub}{" "}
+                  {data.gitHub}
                 </a>
               </div>
             </div>
+            <p className="text-gray-400 mb-4">Location: {data.country}</p>
           </div>
         </div>
       </section>
