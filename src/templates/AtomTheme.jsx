@@ -26,6 +26,7 @@ import {
   Layers,
   GitBranch,
 } from "lucide-react";
+import { backendOptions, frontEndOptions, toolOptions } from "../constants";
 
 const imageArray = [projectImage, project1, project2];
 
@@ -339,7 +340,10 @@ function AtomTheme({ data }) {
               </h3>
               <div className="flex flex-wrap gap-3">
                 {data.skills[0].skills.map((skill, i) => {
-                  return <SkillBadge key={i} icon={Code} name={skill} />;
+                  const label = frontEndOptions.find(
+                    (ele) => ele.value === skill
+                  ).label;
+                  return <SkillBadge key={i} icon={Code} name={label} />;
                 })}
               </div>
             </div>
@@ -349,9 +353,12 @@ function AtomTheme({ data }) {
                 Backend Development
               </h3>
               <div className="flex flex-wrap gap-3">
-                {data.skills[1].skills.map((skill, i) => (
-                  <SkillBadge key={i} icon={Server} name={skill} />
-                ))}
+                {data.skills[1].skills.map((skill, i) => {
+                  const label = backendOptions.find(
+                    (ele) => ele.value === skill
+                  ).label;
+                  return <SkillBadge key={i} icon={Server} name={label} />;
+                })}
               </div>
             </div>
 
@@ -360,9 +367,12 @@ function AtomTheme({ data }) {
                 Tools & Others
               </h3>
               <div className="flex flex-wrap gap-3">
-                {data.skills[2].skills.map((skill, i) => (
-                  <SkillBadge key={i} icon={Terminal} name={skill} />
-                ))}
+                {data.skills[2].skills.map((skill, i) => {
+                  const label = toolOptions.find(
+                    (ele) => ele.value === skill
+                  ).label;
+                  return <SkillBadge key={i} icon={Terminal} name={label} />;
+                })}
               </div>
             </div>
           </div>
@@ -460,7 +470,9 @@ function AtomTheme({ data }) {
               >
                 <Mail size={20} />
               </a>
-              <p className="text-gray-400 mb-4">Location: {data.country}</p>
+              <p className="text-gray-400 mb-4">
+                Location: {data.country.label}
+              </p>
             </div>
           </div>
           <div className="mt-8 pt-8 border-t border-gray-800 text-center text-gray-400">

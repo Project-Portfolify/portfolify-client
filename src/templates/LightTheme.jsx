@@ -25,6 +25,7 @@ import {
   Layers,
   GitBranch,
 } from "lucide-react";
+import { backendOptions, frontEndOptions, toolOptions } from "../constants";
 
 const imageArray = [projectImage, project1, project2];
 
@@ -331,7 +332,10 @@ function LightThemeTemplate({ data }) {
                   </h4>
                   <ul className="space-y-2 text-gray-600 flex w-full flex-wrap gap-7">
                     {data.skills[0].skills.map((skill, i) => {
-                      return <SkillBadge key={i} icon={Code} name={skill} />;
+                      const label = frontEndOptions.find(
+                        (ele) => ele.value === skill
+                      ).label;
+                      return <SkillBadge key={i} icon={Code} name={label} />;
                     })}
                   </ul>
                 </div>
@@ -341,7 +345,10 @@ function LightThemeTemplate({ data }) {
                   </h4>
                   <ul className="space-y-2 text-gray-600 flex w-full flex-wrap gap-7">
                     {data.skills[1].skills.map((skill, i) => {
-                      return <SkillBadge key={i} icon={Server} name={skill} />;
+                      const label = backendOptions.find(
+                        (ele) => ele.value === skill
+                      ).label;
+                      return <SkillBadge key={i} icon={Code} name={label} />;
                     })}
                   </ul>
                 </div>
@@ -351,9 +358,10 @@ function LightThemeTemplate({ data }) {
                   </h4>
                   <ul className="space-y-2 text-gray-600 flex w-full flex-wrap gap-7">
                     {data.skills[2].skills.map((skill, i) => {
-                      return (
-                        <SkillBadge key={i} icon={Terminal} name={skill} />
-                      );
+                      const label = toolOptions.find(
+                        (ele) => ele.value === skill
+                      ).label;
+                      return <SkillBadge key={i} icon={Code} name={label} />;
                     })}
                   </ul>
                 </div>
@@ -519,7 +527,9 @@ function LightThemeTemplate({ data }) {
                 >
                   <Mail size={20} />
                 </a>
-                <p className="text-gray-400 mb-4">Location: {data.country}</p>
+                <p className="text-gray-400 mb-4">
+                  Location: {data.country.label}
+                </p>
               </div>
             </div>
 
@@ -560,7 +570,6 @@ function LightThemeTemplate({ data }) {
                     Contact
                   </a>
                 </li>
-                <p className="text-gray-400 mb-4">Location: {data.country}</p>
               </ul>
             </div>
 

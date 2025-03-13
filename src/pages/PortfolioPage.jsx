@@ -10,20 +10,23 @@ const env = import.meta.env.VITE_BASE_API_URL;
 
 const PortfolioPage = () => {
   const [portfolios, setPortfolios] = useState([]);
-  const [deleteAlert, setDeleteAlert] = useState(false);
+  const [deleteId, setDeleteId] = useState();
   const { getToken } = useContext(AuthContext);
 
-  useEffect(() => {
-    axios
-      .get(`${env}/portfolios`, {
+  const getPortfolios = async () => {
+    try {
+      const response = await axios.get(`${env}/portfolios`, {
         headers: { Authorization: `Bearer ${getToken()}` },
-      })
-      .then((response) => {
-        setPortfolios(response.data);
-      })
-      .catch((error) => {
-        console.error("Error al obtener portfolios:", error);
       });
+
+      setPortfolios(response.data);
+    } catch (error) {
+      console.error("Error al obtener portfolios:", error);
+    }
+  };
+
+  useEffect(() => {
+    getPortfolios();
   }, []);
 
   const handleDelete = async (id) => {
@@ -31,7 +34,8 @@ const PortfolioPage = () => {
       await axios.delete(`${env}/portfolios/${id}`, {
         headers: { Authorization: `Bearer ${getToken()}` },
       });
-      setPortfolios((prev) => prev.filter((portfolio) => portfolio._id !== id));
+      await getPortfolios();
+      setDeleteId(undefined);
     } catch (error) {
       console.error("Error deleting portfolio:", error);
     }
@@ -127,24 +131,24 @@ const PortfolioPage = () => {
                 {/* Delete */}
                 <button
                   onClick={() => {
-                    return setDeleteAlert(true);
+                    return setDeleteId(portfolio._id);
                   }}
                   className="text-red-500 hover:text-red-400 transition-colors hover:cursor-pointer"
                   title="Delete"
                 >
                   <Trash2 className="w-5 h-5" />
                 </button>
-                {deleteAlert && (
-                  <DeleteAlertBox
-                    message="Are you sure you want to delete this portfolio?"
-                    onDelete={() => handleDelete(portfolio._id)}
-                    onCancel={() => setDeleteAlert(false)}
-                  />
-                )}
               </div>
             </div>
           ))}
         </div>
+      )}
+      {deleteId && (
+        <DeleteAlertBox
+          message="Are you sure you want to delete this portfolio?"
+          onDelete={() => handleDelete(deleteId)}
+          onCancel={() => setDeleteId(undefined)}
+        />
       )}
     </div>
   );

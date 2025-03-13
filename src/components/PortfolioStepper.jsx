@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { useForm } from "react-hook-form";
 import { useParams } from "react-router-dom";
 import StepperComponent from "./StepperComponent";
@@ -8,10 +8,12 @@ import SkillsForm from "./SkillsForm";
 import ProjectDetailsForm from "./ProjectDetailsForm";
 import TemplateSwitch from "./TemplateSwitch";
 import ImageUpload from "./ImageUpload";
+import countryList from "react-select-country-list";
 
 const PortfolioStepper = ({ formData, isEdit }) => {
   const [imageUrl, setImageUrl] = useState(formData?.imageUrl || null);
   const [resumeUrl, setResumeUrl] = useState(formData?.resumeUrl || null);
+  const options = useMemo(() => countryList().getData(), []);
 
   useEffect(() => {
     if (formData?.imageUrl) {
@@ -37,7 +39,7 @@ const PortfolioStepper = ({ formData, isEdit }) => {
     defaultValues: {
       aboutMe: formData?.about,
       country: formData?.country
-        ? { value: formData.country, label: formData.country }
+        ? options.find((x) => x.value === formData?.country)
         : null,
       email: formData?.email,
       gitHub: formData?.gitHub,
@@ -90,7 +92,7 @@ const PortfolioStepper = ({ formData, isEdit }) => {
       gitHub: personalInfo.gitHub,
       linkedIn: personalInfo.linkedIn,
       email: personalInfo.email,
-      country: personalInfo.country.label,
+      country: personalInfo.country,
       title: personalInfo.jobTitle,
       about: personalInfo.aboutMe,
       experience: professionalSummary.experience,
@@ -130,7 +132,7 @@ const PortfolioStepper = ({ formData, isEdit }) => {
     nextStep();
   };
   return (
-    <div className="m-10 md:m-20 lg:m-30">
+    <div className="m-5 md:m-10 lg:m-30">
       <StepperComponent step={step} />
       {/* Full Form */}
 

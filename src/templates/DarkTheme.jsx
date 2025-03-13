@@ -18,6 +18,7 @@ import profileImage from "../assets/profileimage.png";
 import projectImage from "../assets/projectImage.png";
 import project1 from "../assets/project1.png";
 import project2 from "../assets/project2.png";
+import { backendOptions, frontEndOptions, toolOptions } from "../constants";
 
 const imageArray = [projectImage, project1, project2];
 
@@ -212,14 +213,23 @@ export default function DarkTheme({ data }) {
                   {category.skillType}
                 </h3>
                 <div className="grid grid-cols-2 md:grid-cols-3 gap-6 text-center">
-                  {category.skills.map((skill, index) => (
-                    <div
-                      key={index}
-                      className="border rounded-sm p-6 hover:shadow-md transition-shadow dark:border-gray-700"
-                    >
-                      <h3 className="text-xl font-semibold mb-4">{skill}</h3>
-                    </div>
-                  ))}
+                  {category.skills.map((skill, index) => {
+                    const label = (
+                      category.skillType === "FrontEnd"
+                        ? frontEndOptions
+                        : category.skillType === "BackEnd"
+                        ? backendOptions
+                        : toolOptions
+                    ).find((ele) => ele.value === skill).label;
+                    return (
+                      <div
+                        key={index}
+                        className="border rounded-sm p-6 hover:shadow-md transition-shadow dark:border-gray-700"
+                      >
+                        <h3 className="text-xl font-semibold mb-4">{label}</h3>
+                      </div>
+                    );
+                  })}
                 </div>
               </div>
             ))}
@@ -341,7 +351,9 @@ export default function DarkTheme({ data }) {
                 </div>
               </div>
               <div>
-                <p className="text-gray-400 mb-4">Location: {data.country}</p>
+                <p className="text-gray-400 mb-4">
+                  Location: {data.country.label}
+                </p>
               </div>
             </div>
           </div>

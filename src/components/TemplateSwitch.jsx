@@ -54,6 +54,7 @@ const TemplateSwitch = ({ templateId, data, onClickPrev, isEdit }) => {
   const portfolioData = {
     slug: generateUniqueSlug(data.name),
     ...data,
+    country: data.country.value,
   };
 
   const handleSubmit = () => {
@@ -89,12 +90,6 @@ const TemplateSwitch = ({ templateId, data, onClickPrev, isEdit }) => {
           headers: { Authorization: `Bearer ${getToken()}` },
         })
         .then((response) => {
-          <div
-            class="p-4 mb-4 text-sm text-green-800 rounded-lg bg-green-50 dark:bg-gray-800 dark:text-green-400"
-            role="alert"
-          >
-            <span class="font-medium">Edit successful!</span>
-          </div>;
           setPortfolio(response.data);
           window.open(
             `/portfolio/${portfolioData.slug}`,
