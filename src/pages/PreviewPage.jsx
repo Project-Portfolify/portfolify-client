@@ -33,7 +33,7 @@ const skills = {
 };
 
 const dummyData = {
-  aboutMe:
+  about:
     "Passionate developer with expertise in building scalable web applications and user-friendly experiences.",
   country: { value: "US", label: "United States" },
   email: "alex.johnson@example.com",

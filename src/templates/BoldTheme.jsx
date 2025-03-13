@@ -209,7 +209,7 @@ const About = ({ data }) => {
           <div className="w-16 h-1 bg-blue-600 mx-auto mt-4 mb-6"></div>
           <p className="text-lg text-gray-600 max-w-3xl mx-auto">
             Here's a bit about my background and what I do.
-            <p className="text-lg text-gray-600 mb-8">{data.aboutMe}</p>
+            <p className="text-lg text-gray-600 mb-8">{data.about}</p>
           </p>
         </div>
       </div>

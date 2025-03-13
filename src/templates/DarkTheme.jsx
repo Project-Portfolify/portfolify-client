@@ -159,7 +159,7 @@ export default function DarkTheme({ data }) {
           <h2 className="text-2xl md:text-3xl text-gray-600 dark:text-gray-300 mb-6">
             {data.title}
           </h2>
-          <p className="max-w-2xl text-lg mb-8">{data.aboutMe}</p>
+          <p className="max-w-2xl text-lg mb-8">{data.about}</p>
           <div className="flex space-x-4">
             <button
               onClick={() => scrollToSection("projects")}

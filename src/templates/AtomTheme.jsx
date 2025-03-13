@@ -317,7 +317,7 @@ function AtomTheme({ data }) {
               About Me
             </h2>
             <div className="mt-2 h-1 w-20 bg-purple-600 mx-auto"></div>
-            <p className="mt-4 text-xl text-gray-400">{data.aboutMe}</p>
+            <p className="mt-4 text-xl text-gray-400">{data.about}</p>
           </div>
         </div>
       </section>

@@ -322,7 +322,7 @@ function LightThemeTemplate({ data }) {
               <h3 className="text-2xl font-bold text-gray-900 mb-4">
                 My Journey
               </h3>
-              <p className="text-gray-600 mb-6">{data.aboutMe}</p>
+              <p className="text-gray-600 mb-6">{data.about}</p>
               <p className="text-gray-600 mb-6">
                 I specialize in responsive web design, user experience, and
                 front-end development, with a focus on creating accessible and

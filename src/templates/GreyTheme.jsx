@@ -170,7 +170,7 @@ const GreyTheme = ({ data }) => {
               with Innovative Technology
             </div>
             <p className="text-xl text-gray-600 mb-8 max-w-2xl break-words">
-              {data.aboutMe}
+              {data.about}
             </p>
             <div className="flex space-x-4">
               <a
