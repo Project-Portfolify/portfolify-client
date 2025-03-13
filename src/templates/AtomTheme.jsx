@@ -235,9 +235,6 @@ const SkillBadge = ({ icon: Icon, name }) => {
 };
 
 function AtomTheme({ data }) {
-  // const frontEndSkills = data?.skills?.find(skill => skill.skillType === "FrontEnd")?.skills || [];
-  // const backEndSkills = data?.skills?.find(skill => skill.skillType === "BackEnd")?.skills || [];
-  // const otherTools = data?.skills?.find(skill => skill.skillType === "OtherTools")?.skills || [];
   const [randomImage, setRandomImage] = useState("");
 
   useEffect(() => {
