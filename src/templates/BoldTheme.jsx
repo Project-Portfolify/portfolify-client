@@ -245,7 +245,7 @@ const Skills = ({ data }) => {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="flex flex-col gap-10 md:flex md:flex-row md:justify-evenly">
           {skillCategories.map((category, index) => (
             <div key={index} className="bg-white p-6 rounded-sm shadow-md">
               <h3 className="text-xl font-semibold text-gray-900 mb-4">
