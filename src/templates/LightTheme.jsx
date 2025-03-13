@@ -323,11 +323,6 @@ function LightThemeTemplate({ data }) {
                 My Journey
               </h3>
               <p className="text-gray-600 mb-6">{data.about}</p>
-              <p className="text-gray-600 mb-6">
-                I specialize in responsive web design, user experience, and
-                front-end development, with a focus on creating accessible and
-                performant websites that deliver results.
-              </p>
 
               <div>
                 <div>
@@ -504,10 +499,7 @@ function LightThemeTemplate({ data }) {
               <h3 className="text-xl font-bold text-indigo-400 mb-4">
                 {data.name}
               </h3>
-              <p className="text-gray-400 mb-4 max-w-md">
-                Creating beautiful, functional digital experiences that help
-                businesses grow and succeed in the digital world.
-              </p>
+
               <div className="flex space-x-4">
                 <a
                   href={data.gitHub}
@@ -527,6 +519,7 @@ function LightThemeTemplate({ data }) {
                 >
                   <Mail size={20} />
                 </a>
+                <p className="text-gray-400 mb-4">Location: {data.country}</p>
               </div>
             </div>
 

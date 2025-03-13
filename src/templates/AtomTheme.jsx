@@ -435,7 +435,7 @@ function AtomTheme({ data }) {
           <div className="flex flex-col md:flex-row justify-between items-center">
             <div className="text-center md:text-left mb-8 md:mb-0">
               <span className="text-xl font-bold text-purple-400">
-                &lt;Portfolio /&gt;
+                {data.name}
               </span>
               <p className="mt-2 text-gray-400">
                 Building digital experiences that matter.
@@ -460,6 +460,7 @@ function AtomTheme({ data }) {
               >
                 <Mail size={20} />
               </a>
+              <p className="text-gray-400 mb-4">Location: {data.country}</p>
             </div>
           </div>
           <div className="mt-8 pt-8 border-t border-gray-800 text-center text-gray-400">

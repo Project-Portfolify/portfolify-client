@@ -138,11 +138,11 @@ const TemplateSwitch = ({ templateId, data, onClickPrev, isEdit }) => {
           )}
         </div>
       </div>
-
-      {currentTheme}
       {error && (
         <ErrorAlert message={errorMessage} onClose={() => setError(false)} />
       )}
+
+      {currentTheme}
     </div>
   );
 };
