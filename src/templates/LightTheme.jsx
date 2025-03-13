@@ -560,6 +560,7 @@ function LightThemeTemplate({ data }) {
                     Contact
                   </a>
                 </li>
+                <p className="text-gray-400 mb-4">Location: {data.country}</p>
               </ul>
             </div>
 
