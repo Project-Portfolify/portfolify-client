@@ -3,7 +3,11 @@ import { Controller } from "react-hook-form";
 
 const SkillsForm = ({ onClickNext, onClickPrev, form }) => {
   const frontEndOptions = [
-    { value: "react", label: "React" },
+    { value: "reactnative", label: "React Native" },
+    { value: "reactjs", label: "ReactJS" },
+
+    { value: "javascript", label: "JavaScript" },
+    { value: "typescript", label: "TypeScript" },
     { value: "vue", label: "Vue.js" },
     { value: "angular", label: "Angular" },
     { value: "nextjs", label: "Next.js" },
@@ -13,7 +17,14 @@ const SkillsForm = ({ onClickNext, onClickPrev, form }) => {
 
   const backendOptions = [
     { value: "nodejs", label: "Node.js" },
+    { value: "php", label: "PHP" },
+    { value: "java", label: "Java" },
+    { value: "mysql", label: "MySQL" },
+    { value: "c#", label: "C#" },
+    { value: "python", label: "Python" },
+    { value: "postgresql", label: "PostgreSQL" },
     { value: "express", label: "Express.js" },
+    { value: "mongodb", label: "MongoDB" },
     { value: "django", label: "Django" },
     { value: "flask", label: "Flask" },
     { value: "spring", label: "Spring Boot" },
@@ -23,6 +34,11 @@ const SkillsForm = ({ onClickNext, onClickPrev, form }) => {
 
   const toolOptions = [
     { value: "git", label: "Git" },
+    { value: "quickbooks", label: "QuickBooks" },
+    { value: "microsoftexcel", label: "Microsoft Excel" },
+    { value: "figma", label: "Figma" },
+
+    { value: "trello", label: "Trollo" },
     { value: "github", label: "GitHub" },
     { value: "docker", label: "Docker" },
     { value: "kubernetes", label: "Kubernetes" },
