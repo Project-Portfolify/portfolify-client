@@ -37,9 +37,7 @@ const PortfolioPage = () => {
 
   return (
     <div className="container mx-auto p-6 text-center">
-      <h1 className="text-3xl font-bold mb-8 text-gray-900">
-        Portfolios Published
-      </h1>
+      <h1 className="text-2xl font-bold mb-8 text-gray-900">Your Portfolios</h1>
 
       {portfolios.length === 0 ? (
         <p className="text-gray-500 dark:text-gray-400">
@@ -52,7 +50,6 @@ const PortfolioPage = () => {
               key={portfolio._id}
               className="profile-card w-[300px] rounded-md shadow-xl overflow-hidden relative cursor-pointer snap-start shrink-0 bg-white border-1 border-gray-800 flex flex-col items-center justify-center gap-3 transition-all duration-300 group"
             >
-              {console.log(portfolio)}
               {/* Avatar Section */}
               <div className="avatar w-full pt-5 flex items-center justify-center flex-col gap-1">
                 <div className="img_container w-full flex items-center justify-center relative z-40 after:absolute  after:top-4 after:group-hover:[size:1%] after:delay-300 after:group-hover:delay-0 after:group-hover:transition-all after:group-hover:duration-300 after:transition-all after:duration-300 before:absolute  before:bottom-4 before:group-hover:[size:1%] before:delay-300 before:group-hover:delay-0 before:group-hover:transition-all before:group-hover:duration-300 before:transition-all before:duration-300">
