@@ -150,8 +150,6 @@ const Navbar = ({ data }) => {
 };
 
 const GreyTheme = ({ data }) => {
-  const [activeTab, setActiveTab] = useState("home");
-
   return (
     <div className="bg-white text-gray-900 min-h-screen font-sans">
       <Navbar data={data} />
