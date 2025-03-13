@@ -20,7 +20,7 @@ function Navbar() {
           {/* Logo */}
           <div className="flex">
             <img src={logo} alt="logo" className="w-10" />
-            <h1 className="text-3xl font-bold text-gray-800">
+            <h1 className="text-3xl font-medium text-gray-800">
               <Link to="/" className="ml-2">
                 Portfolify
               </Link>

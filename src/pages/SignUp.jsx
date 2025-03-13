@@ -1,4 +1,3 @@
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
 import { useContext, useState } from "react";
@@ -117,6 +116,10 @@ const SignUp = () => {
                     <label className="absolute left-0 -top-3.5 text-gray-600 text-sm peer-placeholder-shown:top-2 peer-placeholder-shown:text-gray-400 transition-all peer-focus:-top-3.5 peer-focus:text-gray-600 peer-focus:text-sm">
                       Password
                     </label>
+                    <span className="text-gray-300 text-xs font-light">
+                      Password must be at least 8 characters long and contain at
+                      least one number and one uppercase letter.
+                    </span>
                   </div>
                   <div className="relative">
                     <button

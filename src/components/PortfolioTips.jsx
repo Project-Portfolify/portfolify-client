@@ -16,7 +16,7 @@ const PortfolioTips = () => {
     <div className="relative w-full h-auto bg-gradient-to-r p-10">
       {/*<!-- Component: Testimonial carousel --> */}
       <div className="relative w-full overflow-hidden">
-        <h2 className="text-4xl font-extrabold text-gray-400 mb-6 text-center">
+        <h2 className="text-4xl font-medium text-gray-400 mb-6 text-center">
           Tips for Creating a Great Portfolio
         </h2>
         {/*    <!-- Slides --> */}
