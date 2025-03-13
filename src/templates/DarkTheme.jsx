@@ -8,6 +8,8 @@ import {
   MailIcon,
   ExternalLinkIcon,
   CodeIcon,
+  Menu,
+  X,
 } from "lucide-react";
 import { MoonIcon, SunIcon } from "lucide-react";
 
@@ -31,50 +33,114 @@ export default function DarkTheme({ data }) {
     pickRandomImage();
   }, []);
 
+  const Navbar = ({ data }) => {
+    const [isOpen, setIsOpen] = useState(false);
+
+    return (
+      <nav className="w-full bg-gray-900 backdrop-blur-sm z-50 border-b border-gray-100 dark:border-gray-700">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex justify-between h-16">
+            <div className="flex items-center">{data.name}</div>
+
+            {/* Desktop menu */}
+            <div className="hidden md:flex items-center space-x-8">
+              <a
+                href="#home"
+                className="text-white hover:text-indigo-600 transition-colors"
+              >
+                Home
+              </a>
+              <a
+                href="#about"
+                className="text-white hover:text-indigo-600 transition-colors"
+              >
+                About
+              </a>
+              <a
+                href="#projects"
+                className="text-white hover:text-indigo-600 transition-colors"
+              >
+                Projects
+              </a>
+              <a
+                href="#contact"
+                className="text-white hover:text-indigo-600 transition-colors"
+              >
+                Contact
+              </a>
+              <a
+                href={data.resumeUrl}
+                download
+                target="_blank"
+                className="px-4 py-2 rounded-md bg-indigo-600 text-white hover:bg-indigo-700 hover:cursor-pointer transition-colors"
+              >
+                Resume
+              </a>
+            </div>
+
+            {/* Mobile menu button */}
+            <div className="md:hidden flex items-center">
+              <button
+                onClick={() => setIsOpen(!isOpen)}
+                className="inline-flex items-center justify-center p-2 rounded-md text-blue-500 hover:text-indigo-600 focus:outline-none"
+              >
+                {isOpen ? <X size={24} /> : <Menu size={24} />}
+              </button>
+            </div>
+          </div>
+        </div>
+
+        {/* Mobile menu */}
+        {isOpen && (
+          <div className="md:hidden bg-gray-900 border-b border-gray-100 dark:border-gray-700">
+            <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+              <a
+                href="#home"
+                className="block px-3 py-2 rounded-md text-base font-medium text-white hover:text-indigo-600 hover:bg-gray-50"
+                onClick={() => setIsOpen(false)}
+              >
+                Home
+              </a>
+              <a
+                href="#about"
+                className="block px-3 py-2 rounded-md text-base font-medium text-white hover:text-indigo-600 hover:bg-gray-50"
+                onClick={() => setIsOpen(false)}
+              >
+                About
+              </a>
+              <a
+                href="#projects"
+                className="block px-3 py-2 rounded-md text-base font-medium text-white hover:text-indigo-600 hover:bg-gray-50"
+                onClick={() => setIsOpen(false)}
+              >
+                Projects
+              </a>
+              <a
+                href="#contact"
+                className="block px-3 py-2 rounded-md text-base font-medium text-white hover:text-indigo-600 hover:bg-gray-50"
+                onClick={() => setIsOpen(false)}
+              >
+                Contact
+              </a>
+              <a
+                href="#"
+                className="block px-3 py-2 rounded-md text-base font-medium bg-blue-700 text-white hover:bg-blue-600"
+                onClick={() => setIsOpen(false)}
+              >
+                Resume
+              </a>
+            </div>
+          </div>
+        )}
+      </nav>
+    );
+  };
+
   return (
     <div className="min-h-screen bg-gray-900 text-white">
       {/* Header */}
       <header className="sticky top-0 z-10 backdrop-blur-md bg-white/80 dark:bg-gray-900/80 border-b dark:border-gray-700">
-        <nav className="container mx-auto px-4 py-4 flex justify-between items-center">
-          <h1 className="text-xl font-bold">{data.name}</h1>
-
-          <div className="hidden md:flex space-x-6">
-            <button
-              onClick={() => scrollToSection("about")}
-              className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
-            >
-              About
-            </button>
-            <button
-              onClick={() => scrollToSection("projects")}
-              className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
-            >
-              Projects
-            </button>
-            <button
-              onClick={() => scrollToSection("experience")}
-              className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
-            >
-              Experience
-            </button>
-            <button
-              onClick={() => scrollToSection("contact")}
-              className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
-            >
-              Contact
-            </button>
-          </div>
-          <div className="flex items-center space-x-4">
-            <a
-              href={data.resumeUrl}
-              download
-              target="_blank"
-              className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 cursor-pointer transition-colors"
-            >
-              Resume
-            </a>
-          </div>
-        </nav>
+        <Navbar data={data} />
       </header>
 
       <main className="container mx-auto px-4 py-8">
@@ -140,7 +206,7 @@ export default function DarkTheme({ data }) {
         {/* Projects Section */}
         <section id="projects" className="py-20">
           <h2 className="text-3xl font-bold mb-12 text-center">My Projects</h2>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="flex flex-wrap gap-6 justify-center">
             {data.projects.map((project, index) => (
               <div
                 key={index}
@@ -209,19 +275,21 @@ export default function DarkTheme({ data }) {
                   key={index}
                   className="border rounded-sm p-6 hover:shadow-md transition-shadow dark:border-gray-700"
                 >
-                  <div className="flex justify-between items-start mb-4">
+                  <div className="flex flex-col justify-between items-start mb-4">
                     <div>
-                      <h3 className="text-xl font-semibold">{item.role}</h3>
-                      <p className="text-gray-600 dark:text-gray-300">
+                      <h3 className="text-xl font-semibold mb-2">
+                        {item.role}
+                      </h3>
+                      <span className="px-2 py-1 bg-blue-100 dark:bg-blue-900/30 text-blue-800 dark:text-blue-300 text-xs rounded-full">
+                        {item.duration.from} - {item.duration.to}
+                      </span>
+                      <p className="text-gray-600 dark:text-gray-300 mt-4">
                         {item.company}
                       </p>
                       <p className="text-gray-600 dark:text-gray-300">
                         {item.description}
                       </p>
                     </div>
-                    <span className="px-2 py-1 bg-blue-100 dark:bg-blue-900/30 text-blue-800 dark:text-blue-300 text-xs rounded-full">
-                      {item.duration.from} - {item.duration.to}
-                    </span>
                   </div>
                 </div>
               ))}
@@ -234,7 +302,7 @@ export default function DarkTheme({ data }) {
           <h2 className="text-4xl font-bold text-center mb-16">
             Contact Information
           </h2>
-          <div className=" bg-gray-900 rounded-l shadow-md p-8 mb-8 ml-auto mr-auto border border-gray-500 w-120">
+          <div className=" bg-gray-900 rounded-l shadow-md p-8 mb-8 ml-auto mr-auto border border-gray-500">
             <div className="space-y-4">
               <div className="flex items-start">
                 <Mail className="text-white mt-1 mr-3" size={20} />

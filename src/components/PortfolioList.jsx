@@ -70,7 +70,7 @@ const PortfolioList = () => {
         {/* Carousel Container */}
         <div
           ref={carouselRef}
-          className="flex flex-nowrap gap-10 overflow-hidden pb-4 m-14 lg:m-30"
+          className="flex flex-nowrap gap-14 overflow-hidden pb-4 m-18 lg:m-30"
         >
           {/* Card Template 1 */}
           {templateList.map((obj, i) => {

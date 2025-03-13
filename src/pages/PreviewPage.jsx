@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { Templates } from "../constants";
 import AtomTheme from "../templates/AtomTheme";
 import BoldTheme from "../templates/BoldTheme";
@@ -100,6 +100,7 @@ const dummyData = {
 };
 
 const PreviewPage = () => {
+  const navigate = useNavigate();
   const { templateId } = useParams();
   const selectTemplate = () => {
     switch (templateId) {
@@ -118,6 +119,16 @@ const PreviewPage = () => {
     }
   };
   const template = selectTemplate();
-  return <div className=" m-4 md:m-10 lg:m-10 border-1">{template}</div>;
+  return (
+    <div>
+      <button
+        onClick={() => navigate("/")}
+        className="block md:hidden lg:hidden text-black px-4 mt-3 hover:cursor-pointer rounded"
+      >
+        Back to home
+      </button>
+      <div className="m-4 md:m-10 lg:m-10 border-1">{template}</div>
+    </div>
+  );
 };
 export default PreviewPage;
