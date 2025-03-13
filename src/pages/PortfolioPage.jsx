@@ -3,11 +3,13 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
 import { Pencil, Eye, Trash2, Phone, Mail, Globe, MapPin } from "lucide-react";
+import DeleteAlertBox from "../components/DeleteAlertBox";
 
 const env = import.meta.env.VITE_BASE_API_URL;
 
 const PortfolioPage = () => {
   const [portfolios, setPortfolios] = useState([]);
+  const [deleteAlert, setDeleteAlert] = useState(false);
   const { getToken } = useContext(AuthContext);
 
   useEffect(() => {
@@ -140,12 +142,21 @@ const PortfolioPage = () => {
 
                 {/* Eliminar */}
                 <button
-                  onClick={() => handleDelete(portfolio._id)}
-                  className="text-red-500 hover:text-red-400 transition-colors"
+                  onClick={() => {
+                    return setDeleteAlert(true);
+                  }}
+                  className="text-red-500 hover:text-red-400 transition-colors hover:cursor-pointer"
                   title="Delete"
                 >
                   <Trash2 className="w-5 h-5" />
                 </button>
+                {deleteAlert && (
+                  <DeleteAlertBox
+                    message="Are you sure you want to delete this portfolio?"
+                    onDelete={() => handleDelete(portfolio._id)}
+                    onCancel={() => setDeleteAlert(false)}
+                  />
+                )}
               </div>
             </div>
           ))}
