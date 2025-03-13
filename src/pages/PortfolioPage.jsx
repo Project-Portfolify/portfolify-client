@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
 import { Pencil, Eye, Trash2, Phone, Mail, Globe, MapPin } from "lucide-react";
 import DeleteAlertBox from "../components/DeleteAlertBox";
+import profileDummy from "../assets/profiledummy.png";
 
 const env = import.meta.env.VITE_BASE_API_URL;
 
@@ -49,27 +50,24 @@ const PortfolioPage = () => {
           {portfolios.map((portfolio) => (
             <div
               key={portfolio._id}
-              className="profile-card w-[300px] rounded-md shadow-xl overflow-hidden relative cursor-pointer snap-start shrink-0 bg-white dark:bg-gray-800 flex flex-col items-center justify-center gap-3 transition-all duration-300 group"
+              className="profile-card w-[300px] rounded-md shadow-xl overflow-hidden relative cursor-pointer snap-start shrink-0 bg-white border-1 border-gray-800 flex flex-col items-center justify-center gap-3 transition-all duration-300 group"
             >
               {/* Avatar Section */}
               <div className="avatar w-full pt-5 flex items-center justify-center flex-col gap-1">
-                <div className="img_container w-full flex items-center justify-center relative z-40 after:absolute after:h-[6px] after:w-full after:bg-[#58b0e0] after:top-4 after:group-hover:[size:1%] after:delay-300 after:group-hover:delay-0 after:group-hover:transition-all after:group-hover:duration-300 after:transition-all after:duration-300 before:absolute before:h-[6px] before:w-full before:bg-[#58b0e0] before:bottom-4 before:group-hover:[size:1%] before:delay-300 before:group-hover:delay-0 before:group-hover:transition-all before:group-hover:duration-300 before:transition-all before:duration-300">
+                <div className="img_container w-full flex items-center justify-center relative z-40 after:absolute  after:top-4 after:group-hover:[size:1%] after:delay-300 after:group-hover:delay-0 after:group-hover:transition-all after:group-hover:duration-300 after:transition-all after:duration-300 before:absolute  before:bottom-4 before:group-hover:[size:1%] before:delay-300 before:group-hover:delay-0 before:group-hover:transition-all before:group-hover:duration-300 before:transition-all before:duration-300">
                   {portfolio.imageUrl ? (
                     <img
-                      src={portfolio.imageUrl}
-                      alt={portfolio.name}
-                      className="size-36 z-40 border-4 border-white rounded-full group-hover:border-8 group-hover:transition-all group-hover:duration-300 transition-all duration-300"
+                      src={portfolio.imageUrl || profileDummy}
+                      alt={portfolio.name || "Default Avatar"}
+                      className="size-36 z-40 border-4 border-gray-800 rounded-full group-hover:border-6 group-hover:transition-all group-hover:duration-300 transition-all duration-300"
                     />
                   ) : (
                     //dummy avatar here
-                    <svg
-                      className="size-36 z-40 border-4 border-white rounded-full group-hover:border-8 group-hover:transition-all group-hover:duration-300 transition-all duration-300"
-                      id="avatar"
-                      viewBox="0 0 61.8 61.8"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <circle cx="30.9" cy="30.9" r="30.9" fill="#58b0e0" />
-                    </svg>
+                    <img
+                      src={profileDummy}
+                      alt="Default Avatar"
+                      className="size-36 z-40 border-4 bg-white border-gray-800 rounded-full group-hover:border-6 group-hover:transition-all group-hover:duration-300 transition-all duration-300"
+                    />
                   )}
                   <div className="absolute bg-[#58b0e0] z-10 w-full group-hover:transition-all group-hover:duration-300 transition-all duration-300 delay-700 group-hover:delay-0"></div>
                 </div>
@@ -115,32 +113,29 @@ const PortfolioPage = () => {
                 </ul>
               </div>
 
-              {/* Divider */}
-              <hr className="w-full group-hover:transition-all group-hover:duration-300 transition-all duration-300" />
-
-              {/* Botones de acción - Abajo */}
-              <div className="flex justify-center gap-4 p-4 w-full border-t">
-                {/* Editar */}
+              {/* action bottons */}
+              <div className="flex justify-between gap-4 p-4 w-full border-t">
+                {/* Edit */}
                 <Link
                   to={`/portfolio/${portfolio.template}/${portfolio.slug}/edit`}
-                  className="text-blue-500 hover:text-blue-400 transition-colors"
+                  className="text-gray-700 hover:text-gray-600 transition-colors"
                   title="Edit"
                 >
                   <Pencil className="w-5 h-5" />
                 </Link>
 
-                {/* Ver */}
+                {/* view */}
                 <Link
                   to={`/portfolio/${portfolio.slug}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-green-500 hover:text-green-400 transition-colors"
+                  className="text-blue-900 hover:text-blue-800 transition-colors"
                   title="View"
                 >
                   <Eye className="w-5 h-5" />
                 </Link>
 
-                {/* Eliminar */}
+                {/* Delete */}
                 <button
                   onClick={() => {
                     return setDeleteAlert(true);

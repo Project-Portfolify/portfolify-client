@@ -67,8 +67,9 @@ function AddExperienceForm({ register, errors, index, remove }) {
             <div className="flex space-x-4">
               <input
                 type="number"
-                min="1960"
-                max="2026"
+                defaultValue={new Date().getFullYear()}
+                min="1980"
+                max="2100"
                 className="block w-full px-5 py-2.5 bg-white leading-7 text-base font-normal shadow-xs text-gray-900 border border-gray-300 rounded-sm placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-950"
                 {...register(`experience.${index}.duration.from`, {
                   required: true,
@@ -82,8 +83,9 @@ function AddExperienceForm({ register, errors, index, remove }) {
               <span className="flex items-center text-gray-600">-</span>
               <input
                 type="number"
-                min="1960"
-                max="2026"
+                min="1980"
+                max="2100"
+                defaultValue={new Date().getFullYear()}
                 className="block w-full px-5 py-2.5 bg-white leading-7 text-base font-normal shadow-xs text-gray-900 border border-gray-300 rounded-sm placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-950"
                 {...register(`experience.${index}.duration.to`, {
                   required: true,
