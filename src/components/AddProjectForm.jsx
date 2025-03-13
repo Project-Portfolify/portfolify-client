@@ -33,7 +33,9 @@ const AddProjectForm = ({ register, index, remove, error }) => {
           <input
             type="text"
             className="block w-full px-5 py-2.5 bg-white leading-7 text-base font-normal shadow-xs text-gray-900 border border-gray-300 rounded-sm placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-950"
-            {...register(`projects.${index}.description`)}
+            {...register(`projects.${index}.description`, {
+              required: "Title is required",
+            })}
           />
           {error?.description && (
             <span className="text-red-600 text-xs">This field is required</span>
@@ -49,7 +51,9 @@ const AddProjectForm = ({ register, index, remove, error }) => {
           <input
             type="text"
             className="block w-full px-5 py-2.5 bg-white leading-7 text-base font-normal shadow-xs text-gray-900 border border-gray-300 rounded-sm placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-950"
-            {...register(`projects.${index}.link`)}
+            {...register(`projects.${index}.link`, {
+              required: "Title is required",
+            })}
           />
         </div>
         {index > 0 && (
