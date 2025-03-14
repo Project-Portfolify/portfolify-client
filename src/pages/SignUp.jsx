@@ -2,6 +2,7 @@ import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
 import { useContext, useState } from "react";
 import ErrorAlert from "../components/ErrorAlert";
+import { Eye, EyeOff } from "lucide-react";
 const env = import.meta.env.VITE_BASE_API_URL;
 
 const SignUp = () => {
@@ -9,6 +10,7 @@ const SignUp = () => {
   const { login } = useContext(AuthContext);
   const [error, setError] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
+  const [showPwd, setShowPwd] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -108,7 +110,7 @@ const SignUp = () => {
                     <input
                       id="password"
                       name="password"
-                      type="password"
+                      type={showPwd ? "text" : "password"}
                       className="peer placeholder-transparent h-10 w-full border-b-2 border-gray-300 text-gray-900 focus:outline-none "
                       placeholder="Password"
                       required
@@ -120,6 +122,25 @@ const SignUp = () => {
                       Password must be at least 8 characters long and contain at
                       least one number and one uppercase letter.
                     </span>
+                    <div onClick={() => setShowPwd(!showPwd)}>
+                    {showPwd ? (
+                      <button
+                        type="button"
+                        onClick={() => setShowPwd(true)}
+                        className="absolute right-0 top-0 mt-2 mr-2"
+                      >
+                        <EyeOff size={20} />
+                      </button>
+                    ) : (
+                      <button
+                        type="button"
+                        onClick={() => setShowPwd(false)}
+                        className="absolute right-0 top-0 mt-2 mr-2"
+                      >
+                        <Eye size={20} />
+                      </button>
+                    )}
+                    </div>
                   </div>
                   <div className="relative">
                     <button
