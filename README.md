@@ -46,7 +46,18 @@ npm install
 npm run dev
 ```
 
-### 4️⃣ Build for Production
+
+### 4️⃣ Set Up Environment Variables
+Create a `.env` file in the root directory and add the following:
+
+```env
+VITE_API_URL=http://localhost:5000
+VITE_CLOUDINARY_URL=your_cloudinary_upload_url
+VITE_CLOUDINARY_PRESET=your_upload_preset
+VITE_OPENAI_API_KEY=your_openai_api_key
+```
+
+### 5️⃣ Build for Production
 ```sh
 npm run build
 ```
@@ -62,4 +73,4 @@ All credits and rights for the resources, tutorials, and external materials used
 ---
 
 ## 📜 License
-MIT License © 2025 Portfolify"
+This project is built and maintained by Portfolify contributors. All rights belong to the individuals who contributed to its development.
