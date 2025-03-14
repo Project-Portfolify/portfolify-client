@@ -1,12 +1,65 @@
-# React + Vite
+# Portfolify - Client (Frontend)  
+🚀 A dynamic portfolio builder for professionals & creatives.  
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+🔗 Live Demo: [Portfolify](https://portfolify-project.netlify.app/) 
 
-Currently, two official plugins are available:
+🔗 Back End Repo: [Back End](https://github.com/Project-Portfolify/portfolify-server)  
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
-## Expanding the ESLint configuration
+## 📌 Project Overview  
+Portfolify is a dynamic portfolio management application that enables users to create, customize, and publish their personal portfolios with various templates. Built with **React (Vite)** and styled with **Tailwind CSS**, this front end interacts with the backend via REST API and integrates Cloudinary for media uploads.
 
-If you are developing a production application, we recommend using TypeScript and enable type-aware lint rules. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+
+## 🔧 Features
+- **User authentication** (Login, Register, JWT-based Auth)  
+- **Create & manage portfolios** (CRUD operations)  
+- **Multiple portfolio templates** 🎨  
+- **Image & PDF uploads via Cloudinary** 📁  
+- **Fully responsive design** 📱
+- **Slug Generation:** Portfolify automatically generates a unique URL (slug) for each portfolio, making sharing their portfolio with potential employers or clients easier.
+
+
+## 📦 Tech Stack  
+- **React (Vite)** – Fast & optimized frontend framework  
+- **Tailwind CSS** – Modern styling  
+- **Axios** – API requests  
+- **Cloudinary** – Image & PDF storage  
+- **Authentication Context** – Manages user authentication  
+- **Netlify** – Deployment  
+
+
+## 🚀 Getting Started
+
+### 1️⃣ Clone the Repository
+```sh
+git clone https://github.com/your-username/portfolify-client.git
+cd portfolify-client
+```
+
+### 2️⃣ Install Dependencies
+```sh
+npm install
+```
+
+### 3️⃣ Run the Project Locally
+```sh
+npm run dev
+```
+
+### 4️⃣ Build for Production
+```sh
+npm run build
+```
+
+### 5️⃣ Deploy to Netlify
+
+You can manually upload the \`/dist\` folder to **Netlify** or connect your GitHub repository for automatic deployment.
+
+
+## 🤝 Credits
+All credits and rights for the resources, tutorials, and external materials used in this project belong to their respective creators and sources.
+
+---
+
+## 📜 License
+MIT License © 2025 Portfolify"

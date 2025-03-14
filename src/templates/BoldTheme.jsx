@@ -13,6 +13,7 @@ import {
   ChevronRight,
   Download,
 } from "lucide-react";
+import { backendOptions, frontEndOptions, toolOptions } from "../constants";
 const imageArray = [projectImage, project1, project2];
 
 // Components
@@ -252,15 +253,25 @@ const Skills = ({ data }) => {
                 {category.title}
               </h3>
               <ul className="space-y-2">
-                {category.skills.map((skill, skillIndex) => (
-                  <li
-                    key={skillIndex}
-                    className="flex items-center text-gray-600"
-                  >
-                    <ChevronRight size={16} className="text-blue-600 mr-2" />
-                    {skill}
-                  </li>
-                ))}
+                {category.skills.map((skill, skillIndex) => {
+                  const label = (
+                    category.title === "FrontEnd"
+                      ? frontEndOptions
+                      : category.title === "BackEnd"
+                      ? backendOptions
+                      : toolOptions
+                  ).find((ele) => ele.value === skill).label;
+
+                  return (
+                    <li
+                      key={skillIndex}
+                      className="flex items-center text-gray-600"
+                    >
+                      <ChevronRight size={16} className="text-blue-600 mr-2" />
+                      {label}
+                    </li>
+                  );
+                })}
               </ul>
             </div>
           ))}
@@ -554,7 +565,7 @@ const Footer = ({ data }) => {
           <div>
             <h3 className="text-xl font-bold mb-4">Get In Touch</h3>
             <p className="text-gray-400 mb-2">{data.email}</p>
-            <p className="text-gray-400 mb-4">Location: {data.country}</p>
+            <p className="text-gray-400 mb-4">Location: {data.country.label}</p>
             <a
               href="#contact"
               className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors inline-block"

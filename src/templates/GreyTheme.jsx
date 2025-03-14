@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Github, Linkedin, Mail, Menu, X } from "lucide-react";
 import profileImage from "../assets/profileimage.png";
+import { backendOptions, frontEndOptions, toolOptions } from "../constants";
 
 const Experience = ({ data }) => {
   return (
@@ -149,8 +150,6 @@ const Navbar = ({ data }) => {
 };
 
 const GreyTheme = ({ data }) => {
-  const [activeTab, setActiveTab] = useState("home");
-
   return (
     <div className="bg-white text-gray-900 min-h-screen font-sans">
       <Navbar data={data} />
@@ -161,7 +160,7 @@ const GreyTheme = ({ data }) => {
         className="m-10 flex items-center pt-16 container mx-auto px-4"
       >
         <div className="max-w-4xl grid grid-cols-1 md:grid-cols-2 gap-8 mx-auto">
-          <div className="rounded-full overflow-hidden w-90 h-90 mx-auto md:ml-0 md:mr-auto">
+          <div className="rounded-full overflow-hidden w-60 h-60 md:w-75 md:h-75 lg:w-90 lg:h-90 mx-auto md:ml-0 md:mr-auto">
             <img src={data.imageUrl || profileImage} alt="" srcset="" />
           </div>
           <div>
@@ -228,14 +227,19 @@ const GreyTheme = ({ data }) => {
             </h2>
 
             <div className="grid md:grid-cols-3 gap-8">
-              {data.skills[0].skills.map((skillGroup, index) => (
-                <div
-                  key={index}
-                  className="bg-gray-50 rounded-sm p-6 text-center"
-                >
-                  <h3 className="text-2xl font-semibold mb-6">{skillGroup}</h3>
-                </div>
-              ))}
+              {data.skills[0].skills.map((skill, index) => {
+                const label = frontEndOptions.find(
+                  (ele) => ele.value === skill
+                ).label;
+                return (
+                  <div
+                    key={index}
+                    className="bg-gray-50 rounded-sm p-6 text-center"
+                  >
+                    <h3 className="text-2xl font-semibold mb-6">{label}</h3>
+                  </div>
+                );
+              })}
             </div>
           </div>
           <div className="flex flex-col">
@@ -243,14 +247,19 @@ const GreyTheme = ({ data }) => {
               Back-End Skills
             </h2>
             <div className="grid md:grid-cols-3 gap-8 mt-10">
-              {data.skills[1].skills.map((skillGroup, index) => (
-                <div
-                  key={index}
-                  className="bg-gray-50 rounded-sm p-6 text-center"
-                >
-                  <h3 className="text-2xl font-semibold mb-6">{skillGroup}</h3>
-                </div>
-              ))}
+              {data.skills[1].skills.map((skill, index) => {
+                const label = backendOptions.find(
+                  (ele) => ele.value === skill
+                ).label;
+                return (
+                  <div
+                    key={index}
+                    className="bg-gray-50 rounded-sm p-6 text-center"
+                  >
+                    <h3 className="text-2xl font-semibold mb-6">{label}</h3>
+                  </div>
+                );
+              })}
             </div>
           </div>
           <div className="flex flex-col">
@@ -258,14 +267,20 @@ const GreyTheme = ({ data }) => {
               Other Tools
             </h2>
             <div className="grid md:grid-cols-3 gap-8 mt-10">
-              {data.skills[2].skills.map((skillGroup, index) => (
-                <div
-                  key={index}
-                  className="bg-gray-50 rounded-sm p-6 text-center"
-                >
-                  <h3 className="text-2xl font-semibold mb-6">{skillGroup}</h3>
-                </div>
-              ))}
+              {data.skills[2].skills.map((skill, index) => {
+                const label = toolOptions.find(
+                  (ele) => ele.value === skill
+                ).label;
+
+                return (
+                  <div
+                    key={index}
+                    className="bg-gray-50 rounded-sm p-6 text-center"
+                  >
+                    <h3 className="text-2xl font-semibold mb-6">{label}</h3>
+                  </div>
+                );
+              })}
             </div>
           </div>
         </div>
@@ -317,7 +332,7 @@ const GreyTheme = ({ data }) => {
                 </a>
               </div>
             </div>
-            <p className="text-gray-400 mb-4">Location: {data.country}</p>
+            <p className="text-gray-400 mb-4">Location: {data.country.label}</p>
           </div>
         </div>
       </section>

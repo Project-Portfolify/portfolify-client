@@ -5,7 +5,6 @@ const DeleteAlertBox = ({ message, onDelete, onCancel }) => {
     <div
       className="fixed inset-0 z-50 flex items-center justify-center 
              bg-white/10 backdrop-blur-md border border-white/20"
-      aria-hidden="true"
     >
       <div className="bg-white p-6 rounded-lg shadow-lg">
         <h2 className="text-xl font-semibold mb-4">Delete Confirmation</h2>

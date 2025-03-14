@@ -1,41 +1,20 @@
 import { useNavigate, useParams } from "react-router-dom";
-import { Templates } from "../constants";
+import {
+  backendOptions,
+  frontEndOptions,
+  Templates,
+  toolOptions,
+} from "../constants";
 import AtomTheme from "../templates/AtomTheme";
 import BoldTheme from "../templates/BoldTheme";
 import LightTheme from "../templates/LightTheme";
 import GreyTheme from "../templates/GreyTheme";
 import DarkTheme from "../templates/DarkTheme";
 
-const skills = {
-  frontEnd: [
-    { value: "react", label: "React" },
-    { value: "vue", label: "Vue.js" },
-    { value: "angular", label: "Angular" },
-    { value: "nextjs", label: "Next.js" },
-    { value: "nuxtjs", label: "Nuxt.js" },
-    { value: "htmlcss", label: "HTML & CSS" },
-  ],
-  backEnd: [
-    { value: "nodejs", label: "Node.js" },
-    { value: "express", label: "Express.js" },
-    { value: "django", label: "Django" },
-    { value: "flask", label: "Flask" },
-    { value: "spring", label: "Spring Boot" },
-  ],
-  otherTools: [
-    { value: "git", label: "Git" },
-    { value: "github", label: "GitHub" },
-    { value: "docker", label: "Docker" },
-    { value: "kubernetes", label: "Kubernetes" },
-    { value: "jenkins", label: "Jenkins" },
-    { value: "aws", label: "AWS" },
-  ],
-};
-
 const dummyData = {
   about:
     "Passionate developer with expertise in building scalable web applications and user-friendly experiences.",
-  country: "United States",
+  country: { value: "US", label: "United States" },
   email: "alex.johnson@example.com",
   gitHub: "https://github.com/alexjohnson",
   linkedIn: "https://linkedin.com/in/alexjohnson",
@@ -68,20 +47,20 @@ const dummyData = {
   skills: [
     {
       skillType: "FrontEnd",
-      skills: skills.frontEnd.map((skill) => {
-        return skill.label;
+      skills: frontEndOptions.map((skill) => {
+        return skill.value;
       }),
     },
     {
       skillType: "BackEnd",
-      skills: skills.backEnd.map((skill) => {
-        return skill.label;
+      skills: backendOptions.map((skill) => {
+        return skill.value;
       }),
     },
     {
       skillType: "OtherTools",
-      skills: skills.otherTools.map((skill) => {
-        return skill.label;
+      skills: toolOptions.map((skill) => {
+        return skill.value;
       }),
     },
   ],
