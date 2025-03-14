@@ -3,7 +3,7 @@
 
 🔗 Live Demo: [Portfolify](https://portfolify-project.netlify.app/) 
 
-🔗 Back End Repo: [Repo](https://github.com/Project-Portfolify/portfolify-server)  
+🔗 Back End Repo: [Click](https://github.com/Project-Portfolify/portfolify-server)  
 
 
 ## 📌 Project Overview  
