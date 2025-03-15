@@ -34,6 +34,7 @@ const templateList = [
 const PortfolioList = () => {
   const carouselRef = useRef(null);
   const navigate = useNavigate();
+
   const scrollLeft = () => {
     if (carouselRef.current) {
       carouselRef.current.scrollBy({ left: -300, behavior: "smooth" });
@@ -49,6 +50,7 @@ const PortfolioList = () => {
   const handlePreview = (templateId) => {
     navigate(`/preview/${templateId}`);
   };
+
   const handleCreate = (templateId) => {
     navigate(`/templates/${templateId}`);
   };
@@ -61,7 +63,7 @@ const PortfolioList = () => {
       <div className="relative">
         {/* Scroll to the Left Button */}
         <button
-          className="absolute left-0 top-1/2 transform -translate-y-1/2 bg-white p-2 rounded-full shadow-md"
+          className="absolute left-0 top-1/2 transform -translate-y-1/2 bg-transparent p-2 rounded-full shadow-md z-10"
           onClick={scrollLeft}
         >
           <ChevronLeft size={24} />
@@ -70,14 +72,14 @@ const PortfolioList = () => {
         {/* Carousel Container */}
         <div
           ref={carouselRef}
-          className="flex flex-nowrap gap-14 overflow-hidden pb-4 m-12 lg:m-30"
+          className="flex flex-nowrap gap-4 overflow-x-auto pb-4 m-4 lg:m-12"
         >
           {/* Card Template 1 */}
           {templateList.map((obj, i) => {
             return (
               <div
                 key={i}
-                className="flex-shrink-0 m-4 relative overflow-hidden bg-white dark:bg-gray-800 rounded-lg max-w-xs shadow-lg h-auto transform transition-transform hover:scale-105"
+                className="flex-shrink-0 m-4 relative overflow-hidden bg-white dark:bg-gray-800 rounded-lg w-64 shadow-lg h-auto transform transition-transform hover:scale-105"
               >
                 {/* Image on Top */}
                 <img
@@ -91,7 +93,7 @@ const PortfolioList = () => {
                   <div className="flex justify-between w-full mt-2 gap-5">
                     <button
                       onClick={() => handlePreview(obj.templateId)}
-                      className="w-20 h-8 shadow-sm rounded-lg bg-white hover:bg-gray-300  transition-all duration-300 text-black text-sm"
+                      className="w-20 h-8 shadow-sm rounded-lg bg-white hover:bg-gray-300 transition-all duration-300 text-black text-sm"
                     >
                       Preview
                     </button>
@@ -110,7 +112,7 @@ const PortfolioList = () => {
 
         {/* Scroll to the Right Button */}
         <button
-          className="absolute right-0 top-1/2 transform -translate-y-1/2 bg-white p-2 rounded-full shadow-md"
+          className="absolute right-0 top-1/2 transform -translate-y-1/2 bg-transparent p-2 rounded-full shadow-md z-10"
           onClick={scrollRight}
         >
           <ChevronRight size={24} />
